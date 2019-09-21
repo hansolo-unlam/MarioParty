@@ -23,7 +23,6 @@ public class Jugador {
 	}
 	
 	public void tirarDado() {
-		
 //		int randomInt;
 //		Random r = new Random();
 //		if(dado normal)					//en las condiciones puse lo que deberia comprobar 
@@ -38,10 +37,11 @@ public class Jugador {
 	
 	public void avanzar(int cant) throws Exception {
 		for (int i = 1; i < cant; i++) {
-			if (this.posicion.getNext().length == 0) {
+			if (this.posicion.getNext().length == 1) {
 				// No estoy en una bifurcacion
 				this.posicion = this.posicion.getNext()[0];
-				cant--;
+				if (this.posicion.isEfectoPasandoSobre())
+					this.posicion.efecto(this);
 			} else {
 				// Es bifurcación, andá a saber que hacemos
 				throw new Exception("En desarrollo");
