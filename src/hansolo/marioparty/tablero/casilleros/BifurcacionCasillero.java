@@ -5,8 +5,8 @@ import hansolo.marioparty.entidades.Jugador;
 // Casillero que, cuando pasas o caés, te pregunta a cual de los next querés moverte
 public class BifurcacionCasillero extends Casillero {
 
-	public BifurcacionCasillero(Casillero[] next) {
-		super(next, true);
+	public BifurcacionCasillero(int id, int[] next) {
+		super(id, next, true);
 	}
 
 	// Tiene que preguntar en qué dirección quiere seguir el jugador

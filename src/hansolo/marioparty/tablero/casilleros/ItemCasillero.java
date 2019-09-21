@@ -5,8 +5,8 @@ import hansolo.marioparty.entidades.Jugador;
 // Casillero que le da o le saca un item al jugador que cae
 public class ItemCasillero extends Casillero {
 
-	public ItemCasillero(Casillero[] next, boolean efectoPasandoSobre) {
-		super(next, false);
+	public ItemCasillero(int id, int[] next) {
+		super(id, next, false);
 		// TODO Auto-generated constructor stub
 	}
 

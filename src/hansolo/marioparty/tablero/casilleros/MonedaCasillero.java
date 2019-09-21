@@ -6,9 +6,9 @@ import hansolo.marioparty.entidades.Jugador;
 public class MonedaCasillero extends Casillero {
 	private int cantMonedas; // positivo o negativo
 
-	public MonedaCasillero(Casillero[] next, int cantMonedas) {
-		super(next, false);
-		this.cantMonedas = cantMonedas;
+	public MonedaCasillero(int id, int[] next) {
+		super(id, next, false);
+		this.cantMonedas = 3;
 	}
 
 	@Override

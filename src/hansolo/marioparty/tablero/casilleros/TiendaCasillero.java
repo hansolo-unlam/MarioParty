@@ -4,8 +4,8 @@ import hansolo.marioparty.entidades.Jugador;
 
 public class TiendaCasillero extends Casillero {
 
-	public TiendaCasillero(Casillero[] next, boolean efectoPasandoSobre) {
-		super(next, true);
+	public TiendaCasillero(int id, int[] next) {
+		super(id, next, true);
 		// TODO Auto-generated constructor stub
 	}
 

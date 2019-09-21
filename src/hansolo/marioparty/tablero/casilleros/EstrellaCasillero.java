@@ -6,8 +6,8 @@ import hansolo.marioparty.entidades.Jugador;
 public class EstrellaCasillero extends Casillero {
 	private final int PRECIO_ESTRELLA = 30;
 
-	public EstrellaCasillero(Casillero[] next) {
-		super(next, true);
+	public EstrellaCasillero(int id, int[] next) {
+		super(id, next, true);
 	}
 
 	@Override
