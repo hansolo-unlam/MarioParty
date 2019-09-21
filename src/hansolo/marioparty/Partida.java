@@ -15,9 +15,13 @@ public class Partida {
 	
 	private int rondaActual;
 	
-	public Partida(Jugador jugadores[], Tablero tablero, CondicionVictoria condicionVictoria) {
-		this.jugadores = jugadores;
-		this.cantJugadores = jugadores.length;
+	public Partida(Usuario users[], Tablero tablero, CondicionVictoria condicionVictoria) {
+		
+		for(int i=0; i<users.length(); i++) {
+			this.jugadores[i] = new Jugador(users[i], tablero.getStart())
+		}
+		
+		this.cantJugadores = this.jugadores.length;
 		jugadorJugando = null;
 		
 		this.tablero = tablero;
