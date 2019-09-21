@@ -1,5 +1,6 @@
 package hansolo.marioparty;
 
+import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.minijuegos.Minijuego;
 import hansolo.marioparty.tablero.Tablero;
@@ -17,8 +18,8 @@ public class Partida {
 	
 	public Partida(Usuario users[], Tablero tablero, CondicionVictoria condicionVictoria) {
 		
-		for(int i=0; i<users.length(); i++) {
-			this.jugadores[i] = new Jugador(users[i], tablero.getStart())
+		for (int i = 0; i < users.length; i++) {
+			this.jugadores[i] = new Jugador(users[i], tablero.getStart());
 		}
 		
 		this.cantJugadores = this.jugadores.length;

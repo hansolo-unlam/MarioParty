@@ -15,4 +15,8 @@ public class Tablero {
 	private List<Casillero> cargarCasilleros(String path) {
 		return new ArrayList<Casillero>();
 	}
+	
+	public Casillero getStart() {
+		return casilleros.get(0);
+	}
 }
