@@ -1,4 +1,4 @@
-package hansolo.marioparty.tablero;
+package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
 
