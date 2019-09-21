@@ -1,19 +1,18 @@
 package hansolo.marioparty.tablero;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import hansolo.marioparty.tablero.casilleros.Casillero;
 
 public class Tablero {
-	private List<Casillero> casilleros;
+	private Map<Integer, Casillero> casilleros;
 	
 	public Tablero(String path) {
 		this.casilleros = cargarCasilleros(path);
 	}
 	
-	private List<Casillero> cargarCasilleros(String path) {
-		return new ArrayList<Casillero>();
+	private Map<Integer, Casillero> cargarCasilleros(String path) {
+		return new HashMap<Integer, Casillero>();
 	}
 	
 	public Casillero getStart() {
