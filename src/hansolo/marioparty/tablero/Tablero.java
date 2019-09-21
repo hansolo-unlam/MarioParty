@@ -13,6 +13,6 @@ public class Tablero {
 	}
 	
 	private List<Casillero> cargarCasilleros(String path) {
-		return new ArrayList<Casillero>();		
+		return new ArrayList<Casillero>();
 	}
 }

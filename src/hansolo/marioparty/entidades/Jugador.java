@@ -2,11 +2,8 @@ package hansolo.marioparty.entidades;
 
 import java.util.Random;
 
-<<<<<<< HEAD
-=======
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.items.Item;
->>>>>>> a354b4154a576b7964d0af4c907cff8c806c8008
 import hansolo.marioparty.tablero.casilleros.Casillero;
 
 public class Jugador {
