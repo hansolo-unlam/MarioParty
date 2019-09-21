@@ -2,6 +2,11 @@ package hansolo.marioparty.entidades;
 
 import java.util.Random;
 
+<<<<<<< HEAD
+=======
+import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.items.Item;
+>>>>>>> a354b4154a576b7964d0af4c907cff8c806c8008
 import hansolo.marioparty.tablero.casilleros.Casillero;
 
 public class Jugador {
@@ -21,27 +26,31 @@ public class Jugador {
 	}
 	
 	public void tirarDado() {
-		
-		int randomInt;
-		Random r = new Random();
-		if(dado normal)					//en las condiciones puse lo que deberia comprobar 
-			randomInt = r.nextInt(6-1);//dado los tipos de dados que tenemosno se como enviariamos un item o si creamos una clase dado
-		else							//no se como enviariamos un item o si creamos una clase dado
-			if(dado doble)				//segun eso habria que generar las condiciones y agregar mas si me falta algun dado
-				randomInt = r.nextInt(6-1)*2;
-			else
-				randomInt = r.nextInt(6-1)+5;
-		this.avanzar(randomInt);
+//		int randomInt;
+//		Random r = new Random();
+//		if(dado normal)					//en las condiciones puse lo que deberia comprobar 
+//			randomInt = r.nextInt(6-1);//dado los tipos de dados que tenemosno se como enviariamos un item o si creamos una clase dado
+//		else							//no se como enviariamos un item o si creamos una clase dado
+//			if(dado doble)				//segun eso habria que generar las condiciones y agregar mas si me falta algun dado
+//				randomInt = r.nextInt(6-1)*2;
+//			else
+//				randomInt = r.nextInt(6-1)+5;
+//		this.avanzar(randomInt);
 	}
 	
-	public void avanzar(int cant) {
-		
-		this.posicion = this.posicion.next;
-		for(int i=1; i<cant; i++) {
-			//aca falta chequear si es una bifurcacion y elegir un camino 
-			this.posicion = this.posicion.next;
+	public void avanzar(int cant) throws Exception {
+		for (int i = 1; i < cant; i++) {
+			if (this.posicion.getNext().length == 1) {
+				// No estoy en una bifurcacion
+				this.posicion = this.posicion.getNext()[0];
+				if (this.posicion.isEfectoPasandoSobre())
+					this.posicion.efecto(this);
+			} else {
+				// Es bifurcación, andá a saber que hacemos
+				throw new Exception("En desarrollo");
+			}
 		}
-		this.posicion.efecto();
+		this.posicion.efecto(this);
 	}
 	
 	public void terminarTurno() {
