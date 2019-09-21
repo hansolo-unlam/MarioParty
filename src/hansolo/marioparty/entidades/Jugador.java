@@ -2,6 +2,8 @@ package hansolo.marioparty.entidades;
 
 import java.util.Random;
 
+import hansolo.marioparty.tablero.casilleros.Casillero;
+
 public class Jugador {
 	
 	private Usuario user;
