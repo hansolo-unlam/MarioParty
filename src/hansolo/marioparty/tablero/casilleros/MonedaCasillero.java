@@ -13,7 +13,7 @@ public class MonedaCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
-		
+		jugador.setEstrellas(this.cantMonedas);
 	}
 
 }

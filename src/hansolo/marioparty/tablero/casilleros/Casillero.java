@@ -12,7 +12,7 @@ public abstract class Casillero {
 		this.next = next;
 		this.efectoPasandoSobre = efectoPasandoSobre;
 	}
-
+	
 	public abstract void efecto(Jugador jugador);
 
 	public int[] getNext() {
