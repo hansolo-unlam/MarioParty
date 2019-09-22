@@ -19,7 +19,7 @@ public class Partida {
 	public Partida(Usuario users[], Tablero tablero, CondicionVictoria condicionVictoria) {
 		
 		for (int i = 0; i < users.length; i++) {
-			this.jugadores[i] = new Jugador(users[i], tablero.getStart());
+			this.jugadores[i] = new Jugador(users[i], tablero.getStart(), this);
 		}
 		
 		this.cantJugadores = this.jugadores.length;
@@ -35,5 +35,22 @@ public class Partida {
 	private Minijuego[] cargarMinijuegos() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	// ***** ** GETTERS Y SETTERS ** ***** //
+	public Jugador[] getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(Jugador[] jugadores) {
+		this.jugadores = jugadores;
+	}
+
+	public Tablero getTablero() {
+		return tablero;
+	}
+
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
 	}
 }

@@ -1,7 +1,6 @@
 package hansolo.marioparty.entidades;
 
-import java.util.Random;
-
+import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.tablero.casilleros.Casillero;
@@ -14,12 +13,15 @@ public class Jugador {
 	private Casillero posicion;
 	private Item[] items;
 	
-	public Jugador(Usuario user, Casillero start) {
-		
+	private Partida partida;
+	
+	public Jugador(Usuario user, Casillero start, Partida partida) {
 		this.user = user;
 		this.monedas = this.estrellas = 0;
 		this.turnoJugado = false;
 		this.posicion = start;
+		
+		this.partida = partida;
 	}
 	
 	public void tirarDado() {
@@ -39,7 +41,9 @@ public class Jugador {
 		for (int i = 1; i < cant; i++) {
 			if (this.posicion.getNext().length == 1) {
 				// No estoy en una bifurcacion
-				this.posicion = this.posicion.getNext()[0];
+				int idCasilleroSiguiente = this.posicion.getNext()[0];
+				this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
+				
 				if (this.posicion.isEfectoPasandoSobre())
 					this.posicion.efecto(this);
 			} else {
