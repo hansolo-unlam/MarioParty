@@ -55,8 +55,8 @@ public class Jugador {
 	}
 
 	public void terminarTurno() {
-
 		this.turnoJugado = true;
+		partida.pasarTurno();
 	}
 
 	public int getMonedas() {
