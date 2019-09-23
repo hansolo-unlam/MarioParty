@@ -12,12 +12,13 @@ public class EstrellaCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
+		System.out.println(jugador.getUser().getNombre() + " pasó por casillero de estrella");
 		//Por ahora que compre la mayor cantidad de estrellas que pueda
-		if (jugador.getMonedas() >= this.PRECIO_ESTRELLA) {
-			int estrellasGanadas = jugador.getMonedas() / this.PRECIO_ESTRELLA;
-			jugador.setEstrellas(estrellasGanadas);
-			jugador.setMonedas(this.PRECIO_ESTRELLA * estrellasGanadas - jugador.getMonedas());
-		}
+//		if (jugador.getMonedas() >= this.PRECIO_ESTRELLA) {
+//			int estrellasGanadas = jugador.getMonedas() / this.PRECIO_ESTRELLA;
+//			jugador.setEstrellas(estrellasGanadas);
+//			jugador.setMonedas(-(this.PRECIO_ESTRELLA * estrellasGanadas));
+//		}
 	}
 
 }

@@ -12,6 +12,6 @@ public class BifurcacionCasillero extends Casillero {
 	// Tiene que preguntar en qué dirección quiere seguir el jugador
 	@Override
 	public void efecto(Jugador jugador) {
-		
+		System.out.println(jugador.getUser().getNombre() + " pasó por una bifurcación");
 	}
 }

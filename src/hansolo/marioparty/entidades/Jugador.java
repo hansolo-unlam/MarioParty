@@ -70,4 +70,12 @@ public class Jugador {
 	public void setMonedas(int monedasGanadas) {
 		this.monedas += (-monedasGanadas > this.monedas ? -this.monedas : monedasGanadas);
 	}
+	
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
 }

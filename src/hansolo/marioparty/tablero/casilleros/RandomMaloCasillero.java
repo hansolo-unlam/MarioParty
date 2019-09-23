@@ -11,7 +11,7 @@ public class RandomMaloCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
-		// TODO Auto-generated method stub
+		System.out.println(jugador.getUser().getNombre() + " pasó por casillero malo");
 
 	}
 

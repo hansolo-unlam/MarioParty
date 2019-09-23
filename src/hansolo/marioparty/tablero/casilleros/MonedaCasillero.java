@@ -13,7 +13,9 @@ public class MonedaCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
-		jugador.setMonedas(this.cantMonedas);
+		System.out.println(jugador.getUser().getNombre() + " pasó por casillero de monedas");
+
+		jugador.setEstrellas(this.cantMonedas);
 	}
 
 }
