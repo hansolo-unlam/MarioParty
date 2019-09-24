@@ -1,6 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.tablero.Casillero;
 
 // casillero que, al caer en él, te da o te quita una cierta cantidad de monedas (+3 o -3)
 public class MonedaCasillero extends Casillero {

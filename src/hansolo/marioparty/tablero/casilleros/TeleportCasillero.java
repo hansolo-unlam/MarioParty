@@ -1,6 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.tablero.Casillero;
 
 // Casillero que, si pagás una cantidad de monedas, te lleva a la posición de otro jugador
 public class TeleportCasillero extends Casillero {

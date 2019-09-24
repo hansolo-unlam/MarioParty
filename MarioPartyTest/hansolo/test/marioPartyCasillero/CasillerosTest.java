@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.tablero.casilleros.*;
 

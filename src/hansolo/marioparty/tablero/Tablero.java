@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-import hansolo.marioparty.tablero.casilleros.Casillero;
 import hansolo.marioparty.utils.LeerArchivo;
 import hansolo.marioparty.utils.LoaderMapa;
 

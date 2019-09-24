@@ -1,6 +1,9 @@
 package hansolo.marioparty;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
@@ -9,7 +12,7 @@ import hansolo.marioparty.tablero.Tablero;
 
 
 public class Partida {
-	private Jugador[] jugadores;
+	private List<Jugador> jugadores;
 	private int cantJugadores;
 	private Jugador jugadorJugando;
 	private int turnoActual;
@@ -23,12 +26,13 @@ public class Partida {
 	private HashMap<Integer,Jugador> orden = new HashMap<Integer,Jugador>();
 	
 	public Partida(Usuario users[], Tablero tablero, CondicionVictoria condicionVictoria) {
+		jugadores = new ArrayList<Jugador>();
 		
 		for (int i = 0; i < users.length; i++) {
-			this.jugadores[i] = new Jugador(users[i], tablero.getStart(), this);
+			jugadores.add(new Jugador(users[i], tablero.getStart(), this));
 		}
 		
-		this.cantJugadores = this.jugadores.length;
+		this.cantJugadores = this.jugadores.size();
 		jugadorJugando = null;
 		
 		this.tablero = tablero;
@@ -44,30 +48,33 @@ public class Partida {
 	}
 	
 	public void definirOrdenJugador() {
-		int clave = 1;
-		for(int i=0; i<this.cantJugadores;i++) {
-			orden.put(clave, this.jugadores[i]);
-			clave++;
-		}
+		// Hace un shuffle de la lista de jugadores y define al orden en el que queden como el orden de los turnos
+		Collections.shuffle(jugadores);
 	}
 	
+	// Termina el turno del jugador actual y comienza el turno del jugador siguiente
 	public void pasarTurno() {
 		this.turnoActual++;
-		if(this.turnoActual>this.cantJugadores)
+		if(this.turnoActual > this.cantJugadores)
 			this.pasarRonda();
+		
+		this.jugadorJugando = getJugadorConTurno();
 	}
 	
+	// Termina la ronda actual y comienza la siguiente, le da comienzo al turno del primer jugador
 	public void pasarRonda() {
 		this.rondaActual++;
 		this.turnoActual = 1;
+		
+		this.jugadorJugando = getJugadorConTurno();
 	}
 	
 	// ***** ** GETTERS Y SETTERS ** ***** //
-	public Jugador[] getJugadores() {
+	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
 
-	public void setJugadores(Jugador[] jugadores) {
+	public void setJugadores(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
 
@@ -79,13 +86,9 @@ public class Partida {
 		this.tablero = tablero;
 	}
 	
-	public Jugador getProximoJugador() {
-		int turnoSiguiente;
-		if(this.turnoActual < this.cantJugadores)
-			turnoSiguiente = this.turnoActual + 1;
-		else
-			turnoSiguiente = 1;
-		return orden.get(turnoSiguiente);
+	// Devuelve el jugador que tiene que jugar su turno
+	public Jugador getJugadorConTurno() {
+		return jugadores.get(turnoActual - 1);
 	}
 	
 }

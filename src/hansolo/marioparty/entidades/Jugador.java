@@ -3,7 +3,7 @@ package hansolo.marioparty.entidades;
 import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.items.Item;
-import hansolo.marioparty.tablero.casilleros.Casillero;
+import hansolo.marioparty.tablero.Casillero;
 
 public class Jugador {
 
@@ -43,6 +43,8 @@ public class Jugador {
 				// No estoy en una bifurcacion
 				int idCasilleroSiguiente = this.posicion.getNext()[0];
 				this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
+				
+				// [[ Acá es donde se llamaría al método que dibujaría al loco moviendose de casillero a casillero ]]
 
 				if (this.posicion.isEfectoPasandoSobre())
 					this.posicion.efecto(this);

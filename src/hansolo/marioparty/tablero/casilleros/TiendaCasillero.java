@@ -1,6 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.tablero.Casillero;
 
 public class TiendaCasillero extends Casillero {
 

@@ -1,5 +1,6 @@
 package hansolo.marioparty.utils;
 
+import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.tablero.casilleros.*;
 

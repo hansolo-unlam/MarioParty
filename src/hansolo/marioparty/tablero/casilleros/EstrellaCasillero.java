@@ -1,6 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.tablero.Casillero;
 
 // casillero que, al pasar o caer en él, te deja comprar una estrella
 public class EstrellaCasillero extends Casillero {
