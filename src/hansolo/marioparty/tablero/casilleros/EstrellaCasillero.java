@@ -2,12 +2,13 @@ package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.tablero.SiguienteCasillero;
 
 // casillero que, al pasar o caer en él, te deja comprar una estrella
 public class EstrellaCasillero extends Casillero {
 	private final int PRECIO_ESTRELLA = 30;
 
-	public EstrellaCasillero(int id, int[] next) {
+	public EstrellaCasillero(int id, SiguienteCasillero[] next) {
 		super(id, next, true);
 	}
 

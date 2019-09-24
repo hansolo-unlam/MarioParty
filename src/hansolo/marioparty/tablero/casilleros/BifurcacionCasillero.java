@@ -2,11 +2,12 @@ package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.tablero.SiguienteCasillero;
 
 // Casillero que, cuando pasas o caés, te pregunta a cual de los next querés moverte
 public class BifurcacionCasillero extends Casillero {
 
-	public BifurcacionCasillero(int id, int[] next) {
+	public BifurcacionCasillero(int id, SiguienteCasillero[] next) {
 		super(id, next, true);
 	}
 

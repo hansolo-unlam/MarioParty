@@ -1,6 +1,8 @@
 package hansolo.marioparty.utils;
 
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.tablero.EnumDireccion;
+import hansolo.marioparty.tablero.SiguienteCasillero;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.tablero.casilleros.*;
 
@@ -21,10 +23,11 @@ public class LoaderMapa {
 			char tipoCasillero = archivo.siguienteChar();
 			int cantNext = archivo.siguienteEntero();
 
-			int[] next = new int[cantNext];
+			SiguienteCasillero[] next = new SiguienteCasillero[cantNext];
 
 			for (int j = 0; j < cantNext; j++) {
-				next[j] = archivo.siguienteEntero();
+				String[] word = archivo.siguientePalabra().split(",");
+				next[j] = new SiguienteCasillero(Integer.parseInt(word[0]), EnumDireccion.valueOf(word[1]));
 			}
 
 			try {
@@ -35,8 +38,7 @@ public class LoaderMapa {
 		}
 	}
 
-	private Casillero armarCasillero(char tipoCasillero, int id, int next[]) throws Exception {
-
+	private Casillero armarCasillero(char tipoCasillero, int id, SiguienteCasillero next[]) throws Exception {
 		switch (tipoCasillero) {
 		case 'B':
 			return new BifurcacionCasillero(id, next);

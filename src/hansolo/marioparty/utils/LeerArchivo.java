@@ -14,6 +14,10 @@ public class LeerArchivo {
 		sc = new Scanner(new File(this.path));
 		sc.useLocale(Locale.ENGLISH);
 	}
+	
+	public String siguientePalabra() {
+		return sc.next();
+	}
 
 	public double siguienteNumero() {
 		return sc.nextDouble();

@@ -41,7 +41,7 @@ public class Jugador {
 		for (int i = 1; i < cant; i++) {
 			if (this.posicion.getNext().length == 1) {
 				// No estoy en una bifurcacion
-				int idCasilleroSiguiente = this.posicion.getNext()[0];
+				int idCasilleroSiguiente = this.posicion.getNext()[0].getId();
 				this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
 				
 				// [[ Acá es donde se llamaría al método que dibujaría al loco moviendose de casillero a casillero ]]

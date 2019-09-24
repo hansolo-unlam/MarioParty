@@ -2,11 +2,12 @@ package hansolo.marioparty.tablero.casilleros;
 
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.tablero.SiguienteCasillero;
 
 // Casillero que cuando caés en él te aplica algo malo, dentro de 5 posibles opciones
 public class RandomMaloCasillero extends Casillero {
 
-	public RandomMaloCasillero(int id, int[] next) {
+	public RandomMaloCasillero(int id, SiguienteCasillero[] next) {
 		super(id, next, false);
 	}
 
