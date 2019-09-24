@@ -1,7 +1,7 @@
 package hansolo.test.marioPartyTablero;
 
 import static org.junit.Assert.*;
-
+	
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,8 +30,8 @@ public class TableroTest {
 	// VERIFICO QUE SEA UN CASILLERO MONEDA -
 	@Test
 	public void CasilleroMonedaNegativo() {
-		assertEquals(tab.getCasilleros().get(43).getClass(), new MonedaCasillero(0, null, 1).getClass());
-		Casillero casM = tab.getCasilleros().get(43);
+		assertEquals(tab.getCasilleros().get(71).getClass(), new MonedaCasillero(0, null, 1).getClass());
+		Casillero casM = tab.getCasilleros().get(71);
 		assertEquals(((MonedaCasillero) casM).getMoneda(), -3);
 	}
 
