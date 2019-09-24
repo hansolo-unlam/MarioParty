@@ -18,4 +18,8 @@ public class MonedaCasillero extends Casillero {
 		jugador.setEstrellas(this.cantMonedas);
 	}
 
+	public int getMoneda() {
+		return this.cantMonedas;
+	}
+
 }
