@@ -3,7 +3,7 @@ package hansolo.marioparty;
 import hansolo.marioparty.tablero.Tablero;
 
 public class Launcher {
-	private static final String path = "./recursos/mapa.txt";
+	private static final String path = "./recursos/map0.txt";
 
 	public static void main(String[] args) {
 		// Linea que muestra el path de ejecución

@@ -1,13 +1,7 @@
 package hansolo.marioparty.utils;
 
 import hansolo.marioparty.tablero.Tablero;
-import hansolo.marioparty.tablero.casilleros.BifurcacionCasillero;
-import hansolo.marioparty.tablero.casilleros.Casillero;
-import hansolo.marioparty.tablero.casilleros.EstrellaCasillero;
-import hansolo.marioparty.tablero.casilleros.ItemCasillero;
-import hansolo.marioparty.tablero.casilleros.MonedaCasillero;
-import hansolo.marioparty.tablero.casilleros.RandomMaloCasillero;
-import hansolo.marioparty.tablero.casilleros.TiendaCasillero;
+import hansolo.marioparty.tablero.casilleros.*;
 
 public class LoaderMapa {
 	private LeerArchivo archivo;
@@ -43,17 +37,23 @@ public class LoaderMapa {
 	private Casillero armarCasillero(char tipoCasillero, int id, int next[]) throws Exception {
 
 		switch (tipoCasillero) {
-		case 'M':
-			return new MonedaCasillero(id, next);
 		case 'B':
 			return new BifurcacionCasillero(id, next);
 		case 'T':
-			return new TiendaCasillero(id, next);
+			return new TeleportCasillero(id, next);
+		case 'M':
+			return new RandomMaloCasillero(id, next);
 		case 'I':
 			return new ItemCasillero(id, next);
-		case 'C':
-			return new RandomMaloCasillero(id, next);
-		case 'E':
+		case 'S':
+			return new TiendaCasillero(id, next);
+		case 'H':
+			return new HurtoCasillero(id, next);
+		case '+':
+			return new MonedaCasillero(id, next, 1);
+		case '-':
+			return new MonedaCasillero(id, next, -1);
+		case 'A':
 			return new EstrellaCasillero(id, next);
 		default:
 			throw new Exception("Caracter de tipo de casillero no identificado.");

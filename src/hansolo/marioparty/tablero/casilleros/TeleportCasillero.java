@@ -5,7 +5,7 @@ import hansolo.marioparty.entidades.Jugador;
 // Casillero que, si pagás una cantidad de monedas, te lleva a la posición de otro jugador
 public class TeleportCasillero extends Casillero {
 
-	public TeleportCasillero(int id, int[] next, boolean efectoPasandoSobre) {
+	public TeleportCasillero(int id, int[] next) {
 		super(id, next, false);
 		// TODO Auto-generated constructor stub
 	}
