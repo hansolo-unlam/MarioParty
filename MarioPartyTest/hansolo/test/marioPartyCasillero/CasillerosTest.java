@@ -1,4 +1,4 @@
-package hansolo.test.marioPartyTablero;
+package hansolo.test.marioPartyCasillero;
 
 import static org.junit.Assert.*;
 	
@@ -8,7 +8,7 @@ import org.junit.Test;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.tablero.casilleros.*;
 
-public class TableroTest {
+public class CasillerosTest {
 
 	private static final String pathTablero = "./recursos/map0.txt";
 	private Tablero tab;
