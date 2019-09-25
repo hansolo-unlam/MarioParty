@@ -25,7 +25,6 @@ public class JugadorTest {
 	
 	private static final String pathTablero = "./recursos/map0.txt";
 	private Tablero tablero;
-	//private Usuario user1;
 	private Partida partida1;
 	private Jugador j1; 
 	private CondicionVictoria condicionVictoriaTest;
@@ -42,7 +41,6 @@ public class JugadorTest {
 		this.condicionVictoriaTest=new CondicionVictoria(TipoCondicionVictoria.ESTRELLAS,3);
 		this.partida1= new Partida(usuariosTest,tablero,condicionVictoriaTest);
 		this.j1= new Jugador(usuariosTest[0],tablero.getStart(),partida1);
-		//this.j2= new Jugador(usuariosTest[1],tablero.getStart(),partida1);
 	}
 	
 	
