@@ -4,7 +4,11 @@ import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
-// Casillero que cuando caés en él te aplica algo malo, dentro de 5 posibles opciones
+/**
+ * Casillero que le hace algo malo al jugador que cae en él
+ * @author facundotourn
+ *
+ */
 public class RandomMaloCasillero extends Casillero {
 
 	public RandomMaloCasillero(int id, SiguienteCasillero[] next) {
@@ -13,8 +17,7 @@ public class RandomMaloCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
-		System.out.println(jugador.getUser().getNombre() + " pasó por casillero malo");
-
+		System.out.println(jugador.getUser().getNombre() + " calló en un casillero malo");
 	}
 
 }

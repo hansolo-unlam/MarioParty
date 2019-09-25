@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Para leer un archivo nomás.
+ * @author facundotourn
+ *
+ */
 public class LeerArchivo {
 	private String path;
 	private Scanner sc;

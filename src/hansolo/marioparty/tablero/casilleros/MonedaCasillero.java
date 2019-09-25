@@ -4,7 +4,11 @@ import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
-// casillero que, al caer en él, te da o te quita una cierta cantidad de monedas (+3 o -3)
+/**
+ * Casillero que, al caer en él, te da o te quita una cierta cantidad de monedas (+3 o -3)
+ * @author facundotourn
+ *
+ */
 public class MonedaCasillero extends Casillero {
 	private int cantMonedas; // positivo o negativo
 
@@ -15,9 +19,9 @@ public class MonedaCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
-		System.out.println(jugador.getUser().getNombre() + " pasó por casillero de monedas");
+		System.out.println(jugador.getUser().getNombre() + " calló en un casillero de monedas");
 
-		jugador.setEstrellas(this.cantMonedas);
+		jugador.setMonedas(this.cantMonedas);
 	}
 
 	public int getMoneda() {

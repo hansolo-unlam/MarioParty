@@ -43,7 +43,7 @@ public class CasillerosTest {
 		Casillero cas = tab.getCasilleros().get(31);
 		int bifurcacion[] = { 30, 32 };
 		for (int i = 0; i < bifurcacion.length; i++) {
-			assertEquals(cas.getNext()[i], bifurcacion[i]);
+			assertEquals(cas.getSiguientes()[i].getId(), bifurcacion[i]);
 		}
 	}
 
@@ -59,7 +59,7 @@ public class CasillerosTest {
 	}
 
 	@Test
-	public void ItemCasiller() {
+	public void ItemCasillero() {
 		assertEquals(tab.getCasilleros().get(44).getClass(), new ItemCasillero(0, null).getClass());
 	}
 
@@ -69,7 +69,7 @@ public class CasillerosTest {
 	}
 
 	@Test
-	public void HurtoCasiller() {
+	public void HurtoCasillero() {
 		assertEquals(tab.getCasilleros().get(67).getClass(), new HurtoCasillero(0, null).getClass());
 	}
 

@@ -1,5 +1,11 @@
 package hansolo.marioparty;
 
+/**
+ * Define bajo qué condiciones algún jugador puede ser considerado como el ganador de una partida.
+ * Ej: Si tipo es ESTRELLA y cant es 3, ganará el jugador que alcance primero la cantidad de 3 estrellas.
+ * @author facundotourn
+ * 
+ */
 public class CondicionVictoria {
 	private TipoCondicionVictoria tipo;
 	private int cant;

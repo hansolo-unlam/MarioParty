@@ -23,8 +23,6 @@ public class Partida {
 	
 	private int rondaActual;
 	
-	private HashMap<Integer,Jugador> orden = new HashMap<Integer,Jugador>();
-	
 	public Partida(Usuario users[], Tablero tablero, CondicionVictoria condicionVictoria) {
 		jugadores = new ArrayList<Jugador>();
 		
@@ -33,26 +31,44 @@ public class Partida {
 		}
 		
 		this.cantJugadores = this.jugadores.size();
-		jugadorJugando = null;
+		definirOrdenJugador();
 		
 		this.tablero = tablero;
 		this.condicionVictoria = condicionVictoria;
 		this.minijuegos = cargarMinijuegos();
 		
 		this.rondaActual = 0;
+		this.turnoActual = 1;
+		jugadorJugando = jugadores.get(turnoActual - 1);
 	}
-
+	
+	/**
+	 * Función que se ejecuta en loop constantemente, la única forma de salir de acá debería ser que se cumpla la condición de victoria y haya un ganador.
+	 */
+	public void tick() {
+		int cantMovimientos = jugadorJugando.tirarDado();
+		jugadorJugando.avanzar(cantMovimientos);
+		pasarTurno();
+	}
+	
+	/**
+	 * Función que carga inicializa y retorna un array de minijuegos
+	 * @return array de minijuegos de la partida
+	 */
 	private Minijuego[] cargarMinijuegos() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	/**
+	 * Hace un shuffle de la lista de jugadores y define al orden en el que queden como el orden de los turnos
+	 */
 	public void definirOrdenJugador() {
-		// Hace un shuffle de la lista de jugadores y define al orden en el que queden como el orden de los turnos
 		Collections.shuffle(jugadores);
 	}
 	
-	// Termina el turno del jugador actual y comienza el turno del jugador siguiente
+	/**
+	 * Termina el turno del jugadorJugando
+	 */
 	public void pasarTurno() {
 		this.turnoActual++;
 		if(this.turnoActual > this.cantJugadores)
@@ -61,7 +77,10 @@ public class Partida {
 		this.jugadorJugando = getJugadorConTurno();
 	}
 	
-	// Termina la ronda actual y comienza la siguiente, le da comienzo al turno del primer jugador
+	/**
+	 * Termina la ronda actual y comienza la siguiente, le da comienzo al turno del primer jugador
+	 * SE DEBERÍA REVISAR SI SE CUMPLIÓ LA CONDICIÓN DE CONDICIONVICTORIA.
+	 */
 	public void pasarRonda() {
 		this.rondaActual++;
 		this.turnoActual = 1;

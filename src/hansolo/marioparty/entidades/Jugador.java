@@ -4,12 +4,12 @@ import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.tablero.EnumDireccion;
 
 public class Jugador {
 
 	private Usuario user;
-	private int monedas, orden, estrellas;
-	private boolean turnoJugado;
+	private int monedas, estrellas;
 	private Casillero posicion;
 	private Item[] items;
 
@@ -18,13 +18,13 @@ public class Jugador {
 	public Jugador(Usuario user, Casillero start, Partida partida) {
 		this.user = user;
 		this.monedas = this.estrellas = 0;
-		this.turnoJugado = false;
 		this.posicion = start;
 
 		this.partida = partida;
 	}
 
-	public void tirarDado() {
+	public int tirarDado() {
+		return 5;
 //		int randomInt;
 //		Random r = new Random();
 //		if(dado normal)					//en las condiciones puse lo que deberia comprobar 
@@ -36,28 +36,38 @@ public class Jugador {
 //				randomInt = r.nextInt(6-1)+5;
 //		this.avanzar(randomInt);
 	}
-
-	public void avanzar(int cant) throws Exception {
-		for (int i = 1; i < cant; i++) {
-			if (this.posicion.getNext().length == 1) {
-				// No estoy en una bifurcacion
-				int idCasilleroSiguiente = this.posicion.getNext()[0].getId();
-				this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
+	
+	/**
+	 * Mueve al jugador una cierta cantidad de casilleros
+	 * @param cant la cantidad de casilleros que hay que avanzar
+	 */
+	public void avanzar(int cant) {
+		for (int i = 0; i < cant; i++) {
+			// En el primer ciclo, yo sé que no está parado en un casillero de bifurcación
+			avanzarAlSiguienteCasillero();
+			
+			// Si quedan movimientos y caí en un casillero que se activa solo pasando, ejecuto el efecto del casillero antes de moverme de nuevo
+			// Este puede ser el efecto tanto de una BifurcacionCasillero, EstrellaCasillero o TiendaCasillero
+			if (i < cant - 1 && this.posicion.isEfectoPasandoSobre())
 				
-				// [[ Acá es donde se llamaría al método que dibujaría al loco moviendose de casillero a casillero ]]
-
-				if (this.posicion.isEfectoPasandoSobre())
-					this.posicion.efecto(this);
-			} else {
-				// Es bifurcación, andá a saber que hacemos
-				throw new Exception("En desarrollo");
-			}
+				this.posicion.efecto(this);
 		}
 		this.posicion.efecto(this);
 	}
+	
+	/**
+	 * Mueve al jugador desde su casillero actual al casillero al que corresponde avanzar
+	 */
+	public void avanzarAlSiguienteCasillero() {
+		int idCasilleroSiguiente = this.posicion.getSiguiente().getId();
+		EnumDireccion dir = this.posicion.getSiguiente().getDireccion();
+		
+		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección ya se puede calcular la nueva ubicación del jugador
+		
+		this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
+	}
 
 	public void terminarTurno() {
-		this.turnoJugado = true;
 		partida.pasarTurno();
 	}
 
