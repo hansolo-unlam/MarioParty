@@ -60,4 +60,12 @@ public abstract class Casillero {
 	public void setEfectoPasandoSobre(boolean efectoPasandoSobre) {
 		this.efectoPasandoSobre = efectoPasandoSobre;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }
