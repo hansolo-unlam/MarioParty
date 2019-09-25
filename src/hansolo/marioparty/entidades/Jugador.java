@@ -1,5 +1,8 @@
 package hansolo.marioparty.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.items.Item;
@@ -11,7 +14,7 @@ public class Jugador {
 	private Usuario user;
 	private int monedas, estrellas;
 	private Casillero posicion;
-	private Item[] items;
+	private List<Item> items = new ArrayList<Item>();
 
 	private Partida partida;
 
@@ -21,9 +24,12 @@ public class Jugador {
 		this.posicion = start;
 
 		this.partida = partida;
+		
+		//CREAR ITEMS
 	}
 
 	public int tirarDado() {
+		
 		return 5;
 //		int randomInt;
 //		Random r = new Random();

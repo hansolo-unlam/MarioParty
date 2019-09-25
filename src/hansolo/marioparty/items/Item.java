@@ -9,19 +9,19 @@ package hansolo.marioparty.items;
 public abstract class Item {
 	
 	private String descripcion;
-	
 	private int precio;
+	private boolean enabled;
 	
-	public Item (String descripcion, int precio) {
-		
-		this.precio = precio;
+	public Item (String descripcion, int precio, boolean enabled) {
 		this.descripcion = descripcion;
+		this.precio = precio;
+		this.enabled = enabled;
 	}
 	
 	public abstract void usarObjeto();
 	
-	public String getDescripcion() {
-		return this.descripcion;
-	}
+	public String getDescripcion() {	return descripcion;	}
+	public int getPrecio() {	return precio;	}
+	public boolean isEnabled() {	return enabled;		}
 
 }
