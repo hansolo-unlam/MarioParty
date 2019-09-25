@@ -90,4 +90,13 @@ public class Jugador {
 	public void setUser(Usuario user) {
 		this.user = user;
 	}
+
+	public Casillero getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(Casillero posicion) {
+		this.posicion = posicion;
+	}
+	
 }
