@@ -46,8 +46,10 @@ public class JugadorTest {
 	
 	@Test
 	public void avanzar() throws Exception {
-			
-		j1.avanzar(1);
+		while (j1.getCantMovimientos() != 1)
+			j1.tirarDado();
+		
+		j1.avanzar();
 		Assert.assertEquals(1, j1.getPosicion().getId());
 	}
 	

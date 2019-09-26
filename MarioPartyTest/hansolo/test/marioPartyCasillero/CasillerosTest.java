@@ -75,7 +75,7 @@ public class CasillerosTest {
 
 	@Test
 	public void EstrellaCasillero() {
-		assertEquals(tab.getCasilleros().get(9).getClass(), new EstrellaCasillero(0, null).getClass());
+		assertEquals(tab.getCasilleros().get(9).getClass(), new EstrellaCasillero(0, null, tab).getClass());
 	}
 
 }

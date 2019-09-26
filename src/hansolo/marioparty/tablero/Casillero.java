@@ -9,7 +9,7 @@ import hansolo.marioparty.entidades.Jugador;
  *
  */
 public abstract class Casillero {
-	private int id;
+	protected int id;
 	private SiguienteCasillero[] siguientes;
 	private boolean efectoPasandoSobre;
 

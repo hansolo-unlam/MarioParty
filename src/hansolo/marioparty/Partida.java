@@ -45,9 +45,13 @@ public class Partida {
 	/**
 	 * Función que se ejecuta en loop constantemente, la única forma de salir de acá debería ser que se cumpla la condición de victoria y haya un ganador.
 	 */
-	public void tick() {
-		int cantMovimientos = jugadorJugando.tirarDado();
-		jugadorJugando.avanzar(cantMovimientos);
+	public void tick() {		
+		if (jugadorJugando.getMonedas() > 30) {
+			System.out.println("llegamo");
+		}
+		
+		jugadorJugando.tirarDado();
+		jugadorJugando.avanzar();
 		pasarTurno();
 	}
 	

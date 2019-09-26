@@ -57,7 +57,9 @@ public class LoaderMapa {
 		case '-':
 			return new MonedaCasillero(id, next, -1);
 		case 'A':
-			return new EstrellaCasillero(id, next);
+			tablero.getIdsCasillerosEstrella().add(id);
+			return new EstrellaCasillero(id, next, tablero);
+			
 		default:
 			throw new Exception("Caracter de tipo de casillero no identificado.");
 		}

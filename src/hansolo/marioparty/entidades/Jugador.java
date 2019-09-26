@@ -16,6 +16,7 @@ public class Jugador {
 	private int monedas, estrellas;
 	private Casillero posicion;
 	private List<Item> items = new ArrayList<Item>();
+	private int cantMovimientos;
 
 	private Partida partida;
 
@@ -25,6 +26,7 @@ public class Jugador {
 		this.posicion = start;
 
 		this.partida = partida;
+		this.cantMovimientos = 0;
 		
 		//CREAR ITEMS
 	}
@@ -33,28 +35,26 @@ public class Jugador {
 	 * Método que tira el dado del jugador. Debería ser acá donde se le deja elegir al jugador cuál de sus dados tirar. Si es que agregamos más dados.
 	 * @return int número que salió en el dado
 	 */
-	public int tirarDado() {
-		return DadoSimple.tirar();
+	public void tirarDado() {
+		this.cantMovimientos = DadoSimple.tirar();
 	}
 	
 	/**
 	 * Mueve al jugador una cierta cantidad de casilleros
 	 * @param cant la cantidad de casilleros que hay que avanzar
 	 */
-	public void avanzar(int cant) {
-		for (int i = 0; i < cant; i++) {
+	public void avanzar() {
+		while (cantMovimientos > 0) {
 			// En el primer ciclo, yo sé que no está parado en un casillero de bifurcación
 			avanzarAlSiguienteCasillero();
 			
 			// Si quedan movimientos y caí en un casillero que se activa solo pasando, ejecuto el efecto del casillero antes de moverme de nuevo
 			// Este puede ser el efecto tanto de una BifurcacionCasillero, EstrellaCasillero o TiendaCasillero
-			if (i < cant - 1 && this.posicion.isEfectoPasandoSobre())
-				
-				this.posicion.efecto(this);
+			cantMovimientos--;
 		}
 		this.posicion.efecto(this);
 	}
-	
+
 	/**
 	 * Mueve al jugador desde su casillero actual al casillero al que corresponde avanzar
 	 */
@@ -65,6 +65,9 @@ public class Jugador {
 		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección ya se puede calcular la nueva ubicación del jugador
 		
 		this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
+		
+		if (cantMovimientos > 1 && this.posicion.isEfectoPasandoSobre())
+			this.posicion.efecto(this);
 	}
 
 	public void terminarTurno() {
@@ -97,6 +100,14 @@ public class Jugador {
 
 	public void setPosicion(Casillero posicion) {
 		this.posicion = posicion;
+	}
+	
+	public int getCantMovimientos() {
+		return cantMovimientos;
+	}
+
+	public void setCantMovimientos(int cantMovimientos) {
+		this.cantMovimientos = cantMovimientos;
 	}
 	
 }
