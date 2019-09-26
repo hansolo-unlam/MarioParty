@@ -18,7 +18,7 @@ public abstract class Item {
 		this.enabled = enabled;
 	}
 	
-	public abstract void usarObjeto();
+	public abstract void usar();
 	
 	public String getDescripcion() {	return descripcion;	}
 	public int getPrecio() {	return precio;	}

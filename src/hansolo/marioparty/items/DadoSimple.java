@@ -4,9 +4,8 @@ public final class DadoSimple {
 
 	private DadoSimple() {	/* NO PERMITE CREACION DE UN OBJETO DadoSimple */	}
 
-	public static int tirarDado(int maximoNumero) {
-		double resultado = (Math.random() * maximoNumero) + 1; 
-		System.out.println(resultado);
+	public static int tirar() {
+		double resultado = (Math.random() * 6) + 1;
 		return (int) resultado;
 	}
 

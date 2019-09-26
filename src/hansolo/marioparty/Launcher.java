@@ -1,6 +1,7 @@
 package hansolo.marioparty;
 
 import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.tablero.Tablero;
 
 public class Launcher {
@@ -19,8 +20,8 @@ public class Launcher {
 		
 		// GUARDA: Si se descomenta el loop de abajo y no se implemento la función que revise si ya ganó alguien 
 		//         va a entrar en un bucle infinito.
-		while(true) {
-			p.tick();
-		}
+//		while(true) {
+//			p.tick();
+//		}
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.EnumDireccion;
@@ -27,20 +28,13 @@ public class Jugador {
 		
 		//CREAR ITEMS
 	}
-
+	
+	/**
+	 * Método que tira el dado del jugador. Debería ser acá donde se le deja elegir al jugador cuál de sus dados tirar. Si es que agregamos más dados.
+	 * @return int número que salió en el dado
+	 */
 	public int tirarDado() {
-		
-		return 5;
-//		int randomInt;
-//		Random r = new Random();
-//		if(dado normal)					//en las condiciones puse lo que deberia comprobar 
-//			randomInt = r.nextInt(6-1);//dado los tipos de dados que tenemosno se como enviariamos un item o si creamos una clase dado
-//		else							//no se como enviariamos un item o si creamos una clase dado
-//			if(dado doble)				//segun eso habria que generar las condiciones y agregar mas si me falta algun dado
-//				randomInt = r.nextInt(6-1)*2;
-//			else
-//				randomInt = r.nextInt(6-1)+5;
-//		this.avanzar(randomInt);
+		return DadoSimple.tirar();
 	}
 	
 	/**
