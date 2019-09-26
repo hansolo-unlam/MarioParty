@@ -17,10 +17,9 @@ public class DadoSimpleTest {
 
 	@Test
 	public void CasilleroMonedaPositivo() {
-		final int maximoNumero = 12;
 		int resultado = DadoSimple.tirar();
 		
-		assertTrue(resultado > 0 && resultado <= maximoNumero);
+		assertTrue(resultado > 0 && resultado <= 6);
 		System.out.println(resultado);
 	}
 
