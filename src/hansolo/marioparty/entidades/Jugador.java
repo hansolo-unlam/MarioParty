@@ -5,6 +5,7 @@ import java.util.List;
 
 import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.items.DadoDoble;
 import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.tablero.Casillero;
@@ -29,6 +30,8 @@ public class Jugador {
 		this.cantMovimientos = 0;
 		
 		//CREAR ITEMS
+		items.add(new DadoDoble(0));
+		
 	}
 	
 	/**
@@ -37,6 +40,17 @@ public class Jugador {
 	 */
 	public void tirarDado() {
 		this.cantMovimientos = DadoSimple.tirar();
+	}
+	
+	public void tiempoAcciones() {
+//		 *	PREGUNTAR SI EJECUTARA ACCIONES (CON TIEMPO)
+//		 * 	SI								
+//		 *		PREGUNTAR QUE ITEM USARA
+				Item item = this.items.get(0);
+				item.usar(this);
+//		 * 	No
+//		 * 		... sin acciones ...
+//		 *
 	}
 	
 	/**
@@ -75,15 +89,20 @@ public class Jugador {
 	}
 
 	public int getMonedas() {
-		return this.monedas;
+		return monedas;
+	}
+	public int getEstrellas() {
+		return estrellas;
 	}
 
 	public void setEstrellas(int estrellasGanadas) {
-		estrellas += (-estrellasGanadas > estrellas ? -estrellas : estrellasGanadas);
+		//estrellas += (-estrellasGanadas > estrellas ? -estrellas : estrellasGanadas);
+		estrellas = estrellasGanadas;
 	}
 
 	public void setMonedas(int monedasGanadas) {
-		this.monedas += (-monedasGanadas > this.monedas ? -this.monedas : monedasGanadas);
+		//this.monedas += (-monedasGanadas > this.monedas ? -this.monedas : monedasGanadas);
+		monedas = monedasGanadas;
 	}
 	
 	public Usuario getUser() {
@@ -109,5 +128,12 @@ public class Jugador {
 	public void setCantMovimientos(int cantMovimientos) {
 		this.cantMovimientos = cantMovimientos;
 	}
+	
+	public Item getItem(int pos) {
+		return items.get(pos);
+	}
+	
+	
+	
 	
 }

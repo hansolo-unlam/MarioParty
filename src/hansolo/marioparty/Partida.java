@@ -52,6 +52,8 @@ public class Partida {
 		
 		jugadorJugando.tirarDado();
 		jugadorJugando.avanzar();
+		jugadorJugando.tiempoAcciones();
+		
 		pasarTurno();
 	}
 	

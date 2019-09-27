@@ -21,7 +21,7 @@ public class MonedaCasillero extends Casillero {
 	public void efecto(Jugador jugador) {
 		System.out.println(jugador.getUser().getNombre() + " calló en un casillero de monedas");
 
-		jugador.setMonedas(this.cantMonedas);
+		jugador.setMonedas( jugador.getMonedas() - this.cantMonedas);
 	}
 
 	public int getMoneda() {

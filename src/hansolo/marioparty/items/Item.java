@@ -1,5 +1,7 @@
 package hansolo.marioparty.items;
 
+import hansolo.marioparty.entidades.Jugador;
+
 /**
  * Clase abstracta que define todo lo que comparten en común los items
  * Por ahi habría que hacer una clase abstracta Dado que herede de ésta. Así los dados quedan heredando de Dado que hereda de Item.
@@ -10,18 +12,20 @@ public abstract class Item {
 	
 	private String descripcion;
 	private int precio;
-	private boolean enabled;
+	private int cantidad;
 	
-	public Item (String descripcion, int precio, boolean enabled) {
+	public Item (String descripcion, int precio, int cantidad) {
 		this.descripcion = descripcion;
 		this.precio = precio;
-		this.enabled = enabled;
+		this.cantidad = cantidad;
 	}
 	
-	public abstract void usar();
+	public abstract void usar(Jugador jugador);
 	
 	public String getDescripcion() {	return descripcion;	}
 	public int getPrecio() {	return precio;	}
-	public boolean isEnabled() {	return enabled;		}
+	public int getCantidad() {	return cantidad;		}
+	
+	public void setCantidad(int cantidad) {	this.cantidad = cantidad;	}
 
 }

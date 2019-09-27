@@ -12,6 +12,7 @@ import hansolo.marioparty.Partida;
 import hansolo.marioparty.TipoCondicionVictoria;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.items.DadoDoble;
 import hansolo.marioparty.tablero.Tablero;
 
 
@@ -69,4 +70,5 @@ public class JugadorTest {
 	public void turnoJugadoTest() {
 		
 	}
+
 }
