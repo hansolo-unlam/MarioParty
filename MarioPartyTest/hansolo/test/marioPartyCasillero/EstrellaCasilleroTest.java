@@ -92,16 +92,37 @@ public class EstrellaCasilleroTest {
 		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella sin estrella lo hizo avanzar un casillero
 	}
 
-//	@Test
-//	public void jugadorPasaNoPuedeComprarEstrella() {
-//		//System.out.println("Monedas del jugador antes de avanzar: " + this.jugadorPrueba.getMonedas());
-//		//System.out.println("Estrellas del jugador antes de avanzar: " + this.jugadorPrueba.getEstrellas());
-//		
-//		fail("Not implemented yet");
-//	}
+	@Test
+	public void jugadorPasaNoPuedeComprarEstrella() {
+		// Le doy 29 monedas al jugador
+		jugadorPrueba.setMonedas(29);
+		
+		monedasPrincipio = this.jugadorPrueba.getMonedas();
+		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
+		
+		// Reubicar la estrella hasta que esté en mi casillero estrella
+		while (!casilleroEstrella.isTieneEstrella()) {
+			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+		}
+		
+		// Tirar el dado hasta sacar un 2
+		while (jugadorPrueba.getCantMovimientos() != 2) {
+			jugadorPrueba.tirarDado();
+		}
+		
+		jugadorPrueba.avanzar();
+		
+		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
+		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
+		
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(casilleroOrigen.getSiguiente().getId());
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(expectedCasilleroFinal.getSiguiente().getId());
+		
+		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella con estrella no lo hizo avanzar un casillero
+	}
 	
 //	@Test
-//	public void jugadorPasPuedeComprarEstrella() {
+//	public void jugadorPasaPuedeComprarEstrella() {
 //		fail("Not yet implemented");
 //	}
 	

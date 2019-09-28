@@ -36,7 +36,7 @@ public class EstrellaCasillero extends Casillero {
 		System.out.println(jugador.getUser().getNombre() + " pasó o calló en un casillero de estrella");
 		
 		if (tieneEstrella) {
-			if (jugador.getMonedas() > PRECIO_ESTRELLA) {
+			if (jugador.getMonedas() >= PRECIO_ESTRELLA) {
 				if (true) { // Debería fijarse si el jugador decide comprarla
 					venderEstrella(jugador);
 				}
