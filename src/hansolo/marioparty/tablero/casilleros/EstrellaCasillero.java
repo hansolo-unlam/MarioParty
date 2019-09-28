@@ -13,7 +13,7 @@ import hansolo.marioparty.tablero.Tablero;
  *
  */
 public class EstrellaCasillero extends Casillero {
-	private final int PRECIO_ESTRELLA = 30;
+	public final static int PRECIO_ESTRELLA = 30;
 	private boolean tieneEstrella;
 	private Tablero tablero;
 
