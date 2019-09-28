@@ -2,6 +2,7 @@ package hansolo.test.marioPartyCasillero;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,22 +11,86 @@ import hansolo.marioparty.Partida;
 import hansolo.marioparty.TipoCondicionVictoria;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.Tablero;
+import hansolo.marioparty.tablero.casilleros.EstrellaCasillero;
 
 public class EstrellaCasilleroTest {
 	private final String pathTablero = "./recursos/map0.txt";
 	private Partida partida;
-	private Tablero tablero;
-	private Jugador unJugador;
+	private Jugador jugadorPrueba;
+	
+	private int monedasPrincipio;
+	private int estrellasPrincipio;
+	
+	private Casillero casilleroOrigen;
+	private Casillero expectedCasilleroFinal;
+	private EstrellaCasillero casilleroEstrella;
 	
 	@Before
 	public void setUp() {
-		this.tablero = new Tablero(pathTablero);
-		this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, this.tablero, new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
+		// Carga de tablero, partida y el casillero donde se para al jugador para los tests
+		this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
+		this.casilleroOrigen = this.partida.getTablero().getCasilleros().get(35);
+		this.casilleroEstrella = (EstrellaCasillero) this.partida.getTablero().getCasilleros().get(36);
+		
+		this.partida.getJugadorConTurno().setPosicion(casilleroOrigen);
+		
+		this.jugadorPrueba = partida.getJugadores().get(0);
+	}
+	
+	@Test
+	public void jugadorPasaNoHayEstrella() {
+		monedasPrincipio = this.jugadorPrueba.getMonedas();
+		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
+		
+		// Mientras tenga estrella este casillero, reubicar la estrella en algún otro casillero estrella
+		while (casilleroEstrella.isTieneEstrella()) {
+			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+		}
+		
+		// Tirar el dado hasta sacar un 2
+		while (jugadorPrueba.getCantMovimientos() != 2) {
+			jugadorPrueba.tirarDado();
+		}
+		
+		jugadorPrueba.avanzar();
+		
+		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
+		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
+		
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(casilleroOrigen.getSiguiente().getId());
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(expectedCasilleroFinal.getSiguiente().getId());
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(expectedCasilleroFinal.getSiguiente().getId());
+		
+		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella sin estrella lo hizo avanzar un casillero
+	}
+	
+	@Test
+	public void jugadorCaeNoHayEstrella() {
+		
 	}
 
 	@Test
 	public void jugadorPasaNoPuedeComprarEstrella() {
+		//System.out.println("Monedas del jugador antes de avanzar: " + this.jugadorPrueba.getMonedas());
+		//System.out.println("Estrellas del jugador antes de avanzar: " + this.jugadorPrueba.getEstrellas());
+		
+		fail("Not implemented yet");
+	}
+	
+	@Test
+	public void jugadorPasPuedeComprarEstrella() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void jugadorCaeNoPuedeComprarEstrella() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void jugadorCaePuedeComprarEstrella() {
 		fail("Not yet implemented");
 	}
 
