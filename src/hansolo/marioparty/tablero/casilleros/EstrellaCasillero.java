@@ -13,7 +13,7 @@ import hansolo.marioparty.tablero.Tablero;
  *
  */
 public class EstrellaCasillero extends Casillero {
-	private final int PRECIO_ESTRELLA = 30;
+	public final static int PRECIO_ESTRELLA = 30;
 	private boolean tieneEstrella;
 	private Tablero tablero;
 
@@ -36,7 +36,7 @@ public class EstrellaCasillero extends Casillero {
 		System.out.println(jugador.getUser().getNombre() + " pasó o calló en un casillero de estrella");
 		
 		if (tieneEstrella) {
-			if (jugador.getMonedas() > PRECIO_ESTRELLA) {
+			if (jugador.getMonedas() >= PRECIO_ESTRELLA) {
 				if (true) { // Debería fijarse si el jugador decide comprarla
 					venderEstrella(jugador);
 				}
@@ -56,8 +56,7 @@ public class EstrellaCasillero extends Casillero {
 
 	private void venderEstrella(Jugador jugador) {
 		jugador.setMonedas( jugador.getMonedas() - PRECIO_ESTRELLA);
-		jugador.setEstrellas(1);
-		
+		jugador.setEstrellas(jugador.getEstrellas()+1);		
 		this.tieneEstrella = false;
 		tablero.ubicarEstrella(id);
 	}

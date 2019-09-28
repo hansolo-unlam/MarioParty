@@ -35,12 +35,13 @@ public class BifurcacionCasillero extends Casillero {
 	 * DEBERÍA SER UN MÉTODO DEL CASILLERO.
 	 * @param id del Casillero seleccionado
 	 */
+	
 	private void seleccionarNext(int id) {
 		SiguienteCasillero[] opciones = this.getSiguientes();
-		id = r.nextInt(opciones.length);
+		id=opciones[r.nextInt(opciones.length)].getId();
 		
 		for (int i = 0; i < opciones.length; i++) {
-			if (i == id)
+			if(opciones[i].getId()==id)
 				opciones[i].setSeleccionado(true);
 			else
 				opciones[i].setSeleccionado(false);

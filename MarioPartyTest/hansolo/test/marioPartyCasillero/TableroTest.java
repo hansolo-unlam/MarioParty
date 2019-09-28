@@ -32,7 +32,7 @@ public class TableroTest {
 		for (Integer x : estrellas) {
 			// De todos los casilleros me traigo el que sea estrella
 			EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
-			System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
+//			System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
 
 			// Si el casillero tiene estrella me guardo el Id para saber a quien sacarle la
 			// estrella
@@ -41,7 +41,7 @@ public class TableroTest {
 			}
 		}
 
-		System.out.println("-----------------------");
+//		System.out.println("-----------------------");
 
 		tab.ubicarEstrella(idAnteriorEstrella);
 
@@ -50,7 +50,7 @@ public class TableroTest {
 
 			if (estreCas.isTieneEstrella() == false) {
 				assertEquals(false, estreCas.isTieneEstrella());
-				System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
+//				System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
 			}
 		}
 

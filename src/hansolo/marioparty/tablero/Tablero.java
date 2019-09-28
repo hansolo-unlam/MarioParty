@@ -53,7 +53,7 @@ public class Tablero {
 				continue;				
 			}				
 			
-			aux.setTieneEstrella(false);			
+			aux.setTieneEstrella(false);
 		}
 	}
 
