@@ -123,8 +123,9 @@ public class EstrellaCasilleroTest {
 	
 	@Test
 	public void jugadorPasaPuedeComprarEstrella() {
-		// Le doy 30 monedas al jugador
+		// Le doy 30 monedas al jugador y una estrella
 		jugadorPrueba.setMonedas(30);
+		jugadorPrueba.setEstrellas(1);
 		
 		monedasPrincipio = this.jugadorPrueba.getMonedas();
 		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
@@ -150,10 +151,10 @@ public class EstrellaCasilleroTest {
 		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella con estrella no lo hizo avanzar un casillero
 	}
 	
-//	@Test
-//	public void jugadorCaeNoPuedeComprarEstrella() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void jugadorCaeNoPuedeComprarEstrella() {
+		fail("Not yet implemented");
+	}
 	
 //	@Test
 //	public void jugadorCaePuedeComprarEstrella() {
