@@ -25,33 +25,34 @@ public class TableroTest {
 
 	@Test
 	public void testUbicarEstrella() {
+		for (int i = 0; i < 100000; i++) {
 
-		// Obtengo los id de casillero estrella
-		List<Integer> estrellas = tab.getIdsCasillerosEstrella();
-		int idAnteriorEstrella = -1;
-		for (Integer x : estrellas) {
-			// De todos los casilleros me traigo el que sea estrella
-			EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
-//			System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
-
-			// Si el casillero tiene estrella me guardo el Id para saber a quien sacarle la
-			// estrella
-			if (estreCas.isTieneEstrella() == true) {
-				idAnteriorEstrella = estreCas.getId();
-			}
-		}
-
-//		System.out.println("-----------------------");
-
-		tab.ubicarEstrella(idAnteriorEstrella);
-
-		for (Integer x : estrellas) {
-			EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
-
-			if (estreCas.isTieneEstrella() == false) {
-				assertEquals(false, estreCas.isTieneEstrella());
+			// Obtengo los id de casillero estrella
+			List<Integer> estrellas = tab.getIdsCasillerosEstrella();
+			int idAnteriorEstrella = -1;
+			for (Integer x : estrellas) {
+				// De todos los casilleros me traigo el que sea estrella
+				EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
 //				System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
+
+				// Si el casillero tiene estrella me guardo el Id para saber a quien sacarle la
+				// estrella
+				if (estreCas.isTieneEstrella() == true) {
+					idAnteriorEstrella = estreCas.getId();
+				}
 			}
+//			System.out.println("-----------------------");
+			tab.ubicarEstrella(idAnteriorEstrella);
+			int idNuevaEstrella = -1;
+			for (Integer x : estrellas) {
+				EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
+
+				if (estreCas.isTieneEstrella() == true) {
+					idNuevaEstrella = estreCas.getId();
+				}
+			}
+
+			assertEquals(false, idAnteriorEstrella == idNuevaEstrella);
 		}
 
 	}
