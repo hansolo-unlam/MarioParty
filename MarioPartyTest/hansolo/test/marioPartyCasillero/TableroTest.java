@@ -1,7 +1,10 @@
 package hansolo.test.marioPartyCasillero;
 
 import static org.junit.Assert.*;
-	
+
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +20,39 @@ public class TableroTest {
 	@Before
 	public void SetUp() {
 		this.tab = new Tablero(pathTablero);
+
+	}
+
+	@Test
+	public void testUbicarEstrella() {
+
+		// Obtengo los id de casillero estrella
+		List<Integer> estrellas = tab.getIdsCasillerosEstrella();
+		int idAnteriorEstrella = -1;
+		for (Integer x : estrellas) {
+			// De todos los casilleros me traigo el que sea estrella
+			EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
+			System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
+
+			// Si el casillero tiene estrella me guardo el Id para saber a quien sacarle la
+			// estrella
+			if (estreCas.isTieneEstrella() == true) {
+				idAnteriorEstrella = estreCas.getId();
+			}
+		}
+
+		System.out.println("-----------------------");
+
+		tab.ubicarEstrella(idAnteriorEstrella);
+
+		for (Integer x : estrellas) {
+			EstrellaCasillero estreCas = ((EstrellaCasillero) tab.getCasilleros().get(x));
+
+			if (estreCas.isTieneEstrella() == false) {
+				assertEquals(false, estreCas.isTieneEstrella());
+				System.out.println(estreCas.getId() + "-> Tiene estrella?: " + estreCas.isTieneEstrella());
+			}
+		}
 
 	}
 

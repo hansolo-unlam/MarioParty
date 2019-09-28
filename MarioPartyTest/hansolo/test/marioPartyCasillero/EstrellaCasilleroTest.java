@@ -2,6 +2,9 @@ package hansolo.test.marioPartyCasillero;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,16 +20,16 @@ public class EstrellaCasilleroTest {
 	private Partida partida;
 	private Tablero tablero;
 	private Jugador unJugador;
-	
+
 	@Before
 	public void setUp() {
 		this.tablero = new Tablero(pathTablero);
-		this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, this.tablero, new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
+		this.partida = new Partida(new Usuario[] { new Usuario("Jugador_de_prueba") }, this.tablero,
+				new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
 	}
 
 	@Test
 	public void jugadorPasaNoPuedeComprarEstrella() {
-		fail("Not yet implemented");
 	}
 
 }
