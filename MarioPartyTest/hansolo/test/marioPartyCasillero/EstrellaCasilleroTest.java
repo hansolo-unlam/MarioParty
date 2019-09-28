@@ -181,9 +181,33 @@ public class EstrellaCasilleroTest {
 		
 	}
 	
-//	@Test
-//	public void jugadorCaePuedeComprarEstrella() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void jugadorCaePuedeComprarEstrella() {
+		// Le doy 30 monedas al jugador y una estrella
+		jugadorPrueba.setMonedas(30);
+		jugadorPrueba.setEstrellas(1);
+		
+		monedasPrincipio = this.jugadorPrueba.getMonedas();
+		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
+		
+		// Reubicar la estrella hasta que esté en mi casillero estrella
+		while (!casilleroEstrella.isTieneEstrella()) {
+			partida.getTablero().ubicarEstrella(-1);
+		}
+		
+		// Tirar el dado hasta sacar un 1
+		while (jugadorPrueba.getCantMovimientos() != 1) {
+			jugadorPrueba.tirarDado();
+		}
+		
+		jugadorPrueba.avanzar();
+
+		Assert.assertEquals(EstrellaCasillero.PRECIO_ESTRELLA, monedasPrincipio - jugadorPrueba.getMonedas()); // Se le sacó una cant de monedas igual al precio de la estrella
+		Assert.assertEquals(-1, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
+		
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(casilleroOrigen.getSiguiente().getId());
+		
+		Assert.assertEquals(casilleroEstrella.getId(), jugadorPrueba.getPosicion().getId()); // Se quedó en el casillero estrella
+	}
 
 }
