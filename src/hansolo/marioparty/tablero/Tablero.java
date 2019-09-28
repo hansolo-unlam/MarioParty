@@ -37,20 +37,26 @@ public class Tablero {
 	}
 	
 	public void ubicarEstrella(int idCasilleroAnterior) {
-		int index = idCasilleroAnterior;
+		Random random = new Random();
+		int indice = 0;
 		
-		while(idsCasillerosEstrella.get(index) == idCasilleroAnterior) {
-			Random random = new Random();
-			index = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
+		if (idCasilleroAnterior == -1) {
+			// Primer estrella que se ubica
+			indice = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
+		} else {
+			// Ya había otra estrella en el tablero
+			while(idsCasillerosEstrella.get(indice) == idCasilleroAnterior) {
+				indice = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
+			}
 		}
 		
 		EstrellaCasillero aux;
 		for (int i = 0; i < this.idsCasillerosEstrella.size(); i++) {
 			aux = (EstrellaCasillero)casilleros.get(idsCasillerosEstrella.get(i));
 			
-			if (i == index) {
+			if (i == indice) {
 				aux.setTieneEstrella(true);
-				continue;				
+				continue;
 			}				
 			
 			aux.setTieneEstrella(false);

@@ -102,7 +102,7 @@ public class EstrellaCasilleroTest {
 		
 		// Reubicar la estrella hasta que esté en mi casillero estrella
 		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+			partida.getTablero().ubicarEstrella(-1);
 		}
 		
 		// Tirar el dado hasta sacar un 2
@@ -132,7 +132,7 @@ public class EstrellaCasilleroTest {
 		
 		// Reubicar la estrella hasta que esté en mi casillero estrella
 		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+			partida.getTablero().ubicarEstrella(-1);
 		}
 		
 		// Tirar el dado hasta sacar un 2
@@ -151,25 +151,25 @@ public class EstrellaCasilleroTest {
 		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella con estrella no lo hizo avanzar un casillero
 	}
 	
-	@Test
-	public void jugadorCaeNoPuedeComprarEstrella() {
-		// Le doy 30 monedas al jugador y una estrella
-		jugadorPrueba.setMonedas(29);
-		jugadorPrueba.setEstrellas(1);
-		
-		monedasPrincipio = this.jugadorPrueba.getMonedas();
-		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
-		
-		// Reubicar la estrella hasta que esté en mi casillero estrella
-		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
-		}
-		
-		// Tirar el dado hasta sacar un 2
-		while (jugadorPrueba.getCantMovimientos() != 2) {
-			jugadorPrueba.tirarDado();
-		}
-	}
+	//@Test
+//	public void jugadorCaeNoPuedeComprarEstrella() {
+//		// Le doy 30 monedas al jugador y una estrella
+//		jugadorPrueba.setMonedas(29);
+//		jugadorPrueba.setEstrellas(1);
+//		
+//		monedasPrincipio = this.jugadorPrueba.getMonedas();
+//		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
+//		
+//		// Reubicar la estrella hasta que esté en mi casillero estrella
+//		while (!casilleroEstrella.isTieneEstrella()) {
+//			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+//		}
+//		
+//		// Tirar el dado hasta sacar un 2
+//		while (jugadorPrueba.getCantMovimientos() != 2) {
+//			jugadorPrueba.tirarDado();
+//		}
+//	}
 	
 //	@Test
 //	public void jugadorCaePuedeComprarEstrella() {
