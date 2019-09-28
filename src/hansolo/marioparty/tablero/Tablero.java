@@ -39,7 +39,7 @@ public class Tablero {
 	public void ubicarEstrella(int idCasilleroAnterior) {
 		int index = idCasilleroAnterior;
 		
-		while(index == idCasilleroAnterior) {
+		while(idsCasillerosEstrella.get(index) == idCasilleroAnterior) {
 			Random random = new Random();
 			index = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
 		}
