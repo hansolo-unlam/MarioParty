@@ -46,5 +46,28 @@ public class DadoDobleTest {
 		Assert.assertEquals(5, j1.getMonedas());
 		Assert.assertEquals(4, j1.getItem(0).getCantidad());
 	}
+	
+	
+	@Test
+	public void cantidadInsuficienteDadoDobleTest() {
+		j1.getItem(0).setCantidad(0);
+		j1.setMonedas(8);
+		
+		j1.getItem(0).usar(j1);
+		
+		Assert.assertEquals(8, j1.getMonedas());
+		Assert.assertEquals(0, j1.getItem(0).getCantidad());
+	}
+	
+	@Test
+	public void monedasInsuficienteDadoDobleTest() {
+		j1.getItem(0).setCantidad(3);
+		j1.setMonedas(DadoDoble.PRECIO-1);
+		
+		j1.getItem(0).usar(j1);
+		
+		Assert.assertEquals(DadoDoble.PRECIO-1, j1.getMonedas());
+		Assert.assertEquals(3, j1.getItem(0).getCantidad());
+	}
 
 }

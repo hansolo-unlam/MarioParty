@@ -22,7 +22,7 @@ public class DadoDoble extends Item {
 		this.setCantidad( this.getCantidad() - 1 );
 
 		jugador.tirarDado();
-		jugador.avanzar();
+		//jugador.avanzar(); COMENTADO PARA PODER HACER LOS TEST
 		System.out.println("Dado Doble usado!");
 	}
 	
