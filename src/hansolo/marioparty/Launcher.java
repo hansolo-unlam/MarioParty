@@ -25,7 +25,7 @@ public class Launcher {
 		
 		System.out.println("a");
 		// GUARDA: Si se descomenta el loop de abajo y no se implemento la función que revise si ya ganó alguien 
-		//         va a entrar en un bucle infinito.
+		//        va a entrar en un bucle infinito.
 		while(true) {
 			p.tick();
 		}

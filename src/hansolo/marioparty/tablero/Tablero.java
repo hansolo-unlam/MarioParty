@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import hansolo.marioparty.tablero.casilleros.EstrellaCasillero;
 import hansolo.marioparty.utils.LeerArchivo;
 import hansolo.marioparty.utils.LoaderMapa;
 
@@ -17,6 +18,7 @@ public class Tablero {
 	public Tablero(String path) {
 		this.casilleros = new HashMap<Integer, Casillero>();
 		cargarCasilleros(path);
+		ubicarEstrella(-1);
 	}
 
 	private void cargarCasilleros(String path) {
@@ -39,9 +41,19 @@ public class Tablero {
 		
 		while(index == idCasilleroAnterior) {
 			Random random = new Random();
-			index = random.nextInt(this.idsCasillerosEstrella.size());
+			index = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
+		}
+		
+		EstrellaCasillero aux;
+		for (int i = 0; i < this.idsCasillerosEstrella.size(); i++) {
+			aux = (EstrellaCasillero)casilleros.get(idsCasillerosEstrella.get(i));
 			
-			this.idsCasillerosEstrella.get(index - 1);
+			if (i == index) {
+				aux.setTieneEstrella(true);
+				continue;				
+			}				
+			
+			aux.setTieneEstrella(false);			
 		}
 	}
 
