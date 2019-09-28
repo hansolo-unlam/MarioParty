@@ -36,6 +36,12 @@ public class Tablero {
 		}
 	}
 	
+	/**
+	 * Método para encontrar una nueva ubicación para la estrella. Básicamente setea el parámetro .tieneEstrella
+	 * de los CasillerosEstrella del tablero en false, salvo uno que queda en true que es donde está la estrella.
+	 * 
+	 * @param idCasilleroAnterior es el id del casillero estrella donde se encontraba la estrella hasta que se llamó a esta función.
+	 */
 	public void ubicarEstrella(int idCasilleroAnterior) {
 		Random random = new Random();
 		int indice = 0;
@@ -50,6 +56,7 @@ public class Tablero {
 			}
 		}
 		
+		// Actualizo el .tieneEstrella de todos los CasillerosEstrella
 		EstrellaCasillero aux;
 		for (int i = 0; i < this.idsCasillerosEstrella.size(); i++) {
 			aux = (EstrellaCasillero)casilleros.get(idsCasillerosEstrella.get(i));
