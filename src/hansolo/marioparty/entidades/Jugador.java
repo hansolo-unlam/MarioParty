@@ -96,7 +96,6 @@ public class Jugador {
 	}
 
 	public void setEstrellas(int estrellasGanadas) {
-		//estrellas += (-estrellasGanadas > estrellas ? -estrellas : estrellasGanadas);
 		estrellas = estrellasGanadas;
 	}
 

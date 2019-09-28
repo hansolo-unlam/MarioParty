@@ -56,8 +56,7 @@ public class EstrellaCasillero extends Casillero {
 
 	private void venderEstrella(Jugador jugador) {
 		jugador.setMonedas( jugador.getMonedas() - PRECIO_ESTRELLA);
-		jugador.setEstrellas(1);
-		
+		jugador.setEstrellas(jugador.getEstrellas()+1);		
 		this.tieneEstrella = false;
 		tablero.ubicarEstrella(id);
 	}
