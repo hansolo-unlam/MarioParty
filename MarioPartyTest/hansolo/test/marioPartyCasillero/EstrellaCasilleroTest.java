@@ -68,30 +68,51 @@ public class EstrellaCasilleroTest {
 	
 	@Test
 	public void jugadorCaeNoHayEstrella() {
+		monedasPrincipio = this.jugadorPrueba.getMonedas();
+		estrellasPrincipio = this.jugadorPrueba.getEstrellas();
 		
+		// Mientras tenga estrella este casillero, reubicar la estrella en algún otro casillero estrella
+		while (casilleroEstrella.isTieneEstrella()) {
+			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+		}
+		
+		// Tirar el dado hasta sacar un 1
+		while (jugadorPrueba.getCantMovimientos() != 1) {
+			jugadorPrueba.tirarDado();
+		}
+		
+		jugadorPrueba.avanzar();
+		
+		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
+		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
+		
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(casilleroOrigen.getSiguiente().getId());
+		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(expectedCasilleroFinal.getSiguiente().getId());
+		
+		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella sin estrella lo hizo avanzar un casillero
 	}
 
-	@Test
-	public void jugadorPasaNoPuedeComprarEstrella() {
-		//System.out.println("Monedas del jugador antes de avanzar: " + this.jugadorPrueba.getMonedas());
-		//System.out.println("Estrellas del jugador antes de avanzar: " + this.jugadorPrueba.getEstrellas());
-		
-		fail("Not implemented yet");
-	}
+//	@Test
+//	public void jugadorPasaNoPuedeComprarEstrella() {
+//		//System.out.println("Monedas del jugador antes de avanzar: " + this.jugadorPrueba.getMonedas());
+//		//System.out.println("Estrellas del jugador antes de avanzar: " + this.jugadorPrueba.getEstrellas());
+//		
+//		fail("Not implemented yet");
+//	}
 	
-	@Test
-	public void jugadorPasPuedeComprarEstrella() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void jugadorPasPuedeComprarEstrella() {
+//		fail("Not yet implemented");
+//	}
 	
-	@Test
-	public void jugadorCaeNoPuedeComprarEstrella() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void jugadorCaeNoPuedeComprarEstrella() {
+//		fail("Not yet implemented");
+//	}
 	
-	@Test
-	public void jugadorCaePuedeComprarEstrella() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void jugadorCaePuedeComprarEstrella() {
+//		fail("Not yet implemented");
+//	}
 
 }
