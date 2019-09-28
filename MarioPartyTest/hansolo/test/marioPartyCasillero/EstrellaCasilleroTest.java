@@ -2,13 +2,7 @@ package hansolo.test.marioPartyCasillero;
 
 import static org.junit.Assert.*;
 
-<<<<<<< HEAD
-import java.util.List;
-import java.util.Map;
-
-=======
 import org.junit.Assert;
->>>>>>> 1247fd95bbfc8102df944e206ec4141699ad9a08
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,16 +18,6 @@ import hansolo.marioparty.tablero.casilleros.EstrellaCasillero;
 public class EstrellaCasilleroTest {
 	private final String pathTablero = "./recursos/map0.txt";
 	private Partida partida;
-<<<<<<< HEAD
-	private Tablero tablero;
-	private Jugador unJugador;
-
-	@Before
-	public void setUp() {
-		this.tablero = new Tablero(pathTablero);
-		this.partida = new Partida(new Usuario[] { new Usuario("Jugador_de_prueba") }, this.tablero,
-				new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
-=======
 	private Jugador jugadorPrueba;
 	
 	private int monedasPrincipio;
@@ -106,13 +90,10 @@ public class EstrellaCasilleroTest {
 		expectedCasilleroFinal = partida.getTablero().getCasilleros().get(expectedCasilleroFinal.getSiguiente().getId());
 		
 		Assert.assertEquals(expectedCasilleroFinal.getId(), jugadorPrueba.getPosicion().getId()); // El casillero estrella sin estrella lo hizo avanzar un casillero
->>>>>>> 1247fd95bbfc8102df944e206ec4141699ad9a08
 	}
 
 	@Test
 	public void jugadorPasaNoPuedeComprarEstrella() {
-<<<<<<< HEAD
-=======
 		// Le doy 29 monedas al jugador
 		jugadorPrueba.setMonedas(29);
 		
