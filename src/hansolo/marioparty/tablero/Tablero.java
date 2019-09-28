@@ -46,7 +46,7 @@ public class Tablero {
 		} else {
 			// Ya había otra estrella en el tablero
 			while(idsCasillerosEstrella.get(indice) == idCasilleroAnterior) {
-				indice = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
+				indice = random.nextInt(this.idsCasillerosEstrella.size());
 			}
 		}
 		
