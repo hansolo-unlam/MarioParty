@@ -9,7 +9,7 @@ import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.tablero.casilleros.*;
 
-public class CasillerosTest {
+public class TableroTest {
 
 	private static final String pathTablero = "./recursos/map0.txt";
 	private Tablero tab;
@@ -22,7 +22,7 @@ public class CasillerosTest {
 
 	// VERIFICO QUE SEA UN CASILLERO MONEDA +
 	@Test
-	public void CasilleroMonedaPositivo() {
+	public void cargarCasilleroMonedaPositivo() {
 		assertEquals(tab.getCasilleros().get(1).getClass(), new MonedaCasillero(0, null, 1).getClass());
 		MonedaCasillero casM = (MonedaCasillero) tab.getCasilleros().get(1);
 		assertEquals(casM.getMoneda(), 3);
@@ -30,7 +30,7 @@ public class CasillerosTest {
 
 	// VERIFICO QUE SEA UN CASILLERO MONEDA -
 	@Test
-	public void CasilleroMonedaNegativo() {
+	public void cargarCasilleroMonedaNegativo() {
 		assertEquals(tab.getCasilleros().get(71).getClass(), new MonedaCasillero(0, null, 1).getClass());
 		Casillero casM = tab.getCasilleros().get(71);
 		assertEquals(((MonedaCasillero) casM).getMoneda(), -3);
@@ -38,7 +38,7 @@ public class CasillerosTest {
 
 	// VERIFICO QUE LOS ID DE LA BIFURCACION SEAN LOS CORRECTOS
 	@Test
-	public void CasilleroBifurcacion() {
+	public void cargarCasilleroBifurcacion() {
 		assertEquals(tab.getCasilleros().get(31).getClass(), new BifurcacionCasillero(0, null).getClass());
 		Casillero cas = tab.getCasilleros().get(31);
 		int bifurcacion[] = { 30, 32 };
@@ -49,32 +49,32 @@ public class CasillerosTest {
 
 	// VERIFICO QUE SEA UN CASILLERO TELEPORT
 	@Test
-	public void CasilleroTeleport() {
+	public void cargarCasilleroTeleport() {
 		assertEquals(tab.getCasilleros().get(37).getClass(), new TeleportCasillero(0, null).getClass());
 	}
 
 	@Test
-	public void RandomMaloCasillero() {
+	public void cargarRandomMaloCasillero() {
 		assertEquals(tab.getCasilleros().get(63).getClass(), new RandomMaloCasillero(0, null).getClass());
 	}
 
 	@Test
-	public void ItemCasillero() {
+	public void cargarItemCasillero() {
 		assertEquals(tab.getCasilleros().get(44).getClass(), new ItemCasillero(0, null).getClass());
 	}
 
 	@Test
-	public void TiendaCasillero() {
+	public void cargarTiendaCasillero() {
 		assertEquals(tab.getCasilleros().get(38).getClass(), new TiendaCasillero(0, null).getClass());
 	}
 
 	@Test
-	public void HurtoCasillero() {
+	public void cargarHurtoCasillero() {
 		assertEquals(tab.getCasilleros().get(67).getClass(), new HurtoCasillero(0, null).getClass());
 	}
 
 	@Test
-	public void EstrellaCasillero() {
+	public void cargarEstrellaCasillero() {
 		assertEquals(tab.getCasilleros().get(9).getClass(), new EstrellaCasillero(0, null, tab).getClass());
 	}
 
