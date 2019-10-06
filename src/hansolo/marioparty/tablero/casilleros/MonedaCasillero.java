@@ -5,15 +5,17 @@ import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
 /**
- * Casillero que, al caer en él, te da o te quita una cierta cantidad de monedas (+3 o -3)
+ * Casillero que, al caer en él, te da o te quita una cierta cantidad de monedas
+ * (+3 o -3)
+ * 
  * @author facundotourn
  *
  */
 public class MonedaCasillero extends Casillero {
 	private int cantMonedas; // positivo o negativo
 
-	public MonedaCasillero(int id, SiguienteCasillero[] next, int signo) {
-		super(id, next, false);
+	public MonedaCasillero(int id, int signo) {
+		super(id, false);
 		this.cantMonedas = 3 * signo;
 	}
 

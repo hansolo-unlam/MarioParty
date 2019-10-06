@@ -6,13 +6,14 @@ import hansolo.marioparty.tablero.SiguienteCasillero;
 
 /**
  * Casillero que le hace algo malo al jugador que cae en él
+ * 
  * @author facundotourn
  *
  */
 public class RandomMaloCasillero extends Casillero {
 
-	public RandomMaloCasillero(int id, SiguienteCasillero[] next) {
-		super(id, next, false);
+	public RandomMaloCasillero(int id) {
+		super(id, false);
 	}
 
 	@Override

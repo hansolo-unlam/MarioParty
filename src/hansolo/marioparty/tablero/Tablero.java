@@ -12,11 +12,11 @@ import hansolo.marioparty.utils.LeerArchivo;
 import hansolo.marioparty.utils.LoaderMapa;
 
 public class Tablero {
-	private Map<Integer, Casillero> casilleros;
+	private List<Casillero> casilleros;
 	private List<Integer> idsCasillerosEstrella;
 
 	public Tablero(String path) {
-		this.casilleros = new HashMap<Integer, Casillero>();
+		this.casilleros = new ArrayList<Casillero>();
 		cargarCasilleros(path);
 		ubicarEstrella(-1);
 	}
@@ -24,48 +24,51 @@ public class Tablero {
 	private void cargarCasilleros(String path) {
 		this.idsCasillerosEstrella = new ArrayList<Integer>();
 		LeerArchivo leer;
-		
+
 		try {
 			leer = new LeerArchivo(path);
 			LoaderMapa loader = new LoaderMapa(leer, this);
-			
+
 			loader.leerCasilleros();
 		} catch (FileNotFoundException e) {
 			System.out.println("No se encontró el archivo del mapa");
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * Método para encontrar una nueva ubicación para la estrella. Básicamente setea el parámetro .tieneEstrella
-	 * de los CasillerosEstrella del tablero en false, salvo uno que queda en true que es donde está la estrella.
+	 * Método para encontrar una nueva ubicación para la estrella. Básicamente setea
+	 * el parámetro .tieneEstrella de los CasillerosEstrella del tablero en false,
+	 * salvo uno que queda en true que es donde está la estrella.
 	 * 
-	 * @param idCasilleroAnterior es el id del casillero estrella donde se encontraba la estrella hasta que se llamó a esta función.
+	 * @param idCasilleroAnterior es el id del casillero estrella donde se
+	 *                            encontraba la estrella hasta que se llamó a esta
+	 *                            función.
 	 */
 	public void ubicarEstrella(int idCasilleroAnterior) {
 		Random random = new Random();
 		int indice = 0;
-		
+
 		if (idCasilleroAnterior == -1) {
 			// Primer estrella que se ubica
 			indice = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
 		} else {
 			// Ya había otra estrella en el tablero
-			while(idsCasillerosEstrella.get(indice) == idCasilleroAnterior) {
+			while (idsCasillerosEstrella.get(indice) == idCasilleroAnterior) {
 				indice = random.nextInt(this.idsCasillerosEstrella.size());
 			}
 		}
-		
+
 		// Actualizo el .tieneEstrella de todos los CasillerosEstrella
 		EstrellaCasillero aux;
 		for (int i = 0; i < this.idsCasillerosEstrella.size(); i++) {
-			aux = (EstrellaCasillero)casilleros.get(idsCasillerosEstrella.get(i));
-			
+			aux = (EstrellaCasillero) casilleros.get(idsCasillerosEstrella.get(i));
+
 			if (i == indice) {
 				aux.setTieneEstrella(true);
 				continue;
-			}				
-			
+			}
+
 			aux.setTieneEstrella(false);
 		}
 	}
@@ -82,11 +85,11 @@ public class Tablero {
 		this.idsCasillerosEstrella = idsCasillerosEstrella;
 	}
 
-	public Map<Integer, Casillero> getCasilleros() {
+	public List<Casillero> getCasilleros() {
 		return casilleros;
 	}
 
-	public void setCasilleros(Map<Integer, Casillero> casilleros) {
+	public void setCasilleros(List<Casillero> casilleros) {
 		this.casilleros = casilleros;
 	}
 }

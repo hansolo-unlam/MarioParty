@@ -6,13 +6,14 @@ import hansolo.marioparty.tablero.SiguienteCasillero;
 
 /**
  * Casillero que le da un item al jugador que cae en él
+ * 
  * @author facundotourn
  *
  */
 public class ItemCasillero extends Casillero {
 
-	public ItemCasillero(int id, SiguienteCasillero[] next) {
-		super(id, next, false);
+	public ItemCasillero(int id) {
+		super(id, false);
 	}
 
 	@Override

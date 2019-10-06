@@ -5,15 +5,16 @@ import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
 /**
- * Casillero que, si pagás una cantidad de monedas, te lleva a la posición de otro jugador
+ * Casillero que, si pagás una cantidad de monedas, te lleva a la posición de
+ * otro jugador
+ * 
  * @author facundotourn
  *
  */
 public class TeleportCasillero extends Casillero {
 
-	public TeleportCasillero(int id, SiguienteCasillero[] next) {
-		super(id, next, false);
-		
+	public TeleportCasillero(int id) {
+		super(id, false);
 	}
 
 	@Override
