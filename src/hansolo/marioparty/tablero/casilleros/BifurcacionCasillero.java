@@ -1,5 +1,6 @@
 package hansolo.marioparty.tablero.casilleros;
 
+import java.util.List;
 import java.util.Random;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
@@ -17,6 +18,7 @@ public class BifurcacionCasillero extends Casillero {
 
 	public BifurcacionCasillero(int id) {
 		super(id, true);
+		this.r = new Random();
 	}
 
 	/**
@@ -28,8 +30,8 @@ public class BifurcacionCasillero extends Casillero {
 	public void efecto(Jugador jugador) {
 		System.out.println(jugador.getUser().getNombre() + " pasó por una bifurcación");
 
-		seleccionarNext(0);
-		jugador.avanzarAlSiguienteCasillero();
+		jugador.setPosicion(seleccionarNext());
+//		jugador.avanzarAlSiguienteCasillero();
 	}
 
 	/**
@@ -41,16 +43,30 @@ public class BifurcacionCasillero extends Casillero {
 	 * @param id del Casillero seleccionado
 	 */
 
-	private void seleccionarNext(int id) {
-		SiguienteCasillero[] opciones = this.getSiguientes();
-		id = opciones[r.nextInt(opciones.length)].getId();
+	private Casillero seleccionarNext() {
+		List<SiguienteCasillero> opciones = this.getSiguientes();
+		int id = r.nextInt(opciones.size());
+		Casillero sig = opciones.get(id).getSiguiente();
+		System.out.println("Despues de la bifurcacion quede en: " + sig.getId());
+		return sig;
 
-		for (int i = 0; i < opciones.length; i++) {
-			if (opciones[i].getId() == id)
-				opciones[i].setSeleccionado(true);
-			else
-				opciones[i].setSeleccionado(false);
-		}
-		this.setSiguientes(opciones);
+//		for (int i = 0; i < opciones.size(); i++) {
+//			if (i == 0) {
+//				return
+//			} else {
+//				opciones.get(1).setSeleccionado(false);
+//			}
+//		}
+
+//		this.setSiguiente(opciones.get(0));
+
+//	 	id = opciones[r.nextInt(opciones.length)].getId();
+//		for (int i = 0; i < opciones.length; i++) {
+//			if (opciones[i].getId() == id)
+//				opciones[i].setSeleccionado(true);
+//			else
+//				opciones[i].setSeleccionado(false);
+//		}
+//		this.setSiguientes(opciones);
 	}
 }

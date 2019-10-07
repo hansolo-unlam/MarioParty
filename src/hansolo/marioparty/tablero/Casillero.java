@@ -1,6 +1,10 @@
 package hansolo.marioparty.tablero;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.tablero.casilleros.BifurcacionCasillero;
 
 /**
  * Clase abstracta que define lo que comparten en común todos los tipos de
@@ -13,8 +17,9 @@ import hansolo.marioparty.entidades.Jugador;
  */
 public abstract class Casillero {
 	protected int id;
+	private List<SiguienteCasillero> siguientes;
 	private SiguienteCasillero siguienteNorte;
-	private SiguienteCasillero siguietneSur;
+	private SiguienteCasillero siguienteSur;
 	private SiguienteCasillero siguienteOeste;
 	private SiguienteCasillero siguienteEste;
 
@@ -23,53 +28,57 @@ public abstract class Casillero {
 	public Casillero(int idCasillero, boolean efectoPasandoSobre) {
 		this.id = idCasillero;
 		this.efectoPasandoSobre = efectoPasandoSobre;
-
+		this.siguientes = new ArrayList<SiguienteCasillero>();
 		this.siguienteNorte = null;
 		this.siguienteEste = null;
 		this.siguienteOeste = null;
-		this.siguietneSur = null;
+		this.siguienteSur = null;
 	}
 
 	public abstract void efecto(Jugador jugador);
 
 	/**
-	 * Retorna un SiguienteCasillero que es el casillero al que corresponde
-	 * avanzar ya sea porque se seleccionó (y el casillero actual es una
-	 * bifurcación) o porque no había más opciones.
+	 * Retorna un SiguienteCasillero que es el casillero al que corresponde avanzar
+	 * ya sea porque se seleccionó (y el casillero actual es una bifurcación) o
+	 * porque no había más opciones.
 	 * 
 	 * @return SiguienteCasillero al que hay que avanzar
 	 */
-	public SiguienteCasillero getSiguiente() {
-		// for (SiguienteCasillero sig : siguientes) {
-		// if (sig.isSeleccionado())
-		// return sig;
-		// }
-		return null;
+//	public SiguienteCasillero getSiguiente() {
+//		 for (SiguienteCasillero sig : siguientes) {
+//		if (sig.isSeleccionado())
+//		 return sig;
+//		 }
+//		return null;
+//	}
+
+	public List<SiguienteCasillero> getSiguiente() {
+		return siguientes;
 	}
 
 	/**
 	 * Debería setear uno de los SiguienteCasilleros de siguientes[] como el
 	 * casillero seleccionado y dejar al resto en false. Cuando se arme debería
-	 * reemplazar a la función que hay en BifurcacionCasillero
-	 * (seleccionarNext()).
+	 * reemplazar a la función que hay en BifurcacionCasillero (seleccionarNext()).
+	 * 
+	 * @param siguienteCasillero
 	 */
-	public void setSiguiente() {
-		// En desarrollo.
+	public void setSiguiente(SiguienteCasillero siguiente) {
 	}
 
 	/**
 	 * Retorna el atributo de casillero o casilleros siguientes. No indica a qué
-	 * casillero hay que ir, únicamente indica qué casilleros le siguen a this
-	 * en el mapa.
+	 * casillero hay que ir, únicamente indica qué casilleros le siguen a this en el
+	 * mapa.
 	 * 
 	 * @return array de SiguienteCasillero
 	 */
-	public SiguienteCasillero[] getSiguientes() {
-		return null;
+	public List<SiguienteCasillero> getSiguientes() {
+		return siguientes;
 	}
 
-	public void setSiguientes(SiguienteCasillero[] nexts) {
-		// this.siguientes = nexts;
+	public void setSiguientes(List<SiguienteCasillero> siguienteCasillero) {
+		this.siguientes = siguienteCasillero;
 	}
 
 	public boolean isEfectoPasandoSobre() {
@@ -93,15 +102,19 @@ public abstract class Casillero {
 		switch (orientacion) {
 		case 'N':
 			siguienteNorte = new SiguienteCasillero(siguiente, EnumDireccion.N);
+			siguientes.add(siguienteNorte);
 			break;
 		case 'S':
-			siguietneSur = new SiguienteCasillero(siguiente, EnumDireccion.S);
+			siguienteSur = new SiguienteCasillero(siguiente, EnumDireccion.S);
+			siguientes.add(siguienteSur);
 			break;
 		case 'E':
 			siguienteEste = new SiguienteCasillero(siguiente, EnumDireccion.E);
+			siguientes.add(siguienteEste);
 			break;
 		case 'O':
 			siguienteOeste = new SiguienteCasillero(siguiente, EnumDireccion.O);
+			siguientes.add(siguienteOeste);
 			break;
 		default:
 			break;

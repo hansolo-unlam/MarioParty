@@ -42,6 +42,8 @@ public class LoaderMapa {
 				casilleros.get(i).cardinalidad(casilleros.get(Integer.parseInt(word[0])), word[1].charAt(0));
 			}
 		}
+
+		tablero.setCasilleros(casilleros);
 	}
 
 //	public void leerCasilleros1() {
