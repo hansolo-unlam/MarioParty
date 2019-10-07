@@ -48,15 +48,8 @@ public class EstrellaCasillero extends Casillero {
 						+ " MONEDAS, pero la estrella tiene un precio de " + PRECIO_ESTRELLA + " MONEDAS.");
 			}
 		} else {
-			//No se por que se vuelve a mover no lo tendria que hacer
-			//jugador.avanzarAlSiguienteCasillero();
+			jugador.avanzarAlSiguienteCasillero();
 		}
-		// Por ahora que compre la mayor cantidad de estrellas que pueda
-//		if (jugador.getMonedas() >= this.PRECIO_ESTRELLA) {
-//			int estrellasGanadas = jugador.getMonedas() / this.PRECIO_ESTRELLA;
-//			jugador.setEstrellas(estrellasGanadas);
-//			jugador.setMonedas(-(this.PRECIO_ESTRELLA * estrellasGanadas));
-//		}
 	}
 
 	private void venderEstrella(Jugador jugador) {

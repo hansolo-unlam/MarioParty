@@ -79,11 +79,11 @@ public class Jugador {
 	 * avanzar
 	 */
 	public void avanzarAlSiguienteCasillero() {
-		List<SiguienteCasillero> casilleroSiguiente = this.posicion.getSiguiente();
+		SiguienteCasillero casilleroSiguiente = this.posicion.getSiguiente();
 
 		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección
 		// ya se puede calcular la nueva ubicación del jugador
-		this.posicion = casilleroSiguiente.get(0).getSiguiente();
+		this.posicion = casilleroSiguiente.getSiguiente();
 		System.out.println("Me movi al casillero: " + this.posicion.getId());
 
 //		this.posicion = partida.getTablero().getCasilleros().get(casilleroSiguiente);

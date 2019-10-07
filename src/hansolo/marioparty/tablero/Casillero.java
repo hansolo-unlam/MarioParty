@@ -3,6 +3,8 @@ package hansolo.marioparty.tablero;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.casilleros.BifurcacionCasillero;
 
@@ -17,7 +19,6 @@ import hansolo.marioparty.tablero.casilleros.BifurcacionCasillero;
  */
 public abstract class Casillero {
 	protected int id;
-	private List<SiguienteCasillero> siguientes;
 	private SiguienteCasillero siguienteNorte;
 	private SiguienteCasillero siguienteSur;
 	private SiguienteCasillero siguienteOeste;
@@ -28,7 +29,6 @@ public abstract class Casillero {
 	public Casillero(int idCasillero, boolean efectoPasandoSobre) {
 		this.id = idCasillero;
 		this.efectoPasandoSobre = efectoPasandoSobre;
-		this.siguientes = new ArrayList<SiguienteCasillero>();
 		this.siguienteNorte = null;
 		this.siguienteEste = null;
 		this.siguienteOeste = null;
@@ -52,8 +52,23 @@ public abstract class Casillero {
 //		return null;
 //	}
 
-	public List<SiguienteCasillero> getSiguiente() {
-		return siguientes;
+	public SiguienteCasillero getSiguiente() {
+		if (this.siguienteEste != null) {
+			return this.siguienteEste;
+		}
+		if (this.siguienteNorte != null) {
+			return this.siguienteNorte;
+		}
+
+		if (this.siguienteOeste != null) {
+			return this.siguienteOeste;
+		}
+
+		if (this.siguienteSur != null) {
+			return this.siguienteSur;
+		}
+
+		return null;
 	}
 
 	/**
@@ -74,11 +89,27 @@ public abstract class Casillero {
 	 * @return array de SiguienteCasillero
 	 */
 	public List<SiguienteCasillero> getSiguientes() {
+		ArrayList<SiguienteCasillero> siguientes = new ArrayList<SiguienteCasillero>();
+
+		if (this.siguienteEste != null) {
+			siguientes.add(siguienteEste);
+		}
+		if (this.siguienteNorte != null) {
+			siguientes.add(siguienteNorte);
+		}
+
+		if (this.siguienteOeste != null) {
+			siguientes.add(siguienteNorte);
+		}
+
+		if (this.siguienteSur != null) {
+			siguientes.add(siguienteSur);
+		}
+
 		return siguientes;
 	}
 
-	public void setSiguientes(List<SiguienteCasillero> siguienteCasillero) {
-		this.siguientes = siguienteCasillero;
+	public void setSiguientes() {
 	}
 
 	public boolean isEfectoPasandoSobre() {
@@ -102,19 +133,15 @@ public abstract class Casillero {
 		switch (orientacion) {
 		case 'N':
 			siguienteNorte = new SiguienteCasillero(siguiente, EnumDireccion.N);
-			siguientes.add(siguienteNorte);
 			break;
 		case 'S':
 			siguienteSur = new SiguienteCasillero(siguiente, EnumDireccion.S);
-			siguientes.add(siguienteSur);
 			break;
 		case 'E':
 			siguienteEste = new SiguienteCasillero(siguiente, EnumDireccion.E);
-			siguientes.add(siguienteEste);
 			break;
 		case 'O':
 			siguienteOeste = new SiguienteCasillero(siguiente, EnumDireccion.O);
-			siguientes.add(siguienteOeste);
 			break;
 		default:
 			break;
