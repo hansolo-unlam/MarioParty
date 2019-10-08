@@ -20,7 +20,7 @@ public class TiendaCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador) {
-		// TODO Auto-generated method stub
+		//Se deberian mostar los diferentes tipos de items a comprar.
 
 	}
 

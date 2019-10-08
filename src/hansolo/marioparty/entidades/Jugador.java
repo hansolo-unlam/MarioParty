@@ -105,13 +105,13 @@ public class Jugador {
 	}
 
 	public void setEstrellas(int estrellasGanadas) {
-		estrellas = estrellasGanadas;
+		estrellas += estrellasGanadas;
 	}
 
 	public void setMonedas(int monedasGanadas) {
 		// this.monedas += (-monedasGanadas > this.monedas ? -this.monedas :
 		// monedasGanadas);
-		monedas = monedasGanadas;
+		monedas += monedasGanadas;
 	}
 
 	public Usuario getUser() {

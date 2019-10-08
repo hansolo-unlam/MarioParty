@@ -31,6 +31,7 @@ public class BifurcacionCasillero extends Casillero {
 		System.out.println(jugador.getUser().getNombre() + " pasó por una bifurcación");
 
 		jugador.setPosicion(seleccionarNext());
+
 //		jugador.avanzarAlSiguienteCasillero();
 	}
 
@@ -45,7 +46,7 @@ public class BifurcacionCasillero extends Casillero {
 
 	private Casillero seleccionarNext() {
 		List<SiguienteCasillero> opciones = this.getSiguientes();
-		int id = r.nextInt(opciones.size());
+		int id = r.nextInt(opciones.size()); // Hay que cambiar esto por la eleccion del usuario.
 		Casillero sig = opciones.get(id).getSiguiente();
 		System.out.println("Despues de la bifurcacion quede en: " + sig.getId());
 		return sig;
