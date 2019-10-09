@@ -9,22 +9,22 @@ package hansolo.marioparty.tablero;
  *
  */
 public class SiguienteCasillero {
-	private Casillero casilleroSiguiente;
+	private Casillero casillero;
 	private EnumDireccion direccion;
 	private boolean seleccionado;
 
 	public SiguienteCasillero(Casillero siguiente, EnumDireccion orientacion) {
-		this.casilleroSiguiente = siguiente;
+		this.casillero = siguiente;
 		this.direccion = orientacion;
 		this.seleccionado = true;
 	}
 
-	public Casillero getSiguiente() {
-		return casilleroSiguiente;
+	public Casillero getCasillero() {
+		return casillero;
 	}
 
 	public void setCasillero(Casillero siguiente) {
-		this.casilleroSiguiente = siguiente;
+		this.casillero = siguiente;
 	}
 
 	public EnumDireccion getDireccion() {

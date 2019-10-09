@@ -13,10 +13,10 @@ import hansolo.marioparty.entidades.Jugador;
  */
 public abstract class Casillero {
 	protected int id;
-	private SiguienteCasillero siguienteNorte;
-	private SiguienteCasillero siguietneSur;
-	private SiguienteCasillero siguienteOeste;
-	private SiguienteCasillero siguienteEste;
+	private SiguienteCasillero norte;
+	private SiguienteCasillero sur;
+	private SiguienteCasillero oeste;
+	private SiguienteCasillero este;
 
 	private boolean efectoPasandoSobre;
 
@@ -24,10 +24,10 @@ public abstract class Casillero {
 		this.id = idCasillero;
 		this.efectoPasandoSobre = efectoPasandoSobre;
 
-		this.siguienteNorte = null;
-		this.siguienteEste = null;
-		this.siguienteOeste = null;
-		this.siguietneSur = null;
+		this.norte = null;
+		this.este = null;
+		this.oeste = null;
+		this.sur = null;
 	}
 
 	public abstract void efecto(Jugador jugador);
@@ -40,10 +40,15 @@ public abstract class Casillero {
 	 * @return SiguienteCasillero al que hay que avanzar
 	 */
 	public SiguienteCasillero getSiguiente() {
-		// for (SiguienteCasillero sig : siguientes) {
-		// if (sig.isSeleccionado())
-		// return sig;
-		// }
+		if (norte.isSeleccionado())
+			return norte;
+		if (sur.isSeleccionado())
+			return sur;
+		if (oeste.isSeleccionado())
+			return oeste;
+		if (este.isSeleccionado())
+			return este;
+		
 		return null;
 	}
 
@@ -65,6 +70,9 @@ public abstract class Casillero {
 	 * @return array de SiguienteCasillero
 	 */
 	public SiguienteCasillero[] getSiguientes() {
+		SiguienteCasillero[] arr = new SiguienteCasillero[4];
+		
+		
 		return null;
 	}
 
@@ -92,16 +100,16 @@ public abstract class Casillero {
 
 		switch (orientacion) {
 		case 'N':
-			siguienteNorte = new SiguienteCasillero(siguiente, EnumDireccion.N);
+			norte = new SiguienteCasillero(siguiente, EnumDireccion.N);
 			break;
 		case 'S':
-			siguietneSur = new SiguienteCasillero(siguiente, EnumDireccion.S);
+			sur = new SiguienteCasillero(siguiente, EnumDireccion.S);
 			break;
 		case 'E':
-			siguienteEste = new SiguienteCasillero(siguiente, EnumDireccion.E);
+			este = new SiguienteCasillero(siguiente, EnumDireccion.E);
 			break;
 		case 'O':
-			siguienteOeste = new SiguienteCasillero(siguiente, EnumDireccion.O);
+			oeste = new SiguienteCasillero(siguiente, EnumDireccion.O);
 			break;
 		default:
 			break;

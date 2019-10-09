@@ -10,6 +10,7 @@ import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.EnumDireccion;
+import hansolo.marioparty.tablero.SiguienteCasillero;
 
 public class Jugador {
 
@@ -73,12 +74,12 @@ public class Jugador {
 	 * Mueve al jugador desde su casillero actual al casillero al que corresponde avanzar
 	 */
 	public void avanzarAlSiguienteCasillero() {
-		int idCasilleroSiguiente = this.posicion.getSiguiente().getId();
+		SiguienteCasillero sig = this.posicion.getSiguiente();
 		EnumDireccion dir = this.posicion.getSiguiente().getDireccion();
 		
 		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección ya se puede calcular la nueva ubicación del jugador
 		
-		this.posicion = partida.getTablero().getCasilleros().get(idCasilleroSiguiente);
+		this.posicion = sig.getCasillero();
 		
 		if (cantMovimientos > 1 && this.posicion.isEfectoPasandoSobre())
 			this.posicion.efecto(this);
