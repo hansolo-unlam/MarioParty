@@ -27,7 +27,7 @@ public class Partida {
 		jugadores = new ArrayList<Jugador>();
 		
 		for (int i = 0; i < users.length; i++) {
-			jugadores.add(new Jugador(users[i], tablero.getStart(), this));
+			//jugadores.add(new Jugador(users[i], tablero.getStart(), this));
 		}
 		
 		this.cantJugadores = this.jugadores.size();

@@ -3,11 +3,12 @@ package hansolo.marioparty.tablero;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
+import hansolo.marioparty.Juego;
+import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.casilleros.EstrellaCasillero;
 import hansolo.marioparty.utils.LeerArchivo;
 import hansolo.marioparty.utils.LoaderMapa;
@@ -15,11 +16,23 @@ import hansolo.marioparty.utils.LoaderMapa;
 public class Tablero {
 	private List<Casillero> casilleros;
 	private List<Integer> idsCasillerosEstrella;
+	private Juego juego;
 
-	public Tablero(String path) {
+	public Tablero(String path, Juego juego) {
+		this.juego = juego;
+		
 		this.casilleros = new ArrayList<Casillero>();
 		cargarCasilleros(path);
 		ubicarEstrella(-1);
+		ubicarJugadores();
+	}
+
+	private void ubicarJugadores() {
+		for (Jugador j : juego.getJugadores()) {
+			j.setX(casilleros.get(0).getX());
+			j.setY(casilleros.get(0).getY());
+			j.setPosicion(casilleros.get(0));
+		}			
 	}
 
 	public void calcular() {

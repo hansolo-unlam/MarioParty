@@ -7,7 +7,7 @@ public class LauncherTablero {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		
-		Tablero tab = new Tablero(path);
+		//Tablero tab = new Tablero(path);
 			
 		System.out.println();
 	}

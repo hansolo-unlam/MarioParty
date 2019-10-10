@@ -30,7 +30,7 @@ public class EstrellaCasilleroTest {
 	@Before
 	public void setUp() {
 		// Carga de tablero, partida y el casillero donde se para al jugador para los tests
-		this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
+		//this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
 		this.casilleroOrigen = this.partida.getTablero().getCasilleros().get(35);
 		this.casilleroEstrella = (EstrellaCasillero) this.partida.getTablero().getCasilleros().get(36);
 		

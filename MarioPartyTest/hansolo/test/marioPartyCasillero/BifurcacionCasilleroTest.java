@@ -19,7 +19,7 @@ public class BifurcacionCasilleroTest {
 	@Before
 	public void setUp() {
 		// Carga de tablero y partida
-				this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
+				//this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
 				this.jugadorPrueba = partida.getJugadores().get(0);
 	}
 

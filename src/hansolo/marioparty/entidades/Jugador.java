@@ -1,38 +1,54 @@
 package hansolo.marioparty.entidades;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+import hansolo.marioparty.Juego;
 import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.items.DadoDoble;
 import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
+import hansolo.marioparty.states.JuegoState;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.EnumDireccion;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
 public class Jugador {
+	private int x;
+	private int y;
 
 	private Usuario user;
 	private int monedas, estrellas;
 	private Casillero posicion;
-	private List<Item> items = new ArrayList<Item>();
+	private List<Item> items;
 	private int cantMovimientos;
 
-	private Partida partida;
+	private Juego juego;
 
-	public Jugador(Usuario user, Casillero start, Partida partida) {
+	public Jugador(Usuario user, Juego juego) {
+		this.posicion = null;
+		this.x = 0;
+		this.y = 0;
+		
+		this.monedas = 0;
+		this.estrellas = 0;
+		this.items = new ArrayList<Item>();
+
+		this.juego = juego;
 		this.user = user;
-		this.monedas = this.estrellas = 0;
-		this.posicion = start;
-
-		this.partida = partida;
 		this.cantMovimientos = 0;
+	}
+	
+	public void calcular() {
 		
-		//CREAR ITEMS
-		items.add(new DadoDoble(0));
-		
+	}
+	
+	public void dibujar(Graphics g) {
+		g.setColor(Color.red);
+		g.fillRect(x, y, 16, 16);
 	}
 	
 	/**
@@ -86,7 +102,7 @@ public class Jugador {
 	}
 
 	public void terminarTurno() {
-		partida.pasarTurno();
+		//partida.pasarTurno();
 	}
 
 	public int getMonedas() {
@@ -131,6 +147,22 @@ public class Jugador {
 	
 	public Item getItem(int pos) {
 		return items.get(pos);
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 	
 	

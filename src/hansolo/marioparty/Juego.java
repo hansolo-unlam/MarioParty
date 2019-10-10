@@ -1,9 +1,12 @@
 package hansolo.marioparty;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
+import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.graficos.Ventana;
 import hansolo.marioparty.input.KeyManager;
@@ -18,7 +21,10 @@ public class Juego implements Runnable {
 	private String title;
 	
 	private boolean ejecutando = false;
-	private Thread thread;	
+	private Thread thread;
+	
+	
+	private List<Jugador> jugadores;
 	
 	// estados
 	private JuegoState juegoState;
@@ -55,6 +61,13 @@ public class Juego implements Runnable {
 		
 		// cargo las texturas
 		Texturas.init();
+		
+		// TEMPORAL: inicializo el array de jugadores con jugadores hardcodeados
+		jugadores = new ArrayList<Jugador>();
+		jugadores.add(new Jugador(new Usuario("facundo"), this));
+		jugadores.add(new Jugador(new Usuario("miguel"), this));
+		jugadores.add(new Jugador(new Usuario("susana"), this));
+		jugadores.add(new Jugador(new Usuario("gabriel"), this));
 		
 		// inicializo los estados
 		juegoState = new JuegoState(this);
@@ -173,5 +186,15 @@ public class Juego implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+	
+	
 	
 }

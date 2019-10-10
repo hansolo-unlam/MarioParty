@@ -19,7 +19,7 @@ public class TableroTest {
 
 	@Before
 	public void SetUp() {
-		this.tab = new Tablero(pathTablero);
+		//this.tab = new Tablero(pathTablero);
 
 	}
 

@@ -26,14 +26,14 @@ public class DadoDobleTest {
 
 	@Before
 	public void SetUp() {
-		this.tablero = new Tablero(pathTablero);
+		//this.tablero = new Tablero(pathTablero);
 		Usuario uTest1=new Usuario("test1");
 		Usuario uTest2=new Usuario("test2");
 		this.usuariosTest[0]=uTest1;
 		this.usuariosTest[1]=uTest2;
 		this.condicionVictoriaTest=new CondicionVictoria(TipoCondicionVictoria.ESTRELLAS,3);
 		this.partida1= new Partida(usuariosTest,tablero,condicionVictoriaTest);
-		this.j1= new Jugador(usuariosTest[0],tablero.getStart(),partida1);
+		//this.j1= new Jugador(usuariosTest[0],tablero.getStart(),partida1);
 	}
 
 	@Test
