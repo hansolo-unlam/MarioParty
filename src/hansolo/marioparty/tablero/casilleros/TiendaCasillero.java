@@ -1,5 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
+import java.awt.Graphics;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
@@ -22,6 +24,12 @@ public class TiendaCasillero extends Casillero {
 	public void efecto(Jugador jugador) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	protected void dibujar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

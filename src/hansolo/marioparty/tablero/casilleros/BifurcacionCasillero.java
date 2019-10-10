@@ -1,5 +1,6 @@
 package hansolo.marioparty.tablero.casilleros;
 
+import java.awt.Graphics;
 import java.util.Random;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
@@ -52,5 +53,11 @@ public class BifurcacionCasillero extends Casillero {
 				opciones[i].setSeleccionado(false);
 		}
 		this.setSiguientes(opciones);
+	}
+
+	@Override
+	protected void dibujar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

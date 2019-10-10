@@ -1,5 +1,7 @@
 package hansolo.marioparty.tablero;
 
+import java.awt.Graphics;
+
 import hansolo.marioparty.entidades.Jugador;
 
 /**
@@ -13,6 +15,9 @@ import hansolo.marioparty.entidades.Jugador;
  */
 public abstract class Casillero {
 	protected int id;
+	protected int x;
+	protected int y;
+
 	private SiguienteCasillero norte;
 	private SiguienteCasillero sur;
 	private SiguienteCasillero oeste;
@@ -31,6 +36,8 @@ public abstract class Casillero {
 	}
 
 	public abstract void efecto(Jugador jugador);
+
+	protected abstract void dibujar(Graphics g);
 
 	/**
 	 * Retorna un SiguienteCasillero que es el casillero al que corresponde
@@ -94,6 +101,22 @@ public abstract class Casillero {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public void cardinalidad(Casillero siguiente, char orientacion) {

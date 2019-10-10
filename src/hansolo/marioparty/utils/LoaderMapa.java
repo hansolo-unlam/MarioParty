@@ -19,6 +19,10 @@ public class LoaderMapa {
 	public void leerCasilleros() {
 
 		int cantCasillero = archivo.siguienteEntero();
+		
+		int startX = archivo.siguienteEntero();
+		int startY = archivo.siguienteEntero();
+		
 		List<Casillero> casilleros = new ArrayList<Casillero>();
 
 		for (int i = 0; i < cantCasillero; i++) {
@@ -34,6 +38,10 @@ public class LoaderMapa {
 
 		for (int i = 0; i < cantCasillero; i++) {
 			int id = archivo.siguienteEntero();
+			
+			if (id == 71) {
+				System.out.println("test");
+			}
 
 			int siguientes = archivo.siguienteEntero();
 
@@ -42,6 +50,11 @@ public class LoaderMapa {
 				casilleros.get(i).cardinalidad(casilleros.get(Integer.parseInt(word[0])), word[1].charAt(0));
 			}
 		}
+		
+		casilleros.get(0).setX(startX);
+		casilleros.get(0).setY(startY);
+		
+		tablero.setCasilleros(casilleros);
 	}
 
 //	public void leerCasilleros1() {

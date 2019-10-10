@@ -1,5 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
+import java.awt.Graphics;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
@@ -19,6 +21,12 @@ public class ItemCasillero extends Casillero {
 	@Override
 	public void efecto(Jugador jugador) {
 		System.out.println(jugador.getUser().getNombre() + " calló en un casillero de item");
+	}
+
+	@Override
+	protected void dibujar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

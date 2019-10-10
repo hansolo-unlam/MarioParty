@@ -1,5 +1,7 @@
 package hansolo.marioparty.tablero.casilleros;
 
+import java.awt.Graphics;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
@@ -63,6 +65,12 @@ public class EstrellaCasillero extends Casillero {
 		jugador.setEstrellas(jugador.getEstrellas() + 1);
 		this.tieneEstrella = false;
 		tablero.ubicarEstrella(id);
+	}
+
+	@Override
+	protected void dibujar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package hansolo.marioparty.tablero;
 
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,16 @@ public class Tablero {
 		this.casilleros = new ArrayList<Casillero>();
 		cargarCasilleros(path);
 		ubicarEstrella(-1);
+	}
+
+	public void calcular() {
+		
+	}
+
+	public void dibujar(Graphics g) {
+		for (Casillero c : casilleros) {
+			c.dibujar(g);
+		}
 	}
 
 	private void cargarCasilleros(String path) {
