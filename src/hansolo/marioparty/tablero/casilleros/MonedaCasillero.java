@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
@@ -34,10 +35,9 @@ public class MonedaCasillero extends Casillero {
 	}
 
 	@Override
-	protected void dibujar(Graphics g) {
-		// TODO Auto-generated method stub
+	protected void dibujar(Graphics g) {		
 		if (x != 0 && y != 0) {
-			g.drawRect(x, y, 32, 32);
+			g.drawRect(x, y, Texturas.width, Texturas.height);
 			g.setFont(new Font("Calibri", Font.PLAIN, 20));
 			g.drawString(Integer.toString(id), x + 16, y + 16);
 		}

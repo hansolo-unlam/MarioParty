@@ -47,13 +47,13 @@ public abstract class Casillero {
 	 * @return SiguienteCasillero al que hay que avanzar
 	 */
 	public SiguienteCasillero getSiguiente() {
-		if (norte.isSeleccionado())
+		if (norte != null && norte.isSeleccionado())
 			return norte;
-		if (sur.isSeleccionado())
+		if (sur != null && sur.isSeleccionado())
 			return sur;
-		if (oeste.isSeleccionado())
+		if (oeste != null && oeste.isSeleccionado())
 			return oeste;
-		if (este.isSeleccionado())
+		if (este != null && este.isSeleccionado())
 			return este;
 		
 		return null;
@@ -137,5 +137,37 @@ public abstract class Casillero {
 		default:
 			break;
 		}
+	}
+
+	public SiguienteCasillero getNorte() {
+		return norte;
+	}
+
+	public void setNorte(SiguienteCasillero norte) {
+		this.norte = norte;
+	}
+
+	public SiguienteCasillero getSur() {
+		return sur;
+	}
+
+	public void setSur(SiguienteCasillero sur) {
+		this.sur = sur;
+	}
+
+	public SiguienteCasillero getOeste() {
+		return oeste;
+	}
+
+	public void setOeste(SiguienteCasillero oeste) {
+		this.oeste = oeste;
+	}
+
+	public SiguienteCasillero getEste() {
+		return este;
+	}
+
+	public void setEste(SiguienteCasillero este) {
+		this.este = este;
 	}
 }

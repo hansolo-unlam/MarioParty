@@ -1,8 +1,10 @@
 package hansolo.marioparty.tablero.casilleros;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 
@@ -57,7 +59,10 @@ public class BifurcacionCasillero extends Casillero {
 
 	@Override
 	protected void dibujar(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		if (x != 0 && y != 0) {
+			g.drawRect(x, y, Texturas.width, Texturas.height);
+			g.setFont(new Font("Calibri", Font.PLAIN, 20));
+			g.drawString(Integer.toString(id), x + 16, y + 16);
+		}
 	}
 }

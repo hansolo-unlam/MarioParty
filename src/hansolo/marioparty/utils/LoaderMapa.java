@@ -3,7 +3,9 @@ package hansolo.marioparty.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.tablero.SiguienteCasillero;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.tablero.casilleros.*;
 
@@ -54,7 +56,57 @@ public class LoaderMapa {
 		casilleros.get(0).setX(startX);
 		casilleros.get(0).setY(startY);
 		
+		calcularPosicion(casilleros.get(0).getSiguiente(), startX, startY);
+		
 		tablero.setCasilleros(casilleros);
+	}
+
+	private void calcularPosicion(SiguienteCasillero current, int xAnterior, int yAnterior) {
+		Casillero casilleroActual = current.getCasillero();
+		
+		// Si la posición casillero está seteado, puedo salir
+		if (casilleroActual.getX() != 0) return;
+		
+		switch (current.getDireccion().toString()) {
+		case "N":
+			// El anterior está abajo de el actual
+			casilleroActual.setX(xAnterior);
+			casilleroActual.setY(yAnterior - Texturas.height);
+			break;
+		case "S":
+			// el anterior está arriba de el actual
+			casilleroActual.setX(xAnterior);
+			casilleroActual.setY(yAnterior + Texturas.height);
+			break;
+		case "E":
+			// el anterior está a la izquierda del actual
+			casilleroActual.setX(xAnterior + Texturas.width);
+			casilleroActual.setY(yAnterior);
+			break;
+		case "O":
+			// el anterior está a la derecha del actual
+			casilleroActual.setX(xAnterior - Texturas.width);
+			casilleroActual.setY(yAnterior);
+			break;
+		}
+		
+		if (casilleroActual.getNorte() != null) {
+			calcularPosicion(casilleroActual.getNorte(), casilleroActual.getX(), casilleroActual.getY());
+		}
+		
+		if (casilleroActual.getSur() != null) {
+			calcularPosicion(casilleroActual.getSur(), casilleroActual.getX(), casilleroActual.getY());
+		}
+		
+		if (casilleroActual.getOeste() != null) {
+			calcularPosicion(casilleroActual.getOeste(), casilleroActual.getX(), casilleroActual.getY());
+		}
+		
+		if (casilleroActual.getEste() != null) {
+			calcularPosicion(casilleroActual.getEste(), casilleroActual.getX(), casilleroActual.getY());
+		}
+		
+		
 	}
 
 //	public void leerCasilleros1() {

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  */
 public class Texturas {
 	// Ancho y alto de las texturas
-	private static final int width = 32, height = 32;
+	public static final int width = 64, height = 64;
 	
 	// texturas de jugadores
 	public static BufferedImage jugador_1, jugador_2, jugador_3, jugador_4;
