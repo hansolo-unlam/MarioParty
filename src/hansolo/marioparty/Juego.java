@@ -1,5 +1,6 @@
 package hansolo.marioparty;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -82,6 +83,7 @@ public class Juego implements Runnable {
 		
 		// limpiar pantalla
 		g.clearRect(0, 0, width, height);
+		g.fillRect(0, 0, width, height);
 		
 		// mando a dibujar el state (y a partir del state, todo el resto)
 		if (State.getState() != null)
