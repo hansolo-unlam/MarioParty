@@ -32,7 +32,7 @@ public class Tablero {
 			j.setX(casilleros.get(0).getX());
 			j.setY(casilleros.get(0).getY());
 			j.setPosicion(casilleros.get(0));
-		}			
+		}
 	}
 
 	public void calcular() {
@@ -40,9 +40,8 @@ public class Tablero {
 	}
 
 	public void dibujar(Graphics g) {
-		for (Casillero c : casilleros) {
+		for (Casillero c : casilleros)
 			c.dibujar(g);
-		}
 	}
 
 	private void cargarCasilleros(String path) {

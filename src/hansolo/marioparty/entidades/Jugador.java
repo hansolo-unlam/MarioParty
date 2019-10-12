@@ -24,6 +24,7 @@ public class Jugador {
 	private int monedas, estrellas;
 	private Casillero posicion;
 	private List<Item> items;
+	
 	private int cantMovimientos;
 
 	private Juego juego;
