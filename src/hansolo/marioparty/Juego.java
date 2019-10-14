@@ -194,6 +194,14 @@ public class Juego implements Runnable {
 	public void setJugadores(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
+
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+
+	public void setMouseManager(MouseManager mouseManager) {
+		this.mouseManager = mouseManager;
+	}
 	
 	
 	

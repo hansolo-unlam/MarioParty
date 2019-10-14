@@ -22,10 +22,10 @@ public class Texturas {
 	 * Método que carga en todas las BufferedImages sus correspondientes texturas
 	 */
 	public static void init() {
-		HojaSprites hojaBotones = new HojaSprites(ImageLoader.cargarImagen("./recursos/texturas/botones.png"));
+		HojaSprites hojaBotones = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/botones.png"));
 		
 		btnTirarDado = new BufferedImage[2];
 		btnTirarDado[0] = hojaBotones.recortar(0, 0, 82, 32);
-		btnTirarDado[0] = hojaBotones.recortar(0, 32, 82, 32);
+		btnTirarDado[1] = hojaBotones.recortar(0, 32, 82, 32);
 	}
 }
