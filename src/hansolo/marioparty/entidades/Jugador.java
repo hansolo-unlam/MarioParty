@@ -48,6 +48,14 @@ public class Jugador {
 	public void calcular() {
 		// si el jugador esta parado en el [x,y] de su casillero y le quedan movimientos,
 		if (estoyParadoEnMiPosicion() && avanzando) {// cantMovimientos != 0) {
+			
+			if (cantMovimientos == 0) {
+				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
+				posicion.efecto(this);
+				avanzando = false;
+				System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
+			}
+			
 			// Antes de moverme, debería fijarme si este casillero tiene efecto al pasar sobre él
 			if (posicion.isEfectoPasandoSobre())
 				posicion.efecto(this);
@@ -56,12 +64,7 @@ public class Jugador {
 			posicion = posicion.getSiguiente().getCasillero();
 			cantMovimientos--;
 			
-			if (cantMovimientos == 0) {
-				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
-				posicion.efecto(this);
-				avanzando = false;
-				System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
-			}
+			
 		// si no estoy parado en mi posicion y me quedan movimientos, tengo que ir hacia mi posicion
 		} else if (!estoyParadoEnMiPosicion() && avanzando) { // cantMovimientos != 0) {
 			avanzarHaciaPosicion();
@@ -100,8 +103,10 @@ public class Jugador {
 	public void startAvanzar() {
 		// Setteo la posición siguiente y lo hago avanzar un pixel así no entra en el primer if del .dibujar();
 		posicion = posicion.getSiguiente().getCasillero();
+		
 		avanzarHaciaPosicion();
 		avanzando = true;
+		
 	}
 	
 	public void tiempoAcciones() {
