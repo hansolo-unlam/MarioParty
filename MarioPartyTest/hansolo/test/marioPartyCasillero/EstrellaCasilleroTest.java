@@ -54,7 +54,7 @@ public class EstrellaCasilleroTest {
 			jugadorPrueba.tirarDado();
 		}
 		
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 		
 		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
 		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
@@ -81,7 +81,7 @@ public class EstrellaCasilleroTest {
 			jugadorPrueba.tirarDado();
 		}
 		
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 		
 		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
 		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
@@ -110,7 +110,7 @@ public class EstrellaCasilleroTest {
 			jugadorPrueba.tirarDado();
 		}
 		
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 		
 		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
 		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
@@ -140,7 +140,7 @@ public class EstrellaCasilleroTest {
 			jugadorPrueba.tirarDado();
 		}
 		
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 		
 		Assert.assertEquals(EstrellaCasillero.PRECIO_ESTRELLA, monedasPrincipio - jugadorPrueba.getMonedas()); // Se le sacó una cant de monedas igual al precio de la estrella
 		Assert.assertEquals(-1, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Tiene una estrella más que antes
@@ -170,7 +170,7 @@ public class EstrellaCasilleroTest {
 			jugadorPrueba.tirarDado();
 		}
 		
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 
 		Assert.assertEquals(0, monedasPrincipio - jugadorPrueba.getMonedas()); // Misma cantidad de monedas
 		Assert.assertEquals(0, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas
@@ -200,7 +200,7 @@ public class EstrellaCasilleroTest {
 			jugadorPrueba.tirarDado();
 		}
 		
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 
 		Assert.assertEquals(EstrellaCasillero.PRECIO_ESTRELLA, monedasPrincipio - jugadorPrueba.getMonedas()); // Se le sacó una cant de monedas igual al precio de la estrella
 		Assert.assertEquals(-1, estrellasPrincipio - jugadorPrueba.getEstrellas()); // Misma cantidad de estrellas

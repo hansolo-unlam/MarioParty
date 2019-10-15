@@ -29,7 +29,7 @@ public class BifurcacionCasilleroTest {
 		while (jugadorPrueba.getCantMovimientos() != 2) {
 			jugadorPrueba.tirarDado();
 		}
-		jugadorPrueba.avanzar();
+		//jugadorPrueba.avanzar();
 		/*Dado que de momento en una bifurcacion  se resuelve con un random hacia donde se dirige
 		 * voy a verificar que luego de moverme 2 casilleros desde el origen, no termine en el 2
 		 * sino que dado que es una bifurcacion me envio al 3 o 45

@@ -35,8 +35,19 @@ public class JuegoState extends State {
 			@Override
 			public void onClick() {
 				System.out.println("test");
-				tieneTurno.setCantMovimientos(DadoSimple.tirar());
-				subEstado = EnumEstadoJuego.MOVIENDOSE;
+				tieneTurno.tirarDado();
+				subEstado = EnumEstadoJuego.VIENDO_DADO;
+				
+				new java.util.Timer().schedule( 
+				        new java.util.TimerTask() {
+				            @Override
+				            public void run() {
+								subEstado = EnumEstadoJuego.MOVIENDOSE;
+								tieneTurno.startAvanzar();
+				            }
+				        }, 
+				        3000 
+				);
 			}
 		}));
 	}
@@ -56,6 +67,8 @@ public class JuegoState extends State {
 			
 		} else if (subEstado == EnumEstadoJuego.VIENDO_ITEMS) {
 			
+		} else if (subEstado == EnumEstadoJuego.VIENDO_DADO) {
+			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
 		} else if (subEstado == EnumEstadoJuego.MOVIENDOSE) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
 			
@@ -82,9 +95,21 @@ public class JuegoState extends State {
 			
 		} else if (subEstado == EnumEstadoJuego.VIENDO_ITEMS) {
 			
+		} else if (subEstado == EnumEstadoJuego.VIENDO_DADO) {
+			g.drawString(userJugador + ": sacaste un " + tieneTurno.getCantMovimientos() + " en el dado.", 100, 750);
 		} else if (subEstado == EnumEstadoJuego.MOVIENDOSE) {
-			g.drawString(userJugador + " sacó un " + tieneTurno.getCantMovimientos() + " del dado.", 100, 750);
+			g.drawString("a " + userJugador + " le quedan " + tieneTurno.getCantMovimientos() + " movimientos.", 100, 750);
 			
 		}
 	}
+
+	public EnumEstadoJuego getSubEstado() {
+		return subEstado;
+	}
+
+	public void setSubEstado(EnumEstadoJuego subEstado) {
+		this.subEstado = subEstado;
+	}
+	
+	
 }

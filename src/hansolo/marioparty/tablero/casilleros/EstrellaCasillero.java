@@ -53,7 +53,7 @@ public class EstrellaCasillero extends Casillero {
 						+ " MONEDAS, pero la estrella tiene un precio de " + PRECIO_ESTRELLA + " MONEDAS.");
 			}
 		} else {
-			jugador.avanzarAlSiguienteCasillero();
+			//jugador.avanzarAlSiguienteCasillero();
 		}
 		// Por ahora que compre la mayor cantidad de estrellas que pueda
 //		if (jugador.getMonedas() >= this.PRECIO_ESTRELLA) {

@@ -33,7 +33,7 @@ public class BifurcacionCasillero extends Casillero {
 		System.out.println(jugador.getUser().getNombre() + " pasó por una bifurcación");
 
 		seleccionarNext(0);
-		jugador.avanzarAlSiguienteCasillero();
+		// jugador.avanzarAlSiguienteCasillero();
 	}
 
 	/**

@@ -50,7 +50,7 @@ public class JugadorTest {
 		while (j1.getCantMovimientos() != 1)
 			j1.tirarDado();
 		
-		j1.avanzar();
+		//j1.avanzar();
 		Assert.assertEquals(1, j1.getPosicion().getId());
 	}
 	

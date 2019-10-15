@@ -12,6 +12,7 @@ import hansolo.marioparty.items.DadoDoble;
 import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.states.JuegoState;
+import hansolo.marioparty.states.State;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.EnumDireccion;
 import hansolo.marioparty.tablero.SiguienteCasillero;
@@ -26,6 +27,7 @@ public class Jugador {
 	private List<Item> items;
 	
 	private int cantMovimientos;
+	private boolean avanzando = false;
 
 	private Juego juego;
 
@@ -44,9 +46,41 @@ public class Jugador {
 	}
 	
 	public void calcular() {
-		
+		// si el jugador esta parado en el [x,y] de su casillero y le quedan movimientos,
+		if (estoyParadoEnMiPosicion() && avanzando) {// cantMovimientos != 0) {
+			// Antes de moverme, debería fijarme si este casillero tiene efecto al pasar sobre él
+			
+			// Tengo que moverme al siguiente casillero
+			posicion = posicion.getSiguiente().getCasillero();
+			cantMovimientos--;
+			
+			if (cantMovimientos == 0) {
+				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
+				avanzando = false;
+				System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
+			}
+		// si no estoy parado en mi posicion y me quedan movimientos, tengo que ir hacia mi posicion
+		} else if (!estoyParadoEnMiPosicion() && avanzando) { // cantMovimientos != 0) {
+			avanzarHaciaPosicion();
+		}
 	}
 	
+	private void avanzarHaciaPosicion() {
+		if (posicion.getX() > x)
+			x++;
+		else
+			x--;
+		
+		if (posicion.getY() > y)
+			y++;
+		else
+			y--;
+	}
+
+	private boolean estoyParadoEnMiPosicion() {
+		return this.x == posicion.getX() && this.y == posicion.getY();
+	}
+
 	public void dibujar(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(x, y, 16, 16);
@@ -57,7 +91,14 @@ public class Jugador {
 	 * @return int número que salió en el dado
 	 */
 	public void tirarDado() {
-		this.cantMovimientos = DadoSimple.tirar();
+		cantMovimientos = DadoSimple.tirar();
+	}
+	
+	public void startAvanzar() {
+		// Setteo la posición siguiente y lo hago avanzar un pixel así no entra en el primer if del .dibujar();
+		posicion = posicion.getSiguiente().getCasillero();
+		avanzarHaciaPosicion();
+		avanzando = true;
 	}
 	
 	public void tiempoAcciones() {
@@ -75,32 +116,32 @@ public class Jugador {
 	 * Mueve al jugador una cierta cantidad de casilleros
 	 * @param cant la cantidad de casilleros que hay que avanzar
 	 */
-	public void avanzar() {
-		while (cantMovimientos > 0) {
-			// En el primer ciclo, yo sé que no está parado en un casillero de bifurcación
-			avanzarAlSiguienteCasillero();
-			
-			// Si quedan movimientos y caí en un casillero que se activa solo pasando, ejecuto el efecto del casillero antes de moverme de nuevo
-			// Este puede ser el efecto tanto de una BifurcacionCasillero, EstrellaCasillero o TiendaCasillero
-			cantMovimientos--;
-		}
-		this.posicion.efecto(this);
-	}
-
-	/**
-	 * Mueve al jugador desde su casillero actual al casillero al que corresponde avanzar
-	 */
-	public void avanzarAlSiguienteCasillero() {
-		SiguienteCasillero sig = this.posicion.getSiguiente();
-		EnumDireccion dir = this.posicion.getSiguiente().getDireccion();
-		
-		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección ya se puede calcular la nueva ubicación del jugador
-		
-		this.posicion = sig.getCasillero();
-		
-		if (cantMovimientos > 1 && this.posicion.isEfectoPasandoSobre())
-			this.posicion.efecto(this);
-	}
+//	public void avanzar() {
+//		while (cantMovimientos > 0) {
+//			// En el primer ciclo, yo sé que no está parado en un casillero de bifurcación
+//			avanzarAlSiguienteCasillero();
+//			
+//			// Si quedan movimientos y caí en un casillero que se activa solo pasando, ejecuto el efecto del casillero antes de moverme de nuevo
+//			// Este puede ser el efecto tanto de una BifurcacionCasillero, EstrellaCasillero o TiendaCasillero
+//			cantMovimientos--;
+//		}
+//		this.posicion.efecto(this);
+//	}
+//
+//	/**
+//	 * Mueve al jugador desde su casillero actual al casillero al que corresponde avanzar
+//	 */
+//	public void avanzarAlSiguienteCasillero() {
+//		SiguienteCasillero sig = this.posicion.getSiguiente();
+//		EnumDireccion dir = this.posicion.getSiguiente().getDireccion();
+//		
+//		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección ya se puede calcular la nueva ubicación del jugador
+//		
+//		this.posicion = sig.getCasillero();
+//		
+//		if (cantMovimientos > 1 && this.posicion.isEfectoPasandoSobre())
+//			this.posicion.efecto(this);
+//	}
 
 	public void terminarTurno() {
 		//partida.pasarTurno();

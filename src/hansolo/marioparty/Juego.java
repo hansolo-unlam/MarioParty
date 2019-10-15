@@ -203,6 +203,4 @@ public class Juego implements Runnable {
 		this.mouseManager = mouseManager;
 	}
 	
-	
-	
 }
