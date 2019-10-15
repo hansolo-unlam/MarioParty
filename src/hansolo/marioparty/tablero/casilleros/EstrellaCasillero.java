@@ -72,7 +72,7 @@ public class EstrellaCasillero extends Casillero {
 
 	@Override
 	protected void dibujar(Graphics g) {
-		g.setColor(Color.white);
+		g.setColor(Color.cyan);
 		g.fillRect(x, y, Texturas.width, Texturas.height);
 		
 		g.setColor(Color.black);
@@ -80,6 +80,9 @@ public class EstrellaCasillero extends Casillero {
 		
 		g.setFont(new Font("Calibri", Font.PLAIN, 20));
 		g.drawString(Integer.toString(id), x + 16, y + 16);
+		
+		if(tieneEstrella)
+			g.drawImage(Texturas.casillero_estrella, x+8, y+12, null);
 	}
 
 }

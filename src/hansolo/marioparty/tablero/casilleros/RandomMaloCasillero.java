@@ -28,7 +28,7 @@ public class RandomMaloCasillero extends Casillero {
 
 	@Override
 	protected void dibujar(Graphics g) {
-		g.setColor(Color.white);
+		g.setColor(Color.orange);
 		g.fillRect(x, y, Texturas.width, Texturas.height);
 		
 		g.setColor(Color.black);
@@ -36,6 +36,9 @@ public class RandomMaloCasillero extends Casillero {
 		
 		g.setFont(new Font("Calibri", Font.PLAIN, 20));
 		g.drawString(Integer.toString(id), x + 16, y + 16);
+		
+		g.drawImage(Texturas.casillero_random_malo, x+8, y+12, null);
+		
 	}
 
 }

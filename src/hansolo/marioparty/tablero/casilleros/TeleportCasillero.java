@@ -29,7 +29,7 @@ public class TeleportCasillero extends Casillero {
 
 	@Override
 	protected void dibujar(Graphics g) {
-		g.setColor(Color.white);
+		g.setColor(Color.blue);
 		g.fillRect(x, y, Texturas.width, Texturas.height);
 		
 		g.setColor(Color.black);
@@ -37,6 +37,8 @@ public class TeleportCasillero extends Casillero {
 		
 		g.setFont(new Font("Calibri", Font.PLAIN, 20));
 		g.drawString(Integer.toString(id), x + 16, y + 16);
+		
+		g.drawImage(Texturas.casillero_TP, x+8, y+12, null);
 	}
 
 }
