@@ -1,6 +1,7 @@
 package hansolo.marioparty.tablero;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import hansolo.marioparty.entidades.Jugador;
 
@@ -76,11 +77,19 @@ public abstract class Casillero {
 	 * 
 	 * @return array de SiguienteCasillero
 	 */
-	public SiguienteCasillero[] getSiguientes() {
-		SiguienteCasillero[] arr = new SiguienteCasillero[4];
+	public ArrayList<SiguienteCasillero> getSiguientes() {
+		ArrayList<SiguienteCasillero> arr = new ArrayList<SiguienteCasillero>();
 		
+		if (norte != null)
+			arr.add(norte);
+		if (sur != null)
+			arr.add(sur);
+		if (oeste != null)
+			arr.add(oeste);
+		if (este != null)
+			arr.add(este);
 		
-		return null;
+		return arr;
 	}
 
 	public void setSiguientes(SiguienteCasillero[] nexts) {

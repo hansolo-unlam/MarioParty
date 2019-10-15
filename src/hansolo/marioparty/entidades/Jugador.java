@@ -49,6 +49,8 @@ public class Jugador {
 		// si el jugador esta parado en el [x,y] de su casillero y le quedan movimientos,
 		if (estoyParadoEnMiPosicion() && avanzando) {// cantMovimientos != 0) {
 			// Antes de moverme, debería fijarme si este casillero tiene efecto al pasar sobre él
+			if (posicion.isEfectoPasandoSobre())
+				posicion.efecto(this);
 			
 			// Tengo que moverme al siguiente casillero
 			posicion = posicion.getSiguiente().getCasillero();
@@ -56,6 +58,7 @@ public class Jugador {
 			
 			if (cantMovimientos == 0) {
 				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
+				posicion.efecto(this);
 				avanzando = false;
 				System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
 			}

@@ -3,6 +3,7 @@ package hansolo.marioparty.tablero.casilleros;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
@@ -21,6 +22,7 @@ public class BifurcacionCasillero extends Casillero {
 
 	public BifurcacionCasillero(int id) {
 		super(id, true);
+		r = new Random();
 	}
 
 	/**
@@ -33,6 +35,7 @@ public class BifurcacionCasillero extends Casillero {
 		System.out.println(jugador.getUser().getNombre() + " pasó por una bifurcación");
 
 		seleccionarNext(0);
+		jugador.setCantMovimientos(jugador.getCantMovimientos() + 1);
 		// jugador.avanzarAlSiguienteCasillero();
 	}
 
@@ -46,16 +49,15 @@ public class BifurcacionCasillero extends Casillero {
 	 */
 
 	private void seleccionarNext(int id) {
-		SiguienteCasillero[] opciones = this.getSiguientes();
-		id = opciones[r.nextInt(opciones.length)].getCasillero().getId();
+		ArrayList<SiguienteCasillero> opciones = this.getSiguientes();
+		id = opciones.get(r.nextInt(opciones.size())).getCasillero().getId();
 
-		for (int i = 0; i < opciones.length; i++) {
-			if (opciones[i].getCasillero().getId() == id)
-				opciones[i].setSeleccionado(true);
+		for (int i = 0; i < opciones.size(); i++) {
+			if (opciones.get(i).getCasillero().getId() == id)
+				opciones.get(i).setSeleccionado(true);
 			else
-				opciones[i].setSeleccionado(false);
+				opciones.get(i).setSeleccionado(false);
 		}
-		this.setSiguientes(opciones);
 	}
 
 	@Override
