@@ -53,7 +53,8 @@ public class Jugador {
 				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
 				posicion.efecto(this);
 				avanzando = false;
-				System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
+				juego.pasarTurno(this);
+				//System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
 			}
 			
 			// Antes de moverme, debería fijarme si este casillero tiene efecto al pasar sobre él

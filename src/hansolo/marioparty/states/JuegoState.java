@@ -45,11 +45,14 @@ public class JuegoState extends State {
 								subEstado = EnumEstadoJuego.MOVIENDOSE;
 								tieneTurno.startAvanzar();
 				            }
+				           
 				        }, 
 				        3000 
 				);
 			}
 		}));
+
+		
 	}
 
 	@Override
@@ -66,12 +69,11 @@ public class JuegoState extends State {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(false);
 			
 		} else if (subEstado == EnumEstadoJuego.VIENDO_ITEMS) {
-			
-		} else if (subEstado == EnumEstadoJuego.VIENDO_DADO) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
+		} else if (subEstado == EnumEstadoJuego.VIENDO_DADO) {
+			administradorUI.getObjetos().get("btnTirarDado").setHidden(false);
 		} else if (subEstado == EnumEstadoJuego.MOVIENDOSE) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
-			
 		}
 	}
 
@@ -109,6 +111,10 @@ public class JuegoState extends State {
 
 	public void setSubEstado(EnumEstadoJuego subEstado) {
 		this.subEstado = subEstado;
+	}
+
+	public void pasarJugador(Jugador jugador) {
+			this.tieneTurno = jugador;	
 	}
 	
 	

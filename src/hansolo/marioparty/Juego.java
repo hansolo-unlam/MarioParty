@@ -66,8 +66,8 @@ public class Juego implements Runnable {
 		jugadores = new ArrayList<Jugador>();
 		jugadores.add(new Jugador(new Usuario("facundo"), this));
 		jugadores.add(new Jugador(new Usuario("miguel"), this));
-		jugadores.add(new Jugador(new Usuario("susana"), this));
-		jugadores.add(new Jugador(new Usuario("gabriel"), this));
+		jugadores.add(2, new Jugador(new Usuario("susana"), this));
+		jugadores.add(3, new Jugador(new Usuario("gabriel"), this));
 		
 		// inicializo los estados
 		juegoState = new JuegoState(this);
@@ -187,6 +187,18 @@ public class Juego implements Runnable {
 		}
 	}
 
+	
+	public void pasarTurno(Jugador jugador) {
+		
+		int id = jugadores.indexOf(jugador);
+		id++;
+		if(id<jugadores.size()) {
+			juegoState.pasarJugador(jugadores.get(id));
+		}
+		else
+			juegoState.pasarJugador(jugadores.get(0));
+	}
+	
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
