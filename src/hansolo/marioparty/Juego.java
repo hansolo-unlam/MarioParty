@@ -66,8 +66,8 @@ public class Juego implements Runnable {
 		jugadores = new ArrayList<Jugador>();
 		jugadores.add(new Jugador(new Usuario("facundo"), this));
 		jugadores.add(new Jugador(new Usuario("miguel"), this));
-		jugadores.add(2, new Jugador(new Usuario("susana"), this));
-		jugadores.add(3, new Jugador(new Usuario("gabriel"), this));
+		jugadores.add(new Jugador(new Usuario("susana"), this));
+		jugadores.add(new Jugador(new Usuario("gabriel"), this));
 		
 		// inicializo los estados
 		juegoState = new JuegoState(this);
