@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 import javax.swing.*;
+import java.awt.Color;
+import java.awt.SystemColor;
  
  
 public class JuegoDados implements ActionListener
@@ -18,7 +20,7 @@ public class JuegoDados implements ActionListener
 	public JTextArea txtJugador3 = new JTextArea(5,20);
     public JTextArea txtJugador4 = new JTextArea(5,20);
     public JComboBox cbxModoJuego = new JComboBox();
-    public JButton btnJugar = new JButton("JUGAR"); 
+    public JButton btnJugar = new JButton(""); 
     public JLabel lblJugador1 = new JLabel("JUGADOR 1");
     public JLabel lblJugador2 = new JLabel("JUGADOR 2");
     public JScrollPane spnJugador1 = new JScrollPane(txtJugador1);
@@ -35,6 +37,7 @@ public class JuegoDados implements ActionListener
     	
     	//creación y configuración del jframe
     			frame = new JFrame("Juego dados");
+    			frame.getContentPane().setBackground(new Color(0, 0, 51));
     			frame.setSize(400, 800); // ancho,alto
     			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     			
@@ -44,8 +47,12 @@ public class JuegoDados implements ActionListener
     			frame.setVisible(true);
   	
     	
-        FlowLayout DISTRIBUIDOR = new FlowLayout(FlowLayout.CENTER,50,20);
-        frame.setLayout(DISTRIBUIDOR);
+        FlowLayout DISTRIBUIDOR = new FlowLayout(FlowLayout.RIGHT,50,20);
+        frame.getContentPane().setLayout(DISTRIBUIDOR);
+        btnJugar.setBackground(UIManager.getColor("Button.disabledShadow"));
+        btnJugar.setIcon(new ImageIcon(JuegoDados.class.getResource("/minijuego/JugarM.png")));
+        btnJugar.setSelectedIcon(new ImageIcon(JuegoDados.class.getResource("/minijuego/JugarM.png")));
+        btnJugar.setForeground(SystemColor.textHighlightText);
          
         this.btnJugar.addActionListener(this);
         this.txtJugador1.setEditable(false);
@@ -55,16 +62,21 @@ public class JuegoDados implements ActionListener
         
          
         this.txtJugador1.setSize(100,100);
+        lblJugador1.setForeground(new Color(255, 255, 255));
+        lblJugador1.setBackground(new Color(255, 255, 255));
         
-        frame.add(this.lblJugador1);
-        frame.add(this.spnJugador1);
-        frame.add(this.lblJugador2);
-        frame.add(this.spnJugador2);
-        frame.add(this.lblJugador3);
-        frame.add(this.spnJugador3);
-        frame.add(this.lblJugador4);
-        frame.add(this.spnJugador4);
-         frame.add(this.btnJugar);
+        frame.getContentPane().add(this.lblJugador1);
+        frame.getContentPane().add(this.spnJugador1);
+        lblJugador2.setForeground(new Color(255, 255, 255));
+        frame.getContentPane().add(this.lblJugador2);
+        frame.getContentPane().add(this.spnJugador2);
+        lblJugador3.setForeground(new Color(255, 255, 255));
+        frame.getContentPane().add(this.lblJugador3);
+        frame.getContentPane().add(this.spnJugador3);
+        lblJugador4.setForeground(new Color(255, 255, 255));
+        frame.getContentPane().add(this.lblJugador4);
+        frame.getContentPane().add(this.spnJugador4);
+         frame.getContentPane().add(this.btnJugar);
        // frame.add(this.cbxModoJuego);
        
         
