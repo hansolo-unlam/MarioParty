@@ -189,7 +189,7 @@ public class Juego implements Runnable {
 
 	
 	public void pasarTurno() {
-		juegoState.terminarTurno();
+		juegoState.handleTerminoTurno();
 		
 //		int id = jugadores.indexOf(jugador);
 //		id++;

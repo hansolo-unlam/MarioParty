@@ -53,7 +53,14 @@ public class JuegoState extends State {
 			}
 		}));
 
-		
+		administradorUI.agregarObjeto("btnTerminarTurno", new ImageButton(20, 100, 115, 32, Texturas.btnTerminarTurno, new ClickListener() {
+
+			@Override
+			public void onClick() {
+				terminarTurno();
+			}
+			
+		}));
 	}
 
 	@Override
@@ -68,13 +75,23 @@ public class JuegoState extends State {
 		
 		if (subEstado == EnumEstadoJuego.TIEMPO_DE_ACCIONES) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(false);
+			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(true);
 			
 		} else if (subEstado == EnumEstadoJuego.VIENDO_ITEMS) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
+			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(true);
 		} else if (subEstado == EnumEstadoJuego.VIENDO_DADO) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
+			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(true);
+			
 		} else if (subEstado == EnumEstadoJuego.MOVIENDOSE) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
+			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(true);
+			
+		} else if (subEstado == EnumEstadoJuego.FIN_TURNO) {
+			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
+			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(false);
+			
 		}
 	}
 
@@ -129,8 +146,8 @@ public class JuegoState extends State {
 		subEstado = EnumEstadoJuego.TIEMPO_DE_ACCIONES;
 	}
 
-	public void pasarJugador(Jugador jugador) {
-		this.tieneTurno = jugador;
+	public void handleTerminoTurno() {
+		subEstado = EnumEstadoJuego.FIN_TURNO;
 	}
 	
 	
