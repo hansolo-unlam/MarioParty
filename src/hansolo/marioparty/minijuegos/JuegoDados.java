@@ -11,9 +11,7 @@ import java.awt.SystemColor;
  
 public class JuegoDados implements ActionListener
 {
-    /**
-	 *xxxxxxxx
-	 */
+  
 	private static final long serialVersionUID = 1L;
 	public JTextArea txtJugador1 = new JTextArea(5,20);
     public JTextArea txtJugador2 = new JTextArea(5,20);
