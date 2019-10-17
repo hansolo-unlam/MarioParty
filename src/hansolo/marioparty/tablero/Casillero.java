@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.graficos.Texturas;
 
 /**
  * Clase abstracta que define lo que comparten en común todos los tipos de
@@ -37,8 +38,28 @@ public abstract class Casillero {
 	}
 
 	public abstract void efecto(Jugador jugador);
-
+	
 	protected abstract void dibujar(Graphics g);
+	
+	public void predibujar(Graphics g) {
+		// dibuja las conexiones con sus casilleros siguientes
+		if (norte != null) {
+			g.drawImage(Texturas.casillero_conexion_norte, x, y, null);
+			g.drawImage(Texturas.casillero_conexion_sur, norte.getCasillero().getX(), norte.getCasillero().getY(), null);
+		}
+		if (sur != null) {
+			g.drawImage(Texturas.casillero_conexion_sur, x, y, null);
+			g.drawImage(Texturas.casillero_conexion_norte, sur.getCasillero().getX(), sur.getCasillero().getY(), null);
+		}
+		if (oeste != null) {
+			g.drawImage(Texturas.casillero_conexion_oeste, x, y, null);
+			g.drawImage(Texturas.casillero_conexion_este, oeste.getCasillero().getX(), oeste.getCasillero().getY(), null);
+		}
+		if (este != null) {
+			g.drawImage(Texturas.casillero_conexion_este, x, y, null);
+			g.drawImage(Texturas.casillero_conexion_oeste, este.getCasillero().getX(), este.getCasillero().getY(), null);
+		}
+	}
 
 	/**
 	 * Retorna un SiguienteCasillero que es el casillero al que corresponde

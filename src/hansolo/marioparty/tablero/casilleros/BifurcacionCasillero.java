@@ -61,13 +61,7 @@ public class BifurcacionCasillero extends Casillero {
 	}
 
 	@Override
-	protected void dibujar(Graphics g) {
-		g.setColor(Color.white);
-		g.fillRect(x, y, Texturas.width, Texturas.height);
-		
-		g.setColor(Color.black);
-		g.drawRect(x, y, Texturas.width, Texturas.height);
-		
+	protected void dibujar(Graphics g) {		
 		g.setFont(new Font("Calibri", Font.PLAIN, 20));
 		g.drawString(Integer.toString(id), x + 16, y + 16);
 	}

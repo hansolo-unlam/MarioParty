@@ -38,6 +38,11 @@ public class Tablero {
 	public void calcular() {
 		
 	}
+	
+	public void predibujar(Graphics g) {
+		for (Casillero c : casilleros)
+			c.predibujar(g);
+	}
 
 	public void dibujar(Graphics g) {
 		for (Casillero c : casilleros)

@@ -88,6 +88,7 @@ public class JuegoState extends State {
 		g.drawString("Monedas de " + userJugador + ": " + tieneTurno.getMonedas(), 20, 30);
 		g.drawString("Estrellas de " + userJugador + ": " + tieneTurno.getEstrellas(), 20, 45);
 		
+		tablero.predibujar(g);
 		tablero.dibujar(g);
 		administradorUI.dibujar(g);
 		
