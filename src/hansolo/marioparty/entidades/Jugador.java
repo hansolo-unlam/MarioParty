@@ -65,12 +65,11 @@ public class Jugador {
 				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
 				posicion.efecto(this);
 				avanzando = false;
-				juego.pasarTurno(this);
+				
+				juego.pasarTurno();
 				//System.out.println("ACÁ DEBERÍA TERMINAR EL TURNO");
-			}
-			else {
-			posicion = posicion.getSiguiente().getCasillero();
-			
+			} else {
+				posicion = posicion.getSiguiente().getCasillero();
 			}
 			
 		// si no estoy parado en mi posicion y me quedan movimientos, tengo que ir hacia mi posicion

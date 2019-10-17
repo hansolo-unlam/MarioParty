@@ -188,15 +188,16 @@ public class Juego implements Runnable {
 	}
 
 	
-	public void pasarTurno(Jugador jugador) {
+	public void pasarTurno() {
+		juegoState.terminarTurno();
 		
-		int id = jugadores.indexOf(jugador);
-		id++;
-		if(id<jugadores.size()) {
-			juegoState.pasarJugador(jugadores.get(id));
-		}
-		else
-			juegoState.pasarJugador(jugadores.get(0));
+//		int id = jugadores.indexOf(jugador);
+//		id++;
+//		
+//		if (id < jugadores.size())
+//			juegoState.pasarJugador(jugadores.get(id));
+//		else
+//			juegoState.pasarJugador(jugadores.get(0));
 	}
 	
 	public List<Jugador> getJugadores() {

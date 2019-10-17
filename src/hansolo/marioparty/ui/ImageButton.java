@@ -30,7 +30,9 @@ public class ImageButton extends ObjetoUI {
 
 	@Override
 	public void onClick() {
-		clicker.onClick();
+		if (!hidden) {
+			clicker.onClick();
+		}
 	}
 
 }
