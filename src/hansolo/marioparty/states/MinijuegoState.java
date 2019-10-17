@@ -1,26 +1,38 @@
 package hansolo.marioparty.states;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 
 import hansolo.marioparty.Juego;
+import hansolo.marioparty.entidades.Jugador;
+import minijuego.Minijuego;
+import minijuego.MinijuegoObstaculos;
 
 public class MinijuegoState extends State {
 
+	private List<Jugador> jugadores;
+	private MinijuegoObstaculos gameObst;
+	private Minijuego minijuego;
+
 	public MinijuegoState(Juego juego) {
 		super(juego);
-		// TODO Auto-generated constructor stub
+	}
+
+	// Provisorio
+	public MinijuegoState(Minijuego minijuego) {
+		super(null);
+		gameObst = new MinijuegoObstaculos(minijuego);
 	}
 
 	@Override
 	public void calcular() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void dibujar(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		gameObst.dibujar(g);
 	}
 
 }
