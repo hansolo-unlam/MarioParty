@@ -30,6 +30,7 @@ public class Juego implements Runnable {
 	
 	// estados
 	private JuegoState juegoState;
+	//cuando tengamos mas minijuegos se cargarian en el vector
 	private Minijuego[] minijuegos = new Minijuego[1];
 	
 	// input
@@ -203,6 +204,7 @@ public class Juego implements Runnable {
 	}
 	
 	public void iniciarMinijuego() {
+		//aca deberiamos seleccionar un minijuego al azar para llamar
 		minijuegos[0].getFrame().setVisible(true);
 	}
 	
