@@ -2,12 +2,14 @@ package hansolo.marioparty.entidades;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import hansolo.marioparty.Juego;
 import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
+import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.items.DadoDoble;
 import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
@@ -20,7 +22,10 @@ import hansolo.marioparty.tablero.SiguienteCasillero;
 public class Jugador {
 	private int x;
 	private int y;
+	
+	private BufferedImage spriteTablero;
 
+	private int numero;
 	private Usuario user;
 	private int monedas, estrellas;
 	private Casillero posicion;
@@ -31,7 +36,8 @@ public class Jugador {
 
 	private Juego juego;
 
-	public Jugador(Usuario user, Juego juego) {
+	public Jugador(int numero, Usuario user, Juego juego) {
+		this.numero = numero;
 		this.posicion = null;
 		this.x = 0;
 		this.y = 0;
@@ -43,6 +49,8 @@ public class Jugador {
 		this.juego = juego;
 		this.user = user;
 		this.cantMovimientos = 0;
+		
+		cargarSprites();
 	}
 	
 	public void calcular() {
@@ -71,6 +79,23 @@ public class Jugador {
 		}
 	}
 	
+	public void cargarSprites() {
+		switch (numero) {
+		case 1:
+			spriteTablero = Texturas.jugador_1;
+			break;
+		case 2:
+			spriteTablero = Texturas.jugador_2;
+			break;
+		case 3:
+			spriteTablero = Texturas.jugador_3;
+			break;
+		case 4:
+			spriteTablero = Texturas.jugador_4;
+			break;
+		}
+	}
+	
 	private void avanzarHaciaPosicion() {
 		if (posicion.getX() > x)
 			x++;
@@ -88,8 +113,7 @@ public class Jugador {
 	}
 
 	public void dibujar(Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect(x, y, 16, 16);
+		g.drawImage(spriteTablero, x, y, null);
 	}
 	
 	/**

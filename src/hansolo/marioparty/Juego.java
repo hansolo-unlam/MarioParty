@@ -64,10 +64,10 @@ public class Juego implements Runnable {
 		
 		// TEMPORAL: inicializo el array de jugadores con jugadores hardcodeados
 		jugadores = new ArrayList<Jugador>();
-		jugadores.add(new Jugador(new Usuario("facundo"), this));
-		jugadores.add(new Jugador(new Usuario("miguel"), this));
-		jugadores.add(new Jugador(new Usuario("susana"), this));
-		jugadores.add(new Jugador(new Usuario("gabriel"), this));
+		jugadores.add(new Jugador(1, new Usuario("facundo"), this));
+		jugadores.add(new Jugador(2, new Usuario("miguel"), this));
+		jugadores.add(new Jugador(3, new Usuario("susana"), this));
+		jugadores.add(new Jugador(4, new Usuario("gabriel"), this));
 		
 		// inicializo los estados
 		juegoState = new JuegoState(this);
