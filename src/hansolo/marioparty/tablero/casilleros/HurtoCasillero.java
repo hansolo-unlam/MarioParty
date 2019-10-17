@@ -30,8 +30,8 @@ public class HurtoCasillero extends Casillero {
 	protected void dibujar(Graphics g) {
 		g.drawImage(Texturas.casillero_hurto, x, y, null);
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, 20));
-		g.drawString(Integer.toString(id), x + 16, y + 16);
+//		g.setFont(new Font("Calibri", Font.PLAIN, 20));
+//		g.drawString(Integer.toString(id), x + 16, y + 16);
 		
 		//g.drawImage(Texturas.casillero_hurto, x+8, y+12, null);
 	}

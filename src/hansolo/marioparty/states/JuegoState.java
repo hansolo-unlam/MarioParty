@@ -15,7 +15,7 @@ import hansolo.marioparty.ui.ImageButton;
 public class JuegoState extends State {
 	private Tablero tablero;
 	private Jugador tieneTurno;
-	private int ronda;
+	private int ronda = 1;
 	
 	private AdministradorUI administradorUI;
 	
@@ -80,6 +80,7 @@ public class JuegoState extends State {
 		} else if (subEstado == EnumEstadoJuego.VIENDO_ITEMS) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
 			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(true);
+			
 		} else if (subEstado == EnumEstadoJuego.VIENDO_DADO) {
 			administradorUI.getObjetos().get("btnTirarDado").setHidden(true);
 			administradorUI.getObjetos().get("btnTerminarTurno").setHidden(true);
@@ -104,6 +105,7 @@ public class JuegoState extends State {
 		g.drawString("Le toca jugar a " + userJugador, 20, 15);
 		g.drawString("Monedas de " + userJugador + ": " + tieneTurno.getMonedas(), 20, 30);
 		g.drawString("Estrellas de " + userJugador + ": " + tieneTurno.getEstrellas(), 20, 45);
+		g.drawString("Ronda: " + ronda, 750, 20);
 		
 		tablero.predibujar(g);
 		tablero.dibujar(g);

@@ -76,8 +76,8 @@ public class EstrellaCasillero extends Casillero {
 			g.drawImage(Texturas.casillero_estrella, x, y, null);
 		}
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, 20));
-		g.drawString(Integer.toString(id), x + 16, y + 16);
+//		g.setFont(new Font("Calibri", Font.PLAIN, 20));
+//		g.drawString(Integer.toString(id), x + 16, y + 16);
 		
 //		if(tieneEstrella)
 //			g.drawImage(Texturas.casillero_estrella, x+8, y+12, null);
