@@ -11,6 +11,8 @@ import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.graficos.Ventana;
 import hansolo.marioparty.input.KeyManager;
 import hansolo.marioparty.input.MouseManager;
+import hansolo.marioparty.minijuegos.JuegoDados;
+import hansolo.marioparty.minijuegos.Minijuego;
 import hansolo.marioparty.states.JuegoState;
 import hansolo.marioparty.states.MinijuegoState;
 import hansolo.marioparty.states.State;
@@ -28,7 +30,7 @@ public class Juego implements Runnable {
 	
 	// estados
 	private JuegoState juegoState;
-	private MinijuegoState minijuegoState;
+	private Minijuego[] minijuegos = new Minijuego[1];
 	
 	// input
 	private MouseManager mouseManager;
@@ -71,7 +73,7 @@ public class Juego implements Runnable {
 		
 		// inicializo los estados
 		juegoState = new JuegoState(this);
-		minijuegoState = new MinijuegoState(this);
+		minijuegos[0] = new JuegoDados(this);
 		
 		State.setState(juegoState);
 	}
@@ -200,6 +202,10 @@ public class Juego implements Runnable {
 //			juegoState.pasarJugador(jugadores.get(0));
 	}
 	
+	public void iniciarMinijuego() {
+		minijuegos[0].getFrame().setVisible(true);
+	}
+	
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
@@ -214,6 +220,12 @@ public class Juego implements Runnable {
 
 	public void setMouseManager(MouseManager mouseManager) {
 		this.mouseManager = mouseManager;
+	}
+
+	public void premiar(int primero, int segundo) {
+		this.jugadores.get(primero-1).setMonedas(10+this.jugadores.get(primero-1).getMonedas());
+		this.jugadores.get(segundo-1).setMonedas(5+this.jugadores.get(segundo-1).getMonedas());
+		
 	}
 	
 }

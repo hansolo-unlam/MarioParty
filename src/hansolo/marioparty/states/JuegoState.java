@@ -143,6 +143,7 @@ public class JuegoState extends State {
 		else {
 			tieneTurno = juego.getJugadores().get(0);
 			ronda++;
+			juego.iniciarMinijuego();
 		}
 		
 		subEstado = EnumEstadoJuego.TIEMPO_DE_ACCIONES;
