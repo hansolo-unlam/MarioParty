@@ -27,7 +27,8 @@ public class Jugador {
 	
 	private int cantMovimientos;
 	private boolean avanzando = false;
-
+	private boolean pierdeTurno = false;
+	
 	private Juego juego;
 
 	public Jugador(int numero, Usuario user, Juego juego) {
@@ -116,7 +117,7 @@ public class Jugador {
 	 * @return int número que salió en el dado
 	 */
 	public void tirarDado() {
-		cantMovimientos = DadoSimple.tirar();
+		cantMovimientos = DadoSimple.tirar()+5;
 	}
 	
 	public void startAvanzar() {
@@ -244,6 +245,14 @@ public class Jugador {
 	
 	public Juego getJuego() {
 		return juego;
+	}
+
+	public boolean isPierdeTurno() {
+		return pierdeTurno;
+	}
+
+	public void setPierdeTurno(boolean pierdeTurno) {
+		this.pierdeTurno = pierdeTurno;
 	}
 	
 	

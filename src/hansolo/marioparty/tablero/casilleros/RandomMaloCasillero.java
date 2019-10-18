@@ -3,6 +3,7 @@ package hansolo.marioparty.tablero.casilleros;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.Random;
 
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
@@ -24,6 +25,42 @@ public class RandomMaloCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
+		Random random = new Random();
+		int indice = random.nextInt(8);
+		
+		switch (indice) {
+		case 0:
+			jugador.setMonedas((int)(jugador.getMonedas()*0.9));
+			break;
+			
+		case 1:
+			jugador.setMonedas((int)(jugador.getMonedas()*0.8));
+			break;
+			
+		case 2:
+			jugador.setMonedas((int)(jugador.getMonedas()*0.7));
+			break;
+		
+		case 3:
+			jugador.setMonedas((int)(jugador.getMonedas()*0.9));
+			break;
+			
+		case 4:
+			jugador.setMonedas((int)(jugador.getMonedas()*0.8));
+			break;
+			
+		case 5:
+			jugador.setMonedas((int)(jugador.getMonedas()*0.7));
+			break;
+		
+		case 6:
+			if(jugador.getEstrellas()>0)
+				jugador.setEstrellas(jugador.getEstrellas()-1);
+			break;
+		
+		case 7:	
+			jugador.setPierdeTurno(true);
+		}
 		System.out.println(jugador.getUser().getNombre() + " calló en un casillero malo");
 	}
 
