@@ -28,7 +28,7 @@ public class Ventana {
 		
 		// Que no se pueda modificar el tamaño
 		frame.setResizable(false);
-		//frame.setLocationRelativeTo(null);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
 		// creación y configuración del canvas
