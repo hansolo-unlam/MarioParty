@@ -117,7 +117,7 @@ public class Jugador {
 	 * @return int número que salió en el dado
 	 */
 	public void tirarDado() {
-		cantMovimientos = DadoSimple.tirar()+5;
+		cantMovimientos = DadoSimple.tirar()+10;
 	}
 	
 	public void startAvanzar() {

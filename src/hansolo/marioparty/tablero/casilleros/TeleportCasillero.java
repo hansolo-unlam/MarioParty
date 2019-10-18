@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
@@ -36,7 +39,8 @@ public class TeleportCasillero extends Casillero {
 	}
 
 private void dibujarBotones(Jugador jugador, AdministradorUI administradorUI, List<Jugador> jugadores) {
-		
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame, "Selecciona un oponente para teletransportarte a su posición");
 		for(int i=0; i<jugadores.size();i++) 
 			if(jugadores.get(i)!=jugador) {
 				Jugador moverseHacia = jugadores.get(i);

@@ -23,7 +23,7 @@ import hansolo.marioparty.ui.AdministradorUI;
 public class RandomMaloCasillero extends Casillero {
 
 	public RandomMaloCasillero(int id) {
-		super(id, true);
+		super(id, false);
 	}
 
 	@Override

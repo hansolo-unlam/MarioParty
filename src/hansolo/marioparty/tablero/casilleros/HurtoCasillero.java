@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.List;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
@@ -27,9 +30,11 @@ public class HurtoCasillero extends Casillero {
 
 	@Override
 	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
+		
 		jugador.setCantMovimientos(jugador.getCantMovimientos() + 1);
 		jugador.setAvanzando(false);
 		List<Jugador> jugadores = jugador.getJuego().getJugadores();
+		
 		dibujarBotones(jugador, administradorUI, jugadores);
 //		for(int i=0; i<jugadores.size();i++)
 //			if(jugadores.get(i)!=jugador)
@@ -38,7 +43,8 @@ public class HurtoCasillero extends Casillero {
 	}
 
 	private void dibujarBotones(Jugador jugador, AdministradorUI administradorUI, List<Jugador> jugadores) {
-		
+		JFrame frame = new JFrame();
+		JOptionPane.showMessageDialog(frame, "Selecciona un oponente para robarle hasta 5 monedas");
 		for(int i=0; i<jugadores.size();i++) 
 			if(jugadores.get(i)!=jugador) {
 				Jugador jugadorARobar = jugadores.get(i);
@@ -73,6 +79,7 @@ public class HurtoCasillero extends Casillero {
 					jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
 					jugadorARobar.setMonedas(0);
 				}
+				JOptionPane.showMessageDialog(frame, "Le robaste a: " + jugadorARobar.getUser().getNombre());
 				eliminarBotones(administradorUI, jugadores, jugador);
 				jugador.setAvanzando(true);
 			}
