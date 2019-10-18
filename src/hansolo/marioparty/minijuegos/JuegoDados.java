@@ -26,7 +26,7 @@ public class JuegoDados extends Minijuego implements ActionListener {
 		// creación y configuración del jframe
 		frame = new JFrame("Juego dados");
 		frame.getContentPane().setBackground(new Color(0, 0, 51));
-		frame.setSize(400, 600); // ancho,alto
+		frame.setSize(400, 200 + juego.getJugadores().size()*100); // ancho,alto
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Que no se pueda modificar el tamaño
