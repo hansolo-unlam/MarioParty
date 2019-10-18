@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
@@ -20,48 +23,58 @@ import hansolo.marioparty.ui.AdministradorUI;
 public class RandomMaloCasillero extends Casillero {
 
 	public RandomMaloCasillero(int id) {
-		super(id, false);
+		super(id, true);
 	}
 
 	@Override
 	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
 		Random random = new Random();
 		int indice = random.nextInt(8);
-		
+		JFrame frame = new JFrame();
 		switch (indice) {
 		case 0:
 			jugador.setMonedas((int)(jugador.getMonedas()*0.9));
+			JOptionPane.showMessageDialog(frame, "Perdiste el 10% de tus monedas");
 			break;
 			
 		case 1:
 			jugador.setMonedas((int)(jugador.getMonedas()*0.8));
+			JOptionPane.showMessageDialog(frame, "Perdiste el 20% de tus monedas");
 			break;
 			
 		case 2:
 			jugador.setMonedas((int)(jugador.getMonedas()*0.7));
+			JOptionPane.showMessageDialog(frame, "Perdiste el 30% de tus monedas");
 			break;
 		
 		case 3:
 			jugador.setMonedas((int)(jugador.getMonedas()*0.9));
+			JOptionPane.showMessageDialog(frame, "Perdiste el 10% de tus monedas");
 			break;
 			
 		case 4:
 			jugador.setMonedas((int)(jugador.getMonedas()*0.8));
+			JOptionPane.showMessageDialog(frame, "Perdiste el 20% de tus monedas");
 			break;
 			
 		case 5:
 			jugador.setMonedas((int)(jugador.getMonedas()*0.7));
+			JOptionPane.showMessageDialog(frame, "Perdiste el 30% de tus monedas");
 			break;
 		
 		case 6:
-			if(jugador.getEstrellas()>0)
+			if(jugador.getEstrellas()>0) {
 				jugador.setEstrellas(jugador.getEstrellas()-1);
+				JOptionPane.showMessageDialog(frame, "Perdiste una estrella, matate");
+			}
+			else
+				JOptionPane.showMessageDialog(frame, "Safaste maestro");
 			break;
 		
 		case 7:	
 			jugador.setPierdeTurno(true);
+			JOptionPane.showMessageDialog(frame, "Perdiste un turno");
 		}
-		System.out.println(jugador.getUser().getNombre() + " calló en un casillero malo");
 	}
 
 	@Override
