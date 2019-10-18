@@ -68,7 +68,7 @@ public class EstrellaCasillero extends Casillero {
 	}
 
 	@Override
-	protected void dibujar(Graphics g) {
+	protected void dibujar(Graphics g) {		
 		if (tieneEstrella) {
 			g.drawImage(Texturas.casillero_estrella, x, y, null);
 		}

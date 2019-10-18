@@ -79,7 +79,7 @@ public class Tablero {
 
 		if (idCasilleroAnterior == -1) {
 			// Primer estrella que se ubica
-			indice = random.nextInt(this.idsCasillerosEstrella.size()) - 1;
+			indice = random.nextInt(this.idsCasillerosEstrella.size());
 		} else {
 			// Ya había otra estrella en el tablero
 			while (idsCasillerosEstrella.get(indice) == idCasilleroAnterior) {
