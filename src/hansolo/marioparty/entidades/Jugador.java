@@ -36,7 +36,7 @@ public class Jugador {
 		this.x = 0;
 		this.y = 0;
 		
-		this.monedas = 0;
+		this.monedas = 30;
 		this.estrellas = 0;
 		this.items = new ArrayList<Item>();
 
