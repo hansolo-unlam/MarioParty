@@ -13,21 +13,11 @@ import java.awt.SystemColor;
 
 public class JuegoDados extends Minijuego implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
-	public JTextArea txtJugador1 = new JTextArea(5, 20);
-	public JTextArea txtJugador2 = new JTextArea(5, 20);
-	public JTextArea txtJugador3 = new JTextArea(5, 20);
-	public JTextArea txtJugador4 = new JTextArea(5, 20);
-	public JComboBox cbxModoJuego = new JComboBox();
+
+	public JTextArea[] txtJugadores = new JTextArea[juego.getJugadores().size()];
 	public JButton btnJugar = new JButton("");
-	public JLabel lblJugador1 = new JLabel("JUGADOR 1");
-	public JLabel lblJugador2 = new JLabel("JUGADOR 2");
-	public JScrollPane spnJugador1 = new JScrollPane(txtJugador1);
-	public JScrollPane spnJugador2 = new JScrollPane(txtJugador2);
-	public JLabel lblJugador3 = new JLabel("JUGADOR 3");
-	public JLabel lblJugador4 = new JLabel("JUGADOR 4");
-	public JScrollPane spnJugador3 = new JScrollPane(txtJugador3);
-	public JScrollPane spnJugador4 = new JScrollPane(txtJugador4);
+	public JLabel[] lblJugadores = new JLabel[juego.getJugadores().size()];
+	public JScrollPane[] spnJugadores = new JScrollPane[juego.getJugadores().size()];
 	public int NumPartida = 0;
 
 	public JuegoDados(Juego juego) {
@@ -36,13 +26,12 @@ public class JuegoDados extends Minijuego implements ActionListener {
 		// creación y configuración del jframe
 		frame = new JFrame("Juego dados");
 		frame.getContentPane().setBackground(new Color(0, 0, 51));
-		frame.setSize(400, 800); // ancho,alto
+		frame.setSize(400, 600); // ancho,alto
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Que no se pueda modificar el tamaño
 		frame.setResizable(false);
 		// frame.setLocationRelativeTo(null);
-		//frame.setVisible(true);
 
 		FlowLayout DISTRIBUIDOR = new FlowLayout(FlowLayout.RIGHT, 50, 20);
 		frame.getContentPane().setLayout(DISTRIBUIDOR);
@@ -52,26 +41,20 @@ public class JuegoDados extends Minijuego implements ActionListener {
 		btnJugar.setForeground(SystemColor.textHighlightText);
 
 		this.btnJugar.addActionListener(this);
-		this.txtJugador1.setEditable(false);
-		this.txtJugador2.setEditable(false);
-		this.txtJugador3.setEditable(false);
-		this.txtJugador4.setEditable(false);
+		
+		for(int i=0; i<juego.getJugadores().size(); i++) {
+			this.txtJugadores[i] = new JTextArea(5, 20);
+			this.spnJugadores[i] = new JScrollPane(txtJugadores[i]);
+			this.lblJugadores[i] = new JLabel(juego.getJugadores().get(i).getUser().getNombre());
+			this.txtJugadores[i].setEditable(false);
+			this.txtJugadores[i].setSize(100, 100);
+			this.lblJugadores[i].setForeground(new Color(255, 255, 255));
+			this.lblJugadores[i].setBackground(new Color(255, 255, 255));
+			frame.getContentPane().add(lblJugadores[i]);
+			frame.getContentPane().add(spnJugadores[i]);
+			
+		}
 
-		this.txtJugador1.setSize(100, 100);
-		lblJugador1.setForeground(new Color(255, 255, 255));
-		lblJugador1.setBackground(new Color(255, 255, 255));
-
-		frame.getContentPane().add(this.lblJugador1);
-		frame.getContentPane().add(this.spnJugador1);
-		lblJugador2.setForeground(new Color(255, 255, 255));
-		frame.getContentPane().add(this.lblJugador2);
-		frame.getContentPane().add(this.spnJugador2);
-		lblJugador3.setForeground(new Color(255, 255, 255));
-		frame.getContentPane().add(this.lblJugador3);
-		frame.getContentPane().add(this.spnJugador3);
-		lblJugador4.setForeground(new Color(255, 255, 255));
-		frame.getContentPane().add(this.lblJugador4);
-		frame.getContentPane().add(this.spnJugador4);
 		frame.getContentPane().add(this.btnJugar);
 		// frame.add(this.cbxModoJuego);
 
@@ -79,53 +62,42 @@ public class JuegoDados extends Minijuego implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent AE) {
-		int[] resultado = new int[5];
+		int[] resultado = new int[juego.getJugadores().size()];
 
 		this.NumPartida++;
 
-		for (int i = 1; i < 5; i++) {
-			JOptionPane.showMessageDialog(frame, "TURNO DE JUGADOR" + i);
-			resultado[i] = TirarDadoJugador(i, "JUGADOR" + i);
+		for (int i = 0; i < juego.getJugadores().size(); i++) {
+			JOptionPane.showMessageDialog(frame, "TURNO DE " + juego.getJugadores().get(i).getUser().getNombre());
+			resultado[i] = TirarDadoJugador(i+1, juego.getJugadores().get(i).getUser().getNombre());
 
 		}
 		
-		int posiciones[] = new int[4];
-		posiciones[0] = 1;
-		//int maximo = 0;
-		int indiceMax = 0;
-		int indiceSegundo = 0;
-		for (int i = 2; i < 5; i++) {
-			int j = i-2;
-			while(j>=0 && resultado[i]>resultado[posiciones[j]]){
-				posiciones[j+1] = posiciones[j];
+		int posiciones[] = new int[juego.getJugadores().size()];
+		posiciones[0] = 0;
+
+		for (int i = 1; i < juego.getJugadores().size(); i++) {
+			int j = i;
+			while(j>0 && resultado[i]>resultado[posiciones[j-1]]){
+				posiciones[j] = posiciones[j-1];
 				j--;
 			}
-			posiciones[j+1] = i;
+			posiciones[j] = i;
 			
-//			if (resultado[i] > maximo) {
-//				maximo = resultado[i];
-//				int j = i-1;
-//				while(j>=0 && m>){
-//					
-//				}
-//				indiceSegundo = indiceMax;
-//				indiceMax = i;
-//			}
-//			else if(resultado[i] == maximo) {
-//				maximo = resultado[i];
-//				indiceSegundo = indiceMax;
-//				indiceMax = i;
-//			}
-
+		}
+		
+		String puesto ="PUESTO N° ";
+		int posicion = 1;
+		for(int i=0; i<juego.getJugadores().size(); i++) {
+			JOptionPane.showMessageDialog(frame, puesto + posicion + ": "+ juego.getJugadores().get(posiciones[i]).getUser().getNombre() + "\n\n TOTAL = " + resultado[posiciones[i]]);
+			posicion++;
 		}
 
-		JOptionPane.showMessageDialog(frame, "GANO EL JUGADOR" + posiciones[0] + "\n\n TOTAL = " + resultado[posiciones[0]]);
 		frame.setVisible(false);
 		juego.premiar(posiciones);
-		txtJugador1.setText("");
-		txtJugador2.setText("");
-		txtJugador3.setText("");
-		txtJugador4.setText("");
+		for(int i=0; i<juego.getJugadores().size(); i++) {
+			txtJugadores[i].setText("");
+		}
+
 
 	}
 
@@ -142,22 +114,22 @@ public class JuegoDados extends Minijuego implements ActionListener {
 
 		switch (Jugador) {
 		case 1:
-			this.txtJugador1.setText(this.txtJugador1.getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
+			this.txtJugadores[0].setText(this.txtJugadores[0].getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
 					+ "\n DADO 2: " + Dado2 + " \n TOTAL " + SumaDados);
 			break;
 
 		case 2:
-			this.txtJugador2.setText(this.txtJugador2.getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
+			this.txtJugadores[1].setText(this.txtJugadores[1].getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
 					+ "\n DADO 2: " + Dado2 + " \n TOTAL " + SumaDados);
 			break;
 
 		case 3:
-			this.txtJugador3.setText(this.txtJugador3.getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
+			this.txtJugadores[2].setText(this.txtJugadores[2].getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
 					+ "\n DADO 2: " + Dado2 + " \n TOTAL " + SumaDados);
 			break;
 
 		case 4:
-			this.txtJugador4.setText(this.txtJugador4.getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
+			this.txtJugadores[3].setText(this.txtJugadores[3].getText() + "\nJUEGO: " + this.NumPartida + "\n DADO 1: " + Dado1
 					+ "\n DADO 2: " + Dado2 + " \n TOTAL " + SumaDados);
 			break;
 

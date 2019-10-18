@@ -227,7 +227,7 @@ public class Juego implements Runnable {
 	public void premiar(int posiciones[]) {
 		int monedas = 10;
 		for (int i=0; i<posiciones.length;i++) {
-			this.jugadores.get(posiciones[i]-1).setMonedas(monedas+this.jugadores.get(posiciones[i]-1).getMonedas());
+			this.jugadores.get(posiciones[i]).setMonedas(monedas+this.jugadores.get(posiciones[i]).getMonedas());
 			monedas = monedas%2 + (monedas/2);
 		}
 		
