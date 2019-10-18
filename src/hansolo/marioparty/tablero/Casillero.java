@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
+import hansolo.marioparty.ui.AdministradorUI;
 
 /**
  * Clase abstracta que define lo que comparten en común todos los tipos de
@@ -20,10 +21,10 @@ public abstract class Casillero {
 	protected int x;
 	protected int y;
 
-	private SiguienteCasillero norte;
-	private SiguienteCasillero sur;
-	private SiguienteCasillero oeste;
-	private SiguienteCasillero este;
+	protected SiguienteCasillero norte;
+	protected SiguienteCasillero sur;
+	protected SiguienteCasillero oeste;
+	protected SiguienteCasillero este;
 
 	private boolean efectoPasandoSobre;
 
@@ -37,7 +38,7 @@ public abstract class Casillero {
 		this.sur = null;
 	}
 
-	public abstract void efecto(Jugador jugador);
+	public abstract void efecto(Jugador jugador, AdministradorUI administradorUI);
 	
 	protected abstract void dibujar(Graphics g);
 	

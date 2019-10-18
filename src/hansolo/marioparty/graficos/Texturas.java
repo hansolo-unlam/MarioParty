@@ -25,6 +25,9 @@ public class Texturas {
 	// botones
 	public static BufferedImage[] btnTirarDado, btnTerminarTurno;
 	
+	// flechas
+	public static BufferedImage[] flecha_arriba, flecha_abajo, flecha_izquierda, flecha_derecha;
+	
 	/*
 	 * Método que carga en todas las BufferedImages sus correspondientes texturas
 	 */
@@ -70,16 +73,19 @@ public class Texturas {
 		casillero_conexion_sur = hojaCasilleros.recortar(3 * width, 2 * height, width, height);
 		casillero_conexion_oeste = hojaCasilleros.recortar(2 * width, 2 * height, width, height);
 		
-//		String path = System.getProperty("user.dir") + "//recursos//texturas//";
-//		try {
-//			casillero_moneda = ImageIO.read(new File(path,"Moneda.png"));
-//			casillero_estrella = ImageIO.read(new File(path,"Estrella.png"));
-//			casillero_hurto = ImageIO.read(new File(path,"Ladron.png"));
-//			casillero_random_malo = ImageIO.read(new File(path,"Random.png"));
-//			casillero_TP = ImageIO.read(new File(path,"TP.png"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		// flechas
+		HojaSprites hojaFlechas = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/sprites-flechas.png"));
+		flecha_arriba = new BufferedImage[2];
+		flecha_arriba[0] = hojaFlechas.recortar(3 * width, 0 * height, width, height);
+		flecha_arriba[1] = hojaFlechas.recortar(3 * width, 0 * height, width, height);
+		flecha_abajo = new BufferedImage[2];
+		flecha_abajo[0] = hojaFlechas.recortar(1 * width, 0 * height, width, height);
+		flecha_abajo[1] = hojaFlechas.recortar(1 * width, 0 * height, width, height);
+		flecha_izquierda = new BufferedImage[2];
+		flecha_izquierda[0] = hojaFlechas.recortar(2 * width, 0 * height, width, height);
+		flecha_izquierda[1] = hojaFlechas.recortar(2 * width, 0 * height, width, height);
+		flecha_derecha = new BufferedImage[2];
+		flecha_derecha[0] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
+		flecha_derecha[1] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
 	}
 }

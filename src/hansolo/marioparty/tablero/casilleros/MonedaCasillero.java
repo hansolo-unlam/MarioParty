@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
+import hansolo.marioparty.ui.AdministradorUI;
 
 /**
  * Casillero que, al caer en él, te da o te quita una cierta cantidad de monedas
@@ -23,7 +24,7 @@ public class MonedaCasillero extends Casillero {
 	}
 
 	@Override
-	public void efecto(Jugador jugador) {
+	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
 		System.out.println(jugador.getUser().getNombre() + " calló en un casillero de monedas");
 
 		jugador.setMonedas( Math.max(0, jugador.getMonedas() + this.cantMonedas));

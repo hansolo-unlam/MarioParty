@@ -1,23 +1,17 @@
 package hansolo.marioparty.entidades;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import hansolo.marioparty.Juego;
-import hansolo.marioparty.Partida;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.graficos.Texturas;
-import hansolo.marioparty.items.DadoDoble;
 import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
 import hansolo.marioparty.states.JuegoState;
-import hansolo.marioparty.states.State;
 import hansolo.marioparty.tablero.Casillero;
-import hansolo.marioparty.tablero.EnumDireccion;
-import hansolo.marioparty.tablero.SiguienteCasillero;
 
 public class Jugador {
 	private int x;
@@ -47,6 +41,7 @@ public class Jugador {
 		this.items = new ArrayList<Item>();
 
 		this.juego = juego;
+		
 		this.user = user;
 		this.cantMovimientos = 0;
 		
@@ -59,11 +54,11 @@ public class Jugador {
 			cantMovimientos--;
 			
 			if (posicion.isEfectoPasandoSobre())
-				posicion.efecto(this);
+				juego.getJuegoState().activarEfectoCasillero();
 			
 			if (cantMovimientos == 0) {
 				// Antes de terminar el turno, debería ejecutar el efecto del casillero en donde terminé
-				posicion.efecto(this);
+				juego.getJuegoState().activarEfectoCasillero();
 				avanzando = false;
 				
 				juego.pasarTurno();
@@ -113,6 +108,7 @@ public class Jugador {
 
 	public void dibujar(Graphics g) {
 		g.drawImage(spriteTablero, x, y, null);
+		g.drawString(String.valueOf(cantMovimientos), x, y - 20);
 	}
 	
 	/**
@@ -236,6 +232,14 @@ public class Jugador {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public boolean isAvanzando() {
+		return avanzando;
+	}
+
+	public void setAvanzando(boolean avanzando) {
+		this.avanzando = avanzando;
 	}
 	
 	

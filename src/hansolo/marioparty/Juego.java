@@ -107,7 +107,7 @@ public class Juego implements Runnable {
 		
 		// terminó de dibujar
 		bs.show();
-		g.dispose();		
+		g.dispose();
 	}
 	
 	/*
@@ -232,5 +232,15 @@ public class Juego implements Runnable {
 		}
 		
 	}
+
+	public JuegoState getJuegoState() {
+		return juegoState;
+	}
+
+	public void setJuegoState(JuegoState juegoState) {
+		this.juegoState = juegoState;
+	}
+	
+	
 	
 }

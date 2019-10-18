@@ -9,6 +9,7 @@ import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 import hansolo.marioparty.tablero.Tablero;
+import hansolo.marioparty.ui.AdministradorUI;
 
 /**
  * Casillero que, al pasar o caer en él, varía su comportamiento dependiendo de
@@ -40,7 +41,7 @@ public class EstrellaCasillero extends Casillero {
 	}
 
 	@Override
-	public void efecto(Jugador jugador) {
+	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
 		System.out.println(jugador.getUser().getNombre() + " pasó o calló en un casillero de estrella");
 
 		// si la estrella está acá

@@ -3,9 +3,12 @@ package hansolo.marioparty.ui;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import hansolo.marioparty.Juego;
 
@@ -42,8 +45,9 @@ public class AdministradorUI {
 		objetos.put(id, o);
 	}
 	
-	public void removerObjeto(String id, ObjetoUI o) {
-		objetos.remove(id);
+	public void removerObjeto(String id) {
+		if (objetos.containsKey(id))
+			objetos.remove(id);
 	}
 
 	public Juego getJuego() {

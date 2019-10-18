@@ -125,6 +125,10 @@ public class JuegoState extends State {
 			
 		}
 	}
+	
+	public void activarEfectoCasillero() {
+		tieneTurno.getPosicion().efecto(tieneTurno, administradorUI);
+	}
 
 	public EnumEstadoJuego getSubEstado() {
 		return subEstado;

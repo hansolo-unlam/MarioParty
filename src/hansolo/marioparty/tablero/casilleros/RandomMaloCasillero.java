@@ -8,6 +8,7 @@ import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
+import hansolo.marioparty.ui.AdministradorUI;
 
 /**
  * Casillero que le hace algo malo al jugador que cae en él
@@ -22,7 +23,7 @@ public class RandomMaloCasillero extends Casillero {
 	}
 
 	@Override
-	public void efecto(Jugador jugador) {
+	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
 		System.out.println(jugador.getUser().getNombre() + " calló en un casillero malo");
 	}
 

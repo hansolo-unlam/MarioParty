@@ -8,6 +8,7 @@ import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
+import hansolo.marioparty.ui.AdministradorUI;
 
 /**
  * Casillero que al caer en él, te permite pagar para sacarle un item o una
@@ -22,7 +23,7 @@ public class HurtoCasillero extends Casillero {
 	}
 
 	@Override
-	public void efecto(Jugador jugador) {
+	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
 		System.out.println(jugador.getUser().getNombre() + " calló en un casillero de hurto");
 	}
 
