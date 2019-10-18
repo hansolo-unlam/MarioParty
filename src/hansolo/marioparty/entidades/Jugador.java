@@ -242,7 +242,9 @@ public class Jugador {
 		this.avanzando = avanzando;
 	}
 	
-	
+	public Juego getJuego() {
+		return juego;
+	}
 	
 	
 }

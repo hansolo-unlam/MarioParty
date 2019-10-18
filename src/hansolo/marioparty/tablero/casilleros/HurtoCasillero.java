@@ -3,12 +3,15 @@ package hansolo.marioparty.tablero.casilleros;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.List;
 
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Casillero;
 import hansolo.marioparty.tablero.SiguienteCasillero;
 import hansolo.marioparty.ui.AdministradorUI;
+import hansolo.marioparty.ui.ClickListener;
+import hansolo.marioparty.ui.ImageButton;
 
 /**
  * Casillero que al caer en él, te permite pagar para sacarle un item o una
@@ -19,14 +22,70 @@ import hansolo.marioparty.ui.AdministradorUI;
  */
 public class HurtoCasillero extends Casillero {
 	public HurtoCasillero(int id) {
-		super(id, false);
+		super(id, true);
 	}
 
 	@Override
 	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
-		System.out.println(jugador.getUser().getNombre() + " calló en un casillero de hurto");
+		jugador.setCantMovimientos(jugador.getCantMovimientos() + 1);
+		jugador.setAvanzando(false);
+		List<Jugador> jugadores = jugador.getJuego().getJugadores();
+		dibujarBotones(jugador, administradorUI, jugadores);
+//		for(int i=0; i<jugadores.size();i++)
+//			if(jugadores.get(i)!=jugador)
+//				System.out.println(jugadores.get(i).getUser().getNombre());
+		//System.out.println(jugador.getUser().getNombre() + " calló en un casillero de hurto");
 	}
 
+	private void dibujarBotones(Jugador jugador, AdministradorUI administradorUI, List<Jugador> jugadores) {
+		
+		for(int i=0; i<jugadores.size();i++) 
+			if(jugadores.get(i)!=jugador) {
+				Jugador jugadorARobar = jugadores.get(i);
+				String btn = "btn" + i;
+				int multX=0;
+				int multY=0;
+				switch (i) {
+				case 0:
+					multX = -1;
+					multY = -1;
+					break;
+				case 1:
+					multX = 1;
+					multY = -1;
+					break;
+				case 2:
+					multX = -1;
+					multY = 1;
+					break;
+				case 3:
+					multX = 1;
+					multY = 1;
+					break;
+				}
+				administradorUI.agregarObjeto(btn, new ImageButton(jugadorARobar.getX()+32*multX, jugadorARobar.getY()+32*multY, Texturas.width, Texturas.height, Texturas.flecha_arriba, new ClickListener() {
+			@Override
+			public void onClick() {
+				if(jugadorARobar.getMonedas()>=5) {
+				jugadorARobar.setMonedas(jugadorARobar.getMonedas()-5);
+				jugador.setMonedas(jugador.getMonedas() + 5);}
+				else {
+					jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
+					jugadorARobar.setMonedas(0);
+				}
+				eliminarBotones(administradorUI, jugadores, jugador);
+				jugador.setAvanzando(true);
+			}
+	}));
+}}
+
+	
+	private void eliminarBotones(AdministradorUI administradorUI, List<Jugador> jugadores, Jugador jugador) {
+		for(int i=0; i<jugadores.size();i++) 
+			if(jugadores.get(i)!=jugador) {
+		administradorUI.removerObjeto("btn" + i);
+		}
+	}
 	@Override
 	protected void dibujar(Graphics g) {
 		g.drawImage(Texturas.casillero_hurto, x, y, null);
