@@ -88,28 +88,40 @@ public class JuegoDados extends Minijuego implements ActionListener {
 			resultado[i] = TirarDadoJugador(i, "JUGADOR" + i);
 
 		}
-
-		int maximo = 0;
+		
+		int posiciones[] = new int[4];
+		posiciones[0] = 1;
+		//int maximo = 0;
 		int indiceMax = 0;
 		int indiceSegundo = 0;
-		for (int i = 1; i < 5; i++) {
-
-			if (resultado[i] > maximo) {
-				maximo = resultado[i];
-				indiceSegundo = indiceMax;
-				indiceMax = i;
+		for (int i = 2; i < 5; i++) {
+			int j = i-2;
+			while(j>=0 && resultado[i]>resultado[posiciones[j]]){
+				posiciones[j+1] = posiciones[j];
+				j--;
 			}
-			else if(resultado[i] == maximo) {
-				maximo = resultado[i];
-				indiceSegundo = indiceMax;
-				indiceMax = i;
-			}
+			posiciones[j+1] = i;
+			
+//			if (resultado[i] > maximo) {
+//				maximo = resultado[i];
+//				int j = i-1;
+//				while(j>=0 && m>){
+//					
+//				}
+//				indiceSegundo = indiceMax;
+//				indiceMax = i;
+//			}
+//			else if(resultado[i] == maximo) {
+//				maximo = resultado[i];
+//				indiceSegundo = indiceMax;
+//				indiceMax = i;
+//			}
 
 		}
 
-		JOptionPane.showMessageDialog(frame, "GANO EL JUGADOR" + indiceMax + "\n\n TOTAL = " + resultado[indiceMax]);
+		JOptionPane.showMessageDialog(frame, "GANO EL JUGADOR" + posiciones[0] + "\n\n TOTAL = " + resultado[posiciones[0]]);
 		frame.setVisible(false);
-		juego.premiar(indiceMax, indiceSegundo);
+		juego.premiar(posiciones);
 		txtJugador1.setText("");
 		txtJugador2.setText("");
 		txtJugador3.setText("");

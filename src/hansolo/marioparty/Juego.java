@@ -224,9 +224,12 @@ public class Juego implements Runnable {
 		this.mouseManager = mouseManager;
 	}
 
-	public void premiar(int primero, int segundo) {
-		this.jugadores.get(primero-1).setMonedas(10+this.jugadores.get(primero-1).getMonedas());
-		this.jugadores.get(segundo-1).setMonedas(5+this.jugadores.get(segundo-1).getMonedas());
+	public void premiar(int posiciones[]) {
+		int monedas = 10;
+		for (int i=0; i<posiciones.length;i++) {
+			this.jugadores.get(posiciones[i]-1).setMonedas(monedas+this.jugadores.get(posiciones[i]-1).getMonedas());
+			monedas = monedas%2 + (monedas/2);
+		}
 		
 	}
 	
