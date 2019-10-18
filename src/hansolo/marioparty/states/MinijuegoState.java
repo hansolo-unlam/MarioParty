@@ -6,13 +6,13 @@ import java.util.List;
 
 import hansolo.marioparty.Juego;
 import hansolo.marioparty.entidades.Jugador;
-import minijuego.Minijuego;
-import minijuego.MinijuegoObstaculos;
+import hansolo.marioparty.minijuegos.Minijuego;
+//import minijuego.MinijuegoObstaculos;
 
 public class MinijuegoState extends State {
 
 	private List<Jugador> jugadores;
-	private MinijuegoObstaculos gameObst;
+	//private MinijuegoObstaculos gameObst;
 	private Minijuego minijuego;
 
 	public MinijuegoState(Juego juego) {
@@ -20,10 +20,10 @@ public class MinijuegoState extends State {
 	}
 
 	// Provisorio
-	public MinijuegoState(Minijuego minijuego) {
-		super(null);
-		gameObst = new MinijuegoObstaculos(minijuego);
-	}
+//	public MinijuegoState(Minijuego minijuego) {
+//		//super(null);
+//		//gameObst = new MinijuegoObstaculos(minijuego);
+//	}
 
 	@Override
 	public void calcular() {
@@ -32,7 +32,7 @@ public class MinijuegoState extends State {
 
 	@Override
 	public void dibujar(Graphics g) {
-		gameObst.dibujar(g);
+		//gameObst.dibujar(g);
 	}
 
 }
