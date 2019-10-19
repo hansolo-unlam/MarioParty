@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import hansolo.marioparty.CondicionVictoria;
-import hansolo.marioparty.Partida;
 import hansolo.marioparty.TipoCondicionVictoria;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
@@ -17,7 +16,6 @@ import hansolo.marioparty.tablero.casilleros.EstrellaCasillero;
 
 public class EstrellaCasilleroTest {
 	private final String pathTablero = "./recursos/map0.txt";
-	private Partida partida;
 	private Jugador jugadorPrueba;
 	
 	private int monedasPrincipio;
@@ -31,12 +29,12 @@ public class EstrellaCasilleroTest {
 	public void setUp() {
 		// Carga de tablero, partida y el casillero donde se para al jugador para los tests
 		//this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
-		this.casilleroOrigen = this.partida.getTablero().getCasilleros().get(35);
-		this.casilleroEstrella = (EstrellaCasillero) this.partida.getTablero().getCasilleros().get(36);
+		//this.casilleroOrigen = this.partida.getTablero().getCasilleros().get(35);
+		//this.casilleroEstrella = (EstrellaCasillero) this.partida.getTablero().getCasilleros().get(36);
 		
-		this.partida.getJugadorConTurno().setPosicion(casilleroOrigen);
+		//this.partida.getJugadorConTurno().setPosicion(casilleroOrigen);
 		
-		this.jugadorPrueba = partida.getJugadores().get(0);
+		//this.jugadorPrueba = partida.getJugadores().get(0);
 	}
 	
 	@Test
@@ -46,7 +44,7 @@ public class EstrellaCasilleroTest {
 		
 		// Mientras tenga estrella este casillero, reubicar la estrella en algún otro casillero estrella
 		while (casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+			//partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
 		}
 		
 		// Tirar el dado hasta sacar un 2
@@ -73,7 +71,7 @@ public class EstrellaCasilleroTest {
 		
 		// Mientras tenga estrella este casillero, reubicar la estrella en algún otro casillero estrella
 		while (casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
+			//partida.getTablero().ubicarEstrella(casilleroEstrella.getId());
 		}
 		
 		// Tirar el dado hasta sacar un 1
@@ -102,7 +100,7 @@ public class EstrellaCasilleroTest {
 		
 		// Reubicar la estrella hasta que esté en mi casillero estrella
 		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(-1);
+			//partida.getTablero().ubicarEstrella(-1);
 		}
 		
 		// Tirar el dado hasta sacar un 2
@@ -132,7 +130,7 @@ public class EstrellaCasilleroTest {
 		
 		// Reubicar la estrella hasta que esté en mi casillero estrella
 		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(-1);
+			//partida.getTablero().ubicarEstrella(-1);
 		}
 		
 		// Tirar el dado hasta sacar un 2
@@ -162,7 +160,7 @@ public class EstrellaCasilleroTest {
 		
 		// Reubicar la estrella hasta que esté en mi casillero estrella
 		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(-1);
+			//partida.getTablero().ubicarEstrella(-1);
 		}
 		
 		// Tirar el dado hasta sacar un 1
@@ -192,7 +190,7 @@ public class EstrellaCasilleroTest {
 		
 		// Reubicar la estrella hasta que esté en mi casillero estrella
 		while (!casilleroEstrella.isTieneEstrella()) {
-			partida.getTablero().ubicarEstrella(-1);
+			//partida.getTablero().ubicarEstrella(-1);
 		}
 		
 		// Tirar el dado hasta sacar un 1

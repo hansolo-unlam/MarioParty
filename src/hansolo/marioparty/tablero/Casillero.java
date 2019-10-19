@@ -83,16 +83,6 @@ public abstract class Casillero {
 	}
 
 	/**
-	 * Debería setear uno de los SiguienteCasilleros de siguientes[] como el
-	 * casillero seleccionado y dejar al resto en false. Cuando se arme debería
-	 * reemplazar a la función que hay en BifurcacionCasillero
-	 * (seleccionarNext()).
-	 */
-	public void setSiguiente() {
-		// En desarrollo.
-	}
-
-	/**
 	 * Retorna el atributo de casillero o casilleros siguientes. No indica a qué
 	 * casillero hay que ir, únicamente indica qué casilleros le siguen a this
 	 * en el mapa.
@@ -115,7 +105,7 @@ public abstract class Casillero {
 	}
 
 	public void setSiguientes(SiguienteCasillero[] nexts) {
-		// this.siguientes = nexts;
+		
 	}
 
 	public boolean isEfectoPasandoSobre() {

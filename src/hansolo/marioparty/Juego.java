@@ -22,6 +22,7 @@ public class Juego implements Runnable {
 	private int width, height;
 	private String title;
 	
+	// boolean que setea en true el método start() y en false el método stop()
 	private boolean ejecutando = false;
 	private Thread thread;
 	
@@ -190,17 +191,11 @@ public class Juego implements Runnable {
 		}
 	}
 
-	
+	/*
+	 * Método que le permite a un jugador terminar su turno, no hace otra cosa que ejecutar un handle definido en el JuegoState
+	 */
 	public void pasarTurno() {
 		juegoState.handleTerminoTurno();
-		
-//		int id = jugadores.indexOf(jugador);
-//		id++;
-//		
-//		if (id < jugadores.size())
-//			juegoState.pasarJugador(jugadores.get(id));
-//		else
-//			juegoState.pasarJugador(jugadores.get(0));
 	}
 	
 	public void iniciarMinijuego() {
@@ -223,10 +218,10 @@ public class Juego implements Runnable {
 	public void setMouseManager(MouseManager mouseManager) {
 		this.mouseManager = mouseManager;
 	}
-
+	
 	public void premiar(int posiciones[]) {
 		int monedas = 10;
-		for (int i=0; i<posiciones.length;i++) {
+		for (int i = 0; i < posiciones.length; i++) {
 			this.jugadores.get(posiciones[i]).setMonedas(monedas+this.jugadores.get(posiciones[i]).getMonedas());
 			monedas = monedas%2 + (monedas/2);
 		}
@@ -240,7 +235,4 @@ public class Juego implements Runnable {
 	public void setJuegoState(JuegoState juegoState) {
 		this.juegoState = juegoState;
 	}
-	
-	
-	
 }

@@ -1,14 +1,17 @@
 package hansolo.marioparty.admin;
 
 import hansolo.marioparty.CondicionVictoria;
-import hansolo.marioparty.Partida;
 import hansolo.marioparty.tablero.Tablero;
 
+/**
+ * FUERA DE IMPLEMENTACIÓN, POR AHORA
+ * @author facundotourn
+ *
+ */
 public class Sala {
 	
 	private String nombre;
 	private Usuario[] users;
-	private Partida partida;
 	private Tablero tablero;
 	private CondicionVictoria condicionV;
 	
@@ -20,7 +23,6 @@ public class Sala {
 	
 	public void comenzarPartida() {
 		
-		this.partida = new Partida(users, tablero, condicionV);
 	}
 	
 	//Deberia poder seleccionarse el tablero y la condicion desde la sala

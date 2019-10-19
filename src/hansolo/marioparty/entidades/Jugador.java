@@ -126,69 +126,22 @@ public class Jugador {
 		
 		avanzarHaciaPosicion();
 		avanzando = true;
-		
 	}
-	
-	public void tiempoAcciones() {
-//		 *	PREGUNTAR SI EJECUTARA ACCIONES (CON TIEMPO)
-//		 * 	SI								
-//		 *		PREGUNTAR QUE ITEM USARA
-				Item item = this.items.get(0);
-				item.usar(this);
-//		 * 	No
-//		 * 		... sin acciones ...
-//		 *
-	}
-	
-	/**
-	 * Mueve al jugador una cierta cantidad de casilleros
-	 * @param cant la cantidad de casilleros que hay que avanzar
-	 */
-//	public void avanzar() {
-//		while (cantMovimientos > 0) {
-//			// En el primer ciclo, yo sé que no está parado en un casillero de bifurcación
-//			avanzarAlSiguienteCasillero();
-//			
-//			// Si quedan movimientos y caí en un casillero que se activa solo pasando, ejecuto el efecto del casillero antes de moverme de nuevo
-//			// Este puede ser el efecto tanto de una BifurcacionCasillero, EstrellaCasillero o TiendaCasillero
-//			cantMovimientos--;
-//		}
-//		this.posicion.efecto(this);
-//	}
-//
-//	/**
-//	 * Mueve al jugador desde su casillero actual al casillero al que corresponde avanzar
-//	 */
-//	public void avanzarAlSiguienteCasillero() {
-//		SiguienteCasillero sig = this.posicion.getSiguiente();
-//		EnumDireccion dir = this.posicion.getSiguiente().getDireccion();
-//		
-//		// Acá debería moverse al jugador hasta el siguiente casillero, con la dirección ya se puede calcular la nueva ubicación del jugador
-//		
-//		this.posicion = sig.getCasillero();
-//		
-//		if (cantMovimientos > 1 && this.posicion.isEfectoPasandoSobre())
-//			this.posicion.efecto(this);
-//	}
-
-//	public void terminarTurno() {
-//		//partida.pasarTurno();
-//	}
 
 	public int getMonedas() {
 		return monedas;
 	}
+
+	public void setMonedas(int monedas) {
+		this.monedas = monedas;
+	}
+	
 	public int getEstrellas() {
 		return estrellas;
 	}
 
-	public void setEstrellas(int estrellasGanadas) {
-		estrellas = estrellasGanadas;
-	}
-
-	public void setMonedas(int monedasGanadas) {
-		//this.monedas += (-monedasGanadas > this.monedas ? -this.monedas : monedasGanadas);
-		monedas = monedasGanadas;
+	public void setEstrellas(int estrellas) {
+		this.estrellas = estrellas;
 	}
 	
 	public Usuario getUser() {
@@ -213,10 +166,6 @@ public class Jugador {
 
 	public void setCantMovimientos(int cantMovimientos) {
 		this.cantMovimientos = cantMovimientos;
-	}
-	
-	public Item getItem(int pos) {
-		return items.get(pos);
 	}
 
 	public int getX() {

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import hansolo.marioparty.CondicionVictoria;
-import hansolo.marioparty.Partida;
+//import hansolo.marioparty.Partida;
 import hansolo.marioparty.TipoCondicionVictoria;
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
@@ -13,14 +13,14 @@ import hansolo.marioparty.tablero.Tablero;
 
 public class BifurcacionCasilleroTest {
 	private final String pathTablero = "./recursos/map0.txt";
-	private Partida partida;
+	// private Partida partida;
 	private Jugador jugadorPrueba;	
 	
 	@Before
 	public void setUp() {
 		// Carga de tablero y partida
 				//this.partida = new Partida(new Usuario[] {new Usuario("Jugador_de_prueba")}, new Tablero(pathTablero), new CondicionVictoria(TipoCondicionVictoria.RONDAS, 5));
-				this.jugadorPrueba = partida.getJugadores().get(0);
+				// this.jugadorPrueba = partida.getJugadores().get(0);
 	}
 
 	@Test
