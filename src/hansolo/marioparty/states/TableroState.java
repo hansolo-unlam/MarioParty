@@ -6,13 +6,12 @@ import java.awt.Graphics;
 import hansolo.marioparty.Juego;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
-import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.tablero.Tablero;
 import hansolo.marioparty.ui.AdministradorUI;
 import hansolo.marioparty.ui.ClickListener;
 import hansolo.marioparty.ui.ImageButton;
 
-public class JuegoState extends State {
+public class TableroState extends State {
 	private Tablero tablero;
 	private Jugador tieneTurno;
 	private int ronda = 1;
@@ -21,7 +20,7 @@ public class JuegoState extends State {
 
 	private EnumEstadoJuego subEstado;
 
-	public JuegoState(Juego juego) {
+	public TableroState(Juego juego) {
 		super(juego);
 
 		tablero = new Tablero("./recursos/map0.txt", juego);
@@ -36,7 +35,6 @@ public class JuegoState extends State {
 				new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
 					@Override
 					public void onClick() {
-						System.out.println("test");
 						tieneTurno.tirarDado();
 						subEstado = EnumEstadoJuego.VIENDO_DADO;
 
@@ -56,7 +54,7 @@ public class JuegoState extends State {
 
 					@Override
 					public void onClick() {
-						terminarTurno();
+						pasarTurno();
 					}
 
 				}));
@@ -137,17 +135,19 @@ public class JuegoState extends State {
 		this.subEstado = subEstado;
 	}
 
-	public void terminarTurno() {
+	public void pasarTurno() {
 		int index = juego.getJugadores().indexOf(tieneTurno);
 		index++;
+		
 		if (index < juego.getJugadores().size())
 			tieneTurno = juego.getJugadores().get(index);
 		else {
 			index = 0;
 			tieneTurno = juego.getJugadores().get(0);
 			ronda++;
-			 juego.iniciarMinijuego();
+			juego.iniciarMinijuego();
 		}
+		
 		if(tieneTurno.isPierdeTurno()) {
 			index++;
 			if (index < juego.getJugadores().size())
@@ -156,7 +156,7 @@ public class JuegoState extends State {
 				index = 0;
 				tieneTurno = juego.getJugadores().get(0);
 				ronda++;
-				 juego.iniciarMinijuego();
+				juego.iniciarMinijuego();
 			}
 		}
 

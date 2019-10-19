@@ -36,7 +36,7 @@ public abstract class ObjetoUI {
 	public void onMouseRelease(MouseEvent e) {
 		// cada vez que se hace un release del mouse, significa que dio click
 		// si estoy sobre el ObjetoUI (hover == true), ejecuto el método onClick
-		if (hover)
+		if (hover && !hidden)
 			onClick();
 	}
 

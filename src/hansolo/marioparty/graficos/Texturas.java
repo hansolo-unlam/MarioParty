@@ -20,7 +20,8 @@ public class Texturas {
 	public static BufferedImage casillero_bifurcacion, casillero_estrella, casillero_moneda_positivo, casillero_moneda_negativo, casillero_hurto, 
 	casillero_random_malo, casillero_TP, casillero_tienda, casillero_item;
 	
-	public static BufferedImage casillero_conexion_este, casillero_conexion_norte, casillero_conexion_sur, casillero_conexion_oeste;
+	public static BufferedImage casillero_conexion_este_out, casillero_conexion_norte_out, casillero_conexion_sur_out, casillero_conexion_oeste_out;
+	public static BufferedImage casillero_conexion_este_in, casillero_conexion_norte_in, casillero_conexion_sur_in, casillero_conexion_oeste_in;
 	
 	// botones
 	public static BufferedImage[] btnTirarDado, btnTerminarTurno;
@@ -68,10 +69,15 @@ public class Texturas {
 		casillero_item = hojaCasilleros.recortar(1 * width, 1 * height, width, height);
 		
 		// conexiones casilleros
-		casillero_conexion_norte = hojaCasilleros.recortar(1 * width, 2 * height, width, height);
-		casillero_conexion_este = hojaCasilleros.recortar(0 * width, 2 * height, width, height);
-		casillero_conexion_sur = hojaCasilleros.recortar(3 * width, 2 * height, width, height);
-		casillero_conexion_oeste = hojaCasilleros.recortar(2 * width, 2 * height, width, height);
+		casillero_conexion_norte_in = hojaCasilleros.recortar(1 * width, 2 * height, width, height);
+		casillero_conexion_este_in = hojaCasilleros.recortar(0 * width, 2 * height, width, height);
+		casillero_conexion_sur_in = hojaCasilleros.recortar(3 * width, 2 * height, width, height);
+		casillero_conexion_oeste_in = hojaCasilleros.recortar(2 * width, 2 * height, width, height);
+
+		casillero_conexion_norte_out = hojaCasilleros.recortar(1 * width, 3 * height, width, height);
+		casillero_conexion_este_out = hojaCasilleros.recortar(0 * width, 3 * height, width, height);
+		casillero_conexion_sur_out = hojaCasilleros.recortar(3 * width, 3 * height, width, height);
+		casillero_conexion_oeste_out = hojaCasilleros.recortar(2 * width, 3 * height, width, height);
 		
 		// flechas
 		HojaSprites hojaFlechas = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/sprites-flechas.png"));

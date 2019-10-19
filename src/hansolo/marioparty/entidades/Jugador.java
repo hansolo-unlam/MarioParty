@@ -10,7 +10,6 @@ import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.items.DadoSimple;
 import hansolo.marioparty.items.Item;
-import hansolo.marioparty.states.JuegoState;
 import hansolo.marioparty.tablero.Casillero;
 
 public class Jugador {
@@ -73,6 +72,12 @@ public class Jugador {
 			avanzarHaciaPosicion();
 		}
 	}
+
+	public void dibujar(Graphics g) {
+		g.drawImage(spriteTablero, x, y, null);
+		g.drawString(String.valueOf(cantMovimientos), x, y - 20);
+	}
+	
 	
 	public void cargarSprites() {
 		switch (numero) {
@@ -106,18 +111,13 @@ public class Jugador {
 	private boolean estoyParadoEnMiPosicion() {
 		return this.x == posicion.getX() && this.y == posicion.getY();
 	}
-
-	public void dibujar(Graphics g) {
-		g.drawImage(spriteTablero, x, y, null);
-		g.drawString(String.valueOf(cantMovimientos), x, y - 20);
-	}
 	
 	/**
 	 * Método que tira el dado del jugador. Debería ser acá donde se le deja elegir al jugador cuál de sus dados tirar. Si es que agregamos más dados.
 	 * @return int número que salió en el dado
 	 */
 	public void tirarDado() {
-		cantMovimientos = DadoSimple.tirar()+10;
+		cantMovimientos = DadoSimple.tirar();
 	}
 	
 	public void startAvanzar() {

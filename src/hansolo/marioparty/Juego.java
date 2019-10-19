@@ -13,7 +13,7 @@ import hansolo.marioparty.input.KeyManager;
 import hansolo.marioparty.input.MouseManager;
 import hansolo.marioparty.minijuegos.JuegoDados;
 import hansolo.marioparty.minijuegos.Minijuego;
-import hansolo.marioparty.states.JuegoState;
+import hansolo.marioparty.states.TableroState;
 import hansolo.marioparty.states.MinijuegoState;
 import hansolo.marioparty.states.State;
 
@@ -22,15 +22,16 @@ public class Juego implements Runnable {
 	private int width, height;
 	private String title;
 	
-	// boolean que setea en true el método start() y en false el método stop()
-	private boolean ejecutando = false;
+	private boolean ejecutando = false; // boolean que setea en true el método start() y en false el método stop()
 	private Thread thread;
 	
-	
-	private List<Jugador> jugadores;
+	private List<Jugador> jugadores; // lista de los jugadores que están participando del juego
 	
 	// estados
-	private JuegoState juegoState;
+	// private MenuState menuState;
+	private TableroState tableroState;
+	private MinijuegoState minijuegoState;
+	
 	//cuando tengamos mas minijuegos se cargarian en el vector
 	private Minijuego[] minijuegos = new Minijuego[1];
 	
@@ -51,64 +52,28 @@ public class Juego implements Runnable {
 		keyManager = new KeyManager();
 	}
 	
-	private void init() {
-		// creo la ventana
-		ventana = new Ventana(title, width, height);
+	/*
+	 * Entry point del objeto. Esto es lo que ejecuta el launcher. Cuando ejecuta "thread.start()" se manda a ejecutar el metodo run()
+	 */
+	public synchronized void start() {
+		// Si ya está corriendo, salimos
+		if (ejecutando) return;
 		
-		// agrego los keyListener a la ventana
-		ventana.getFrame().addKeyListener(keyManager);
-		
-		ventana.getFrame().addMouseListener(mouseManager);
-		ventana.getFrame().addMouseMotionListener(mouseManager);
-		ventana.getCanvas().addMouseListener(mouseManager);
-		ventana.getCanvas().addMouseMotionListener(mouseManager);
-		
-		// cargo las texturas
-		Texturas.init();
-		
-		// TEMPORAL: inicializo el array de jugadores con jugadores hardcodeados
-		jugadores = new ArrayList<Jugador>();
-		jugadores.add(new Jugador(1, new Usuario("facundo"), this));
-		jugadores.add(new Jugador(2, new Usuario("miguel"), this));
-		jugadores.add(new Jugador(3, new Usuario("susana"), this));
-		jugadores.add(new Jugador(4, new Usuario("gabriel"), this));
-		
-		// inicializo los estados
-		juegoState = new JuegoState(this);
-		minijuegos[0] = new JuegoDados(this);
-		
-		State.setState(juegoState);
+		ejecutando = true;
+		thread = new Thread(this);
+		thread.start();
 	}
 	
-	private void calcular() {
-		keyManager.calcular();
+	public synchronized void stop() {
+		// Si no está corriendo, salimos
+		if (!ejecutando) return;
 		
-		if (State.getState() != null)
-			State.getState().calcular();
-	}
-	
-	public void dibujar() {
-		bs = ventana.getCanvas().getBufferStrategy();
-		
-		// si es la primera vez que ejecuta y el canvas no tiene un bs, le creo un bs al canvas
-		if (bs == null) {
-			ventana.getCanvas().createBufferStrategy(3);
-			return;
+		ejecutando = false;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		
-		g = bs.getDrawGraphics();
-		
-		// limpiar pantalla
-		g.clearRect(0, 0, width, height);
-		g.fillRect(0, 0, width, height);
-		
-		// mando a dibujar el state (y a partir del state, todo el resto)
-		if (State.getState() != null)
-			State.getState().dibujar(g);
-		
-		// terminó de dibujar
-		bs.show();
-		g.dispose();
 	}
 	
 	/*
@@ -167,35 +132,72 @@ public class Juego implements Runnable {
 		stop();
 	}
 	
-	/*
-	 * Entry point del objeto. Esto es lo que ejecuta el launcher. Cuando ejecuta "thread.start()" se manda a ejecutar el metodo run()
-	 */
-	public synchronized void start() {
-		// Si ya está corriendo, salimos
-		if (ejecutando) return;
+	private void init() {
+		// creo la ventana
+		ventana = new Ventana(title, width, height);
 		
-		ejecutando = true;
-		thread = new Thread(this);
-		thread.start();
+		// agrego los keyListener a la ventana
+		ventana.getFrame().addKeyListener(keyManager);
+		
+		ventana.getFrame().addMouseListener(mouseManager);
+		ventana.getFrame().addMouseMotionListener(mouseManager);
+		ventana.getCanvas().addMouseListener(mouseManager);
+		ventana.getCanvas().addMouseMotionListener(mouseManager);
+		
+		// cargo las texturas
+		Texturas.init();
+		
+		// TEMPORAL: inicializo el array de jugadores con jugadores hardcodeados
+		jugadores = new ArrayList<Jugador>();
+		jugadores.add(new Jugador(1, new Usuario("facundo"), this));
+		jugadores.add(new Jugador(2, new Usuario("miguel"), this));
+		jugadores.add(new Jugador(3, new Usuario("susana"), this));
+		jugadores.add(new Jugador(4, new Usuario("gabriel"), this));
+		
+		// inicializo los estados
+		tableroState = new TableroState(this);
+		minijuegoState = new MinijuegoState(this);
+		minijuegos[0] = new JuegoDados(this);
+		
+		State.setState(tableroState);
 	}
 	
-	public synchronized void stop() {
-		// Si no está corriendo, salimos
-		if (!ejecutando) return;
+	private void calcular() {
+		keyManager.calcular();
 		
-		ejecutando = false;
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if (State.getState() != null)
+			State.getState().calcular();
+	}
+	
+	public void dibujar() {
+		bs = ventana.getCanvas().getBufferStrategy();
+		
+		// si es la primera vez que ejecuta y el canvas no tiene un bs, le creo un bs al canvas
+		if (bs == null) {
+			ventana.getCanvas().createBufferStrategy(3);
+			return;
 		}
+		
+		g = bs.getDrawGraphics();
+		
+		// limpiar pantalla
+		g.clearRect(0, 0, width, height);
+		g.fillRect(0, 0, width, height);
+		
+		// mando a dibujar el state (y a partir del state, todo el resto)
+		if (State.getState() != null)
+			State.getState().dibujar(g);
+		
+		// terminó de dibujar
+		bs.show();
+		g.dispose();
 	}
 
 	/*
 	 * Método que le permite a un jugador terminar su turno, no hace otra cosa que ejecutar un handle definido en el JuegoState
 	 */
 	public void pasarTurno() {
-		juegoState.handleTerminoTurno();
+		tableroState.handleTerminoTurno();
 	}
 	
 	public void iniciarMinijuego() {
@@ -228,11 +230,11 @@ public class Juego implements Runnable {
 		
 	}
 
-	public JuegoState getJuegoState() {
-		return juegoState;
+	public TableroState getJuegoState() {
+		return tableroState;
 	}
 
-	public void setJuegoState(JuegoState juegoState) {
-		this.juegoState = juegoState;
+	public void setJuegoState(TableroState tableroState) {
+		this.tableroState = tableroState;
 	}
 }

@@ -35,8 +35,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 	public int getMouseY() {
 		return mouseY;
 	}
-	
-	// Implemented
 
 	@Override
 	public void mousePressed(MouseEvent e) {

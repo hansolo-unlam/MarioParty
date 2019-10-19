@@ -6,11 +6,11 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 public class Ventana {
-	private JFrame frame;
-	private Canvas canvas;
-	
 	private String title;
 	private int width, height;
+	
+	private JFrame frame;
+	private Canvas canvas;
 	
 	public Ventana(String title, int width, int height) {
 		this.title = title;
@@ -26,10 +26,9 @@ public class Ventana {
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// Que no se pueda modificar el tamaño
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		frame.setResizable(false); 			// que no se pueda modificar el tamaño
+		frame.setLocationRelativeTo(null); 	// que se abra en el centro de la pantalla
+		frame.setVisible(true); 			// que se pueda ver
 		
 		// creación y configuración del canvas
 		canvas = new Canvas();

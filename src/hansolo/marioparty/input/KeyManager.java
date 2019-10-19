@@ -5,24 +5,39 @@ import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener {
 	private boolean[] teclas;
-	public boolean arriba, abajo, izquierda, derecha, teclaA, teclaS, teclaD, teclaW;
+	public boolean teclaA, teclaS, teclaD, teclaW;
+	public boolean teclaG, teclaH, teclaJ, teclaY;
+	public boolean izquierda, abajo, derecha, arriba;
+	public boolean tecla4, tecla5, tecla6, tecla8;
 	
 	public KeyManager() {
 		teclas = new boolean[256];
 	}
 	
 	public void calcular() {
-		// Controles jugador 1
+		// controles jugador 1
 		teclaW = teclas[KeyEvent.VK_W];
 		teclaS = teclas[KeyEvent.VK_S];
 		teclaA = teclas[KeyEvent.VK_A];
 		teclaD = teclas[KeyEvent.VK_D];
 		
-		// Controles jugador 2
+		// controles jugador 2
+		teclaY = teclas[KeyEvent.VK_Y];
+		teclaH = teclas[KeyEvent.VK_H];
+		teclaG = teclas[KeyEvent.VK_G];
+		teclaJ = teclas[KeyEvent.VK_J];
+		
+		// controles jugador 3
 		arriba = teclas[KeyEvent.VK_UP];
 		abajo = teclas[KeyEvent.VK_DOWN];
 		izquierda = teclas[KeyEvent.VK_LEFT];
 		derecha = teclas[KeyEvent.VK_RIGHT];
+		
+		// controles jugador 4
+		tecla8 = teclas[KeyEvent.VK_8];
+		tecla5 = teclas[KeyEvent.VK_5];
+		tecla4 = teclas[KeyEvent.VK_4];
+		tecla6 = teclas[KeyEvent.VK_6];
 	}
 
 	@Override

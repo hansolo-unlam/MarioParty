@@ -19,14 +19,14 @@ public class LoaderMapa {
 	}
 
 	public void leerCasilleros() {
-
 		int cantCasillero = archivo.siguienteEntero();
 		
 		int startX = archivo.siguienteEntero();
 		int startY = archivo.siguienteEntero();
 		
 		List<Casillero> casilleros = new ArrayList<Casillero>();
-
+		
+		// for que arma los casilleros
 		for (int i = 0; i < cantCasillero; i++) {
 			int id = archivo.siguienteEntero();
 			char tipoCasillero = archivo.siguienteChar();
@@ -37,7 +37,8 @@ public class LoaderMapa {
 				e.printStackTrace();
 			}
 		}
-
+		
+		// for que los SiguienteCasilleros a cada casillero
 		for (int i = 0; i < cantCasillero; i++) {
 			int id = archivo.siguienteEntero();
 			
@@ -53,9 +54,11 @@ public class LoaderMapa {
 			}
 		}
 		
+		// le cargo al casillero 0 sus coordenadas [X, Y]
 		casilleros.get(0).setX(startX);
 		casilleros.get(0).setY(startY);
 		
+		// función recursiva que le calcula a cada casillero sus coordenadas [X, Y] relativas a la posición del casillero 0
 		calcularPosicion(casilleros.get(0).getSiguiente(), startX, startY);
 		
 		tablero.setCasilleros(casilleros);
@@ -64,7 +67,7 @@ public class LoaderMapa {
 	private void calcularPosicion(SiguienteCasillero current, int xAnterior, int yAnterior) {
 		Casillero casilleroActual = current.getCasillero();
 		
-		// Si la posición casillero está seteado, puedo salir
+		// end condition: si la posición casillero está seteado, puedo salir
 		if (casilleroActual.getX() != 0) return;
 		
 		switch (current.getDireccion().toString()) {
@@ -108,29 +111,6 @@ public class LoaderMapa {
 		
 		
 	}
-
-//	public void leerCasilleros1() {
-//		int cantCasillero = archivo.siguienteEntero();
-//
-//		for (int i = 0; i < cantCasillero; i++) {
-//			int id = archivo.siguienteEntero();
-//			char tipoCasillero = archivo.siguienteChar();
-//			int cantNext = archivo.siguienteEntero();
-//
-//			SiguienteCasillero[] next = new SiguienteCasillero[cantNext];
-//
-//			for (int j = 0; j < cantNext; j++) {
-//				String[] word = archivo.siguientePalabra().split(",");
-//				next[j] = new SiguienteCasillero(Integer.parseInt(word[0]), EnumDireccion.valueOf(word[1]));
-//			}
-//
-//			try {
-//				tablero.getCasilleros().put(id, armarCasillero(tipoCasillero, id, next));
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 
 	private Casillero armarCasillero(char tipoCasillero, int id) throws Exception {
 		switch (tipoCasillero) {
