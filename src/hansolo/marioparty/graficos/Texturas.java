@@ -35,7 +35,14 @@ public class Texturas {
 	public static BufferedImage[] escenario;
 	public static BufferedImage tubo;
 	public static BufferedImage suelo;	
+	
+	
+	//moneda casillero
+	public static BufferedImage moneda;
 
+	
+	
+	
 	/*
 	 * Método que carga en todas las BufferedImages sus correspondientes texturas
 	 */
@@ -124,5 +131,8 @@ public class Texturas {
 
 		tubo = ImageLoader.cargarImagen("recursos/texturaMinijuego/tubo32.png");
 		suelo = ImageLoader.cargarImagen("recursos/texturaMinijuego/piso.png");
+		
+		moneda = ImageLoader.cargarImagen("recursos/texturas/Carteles/monedaCasillero.png");
+
 	}
 }

@@ -191,4 +191,6 @@ public abstract class Casillero {
 	public void setEste(SiguienteCasillero este) {
 		this.este = este;
 	}
+
+	
 }
