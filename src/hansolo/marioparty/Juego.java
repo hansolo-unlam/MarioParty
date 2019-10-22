@@ -2,11 +2,13 @@ package hansolo.marioparty;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
+import hansolo.marioparty.graficos.ImageLoader;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.graficos.Ventana;
 import hansolo.marioparty.input.KeyManager;
@@ -42,6 +44,8 @@ public class Juego implements Runnable {
 	// Gráficos
 	private BufferStrategy bs;
 	private Graphics g;
+	
+	private BufferedImage background;
 	
 	public Juego(String title, int width, int height) {
 		this.title = title;
@@ -135,10 +139,10 @@ public class Juego implements Runnable {
 	private void init() {
 		// creo la ventana
 		ventana = new Ventana(title, width, height);
-		
+		background = ImageLoader.cargarImagen("MPHanSolo.png"); 
 		// agrego los keyListener a la ventana
 		ventana.getFrame().addKeyListener(keyManager);
-		
+	
 		ventana.getFrame().addMouseListener(mouseManager);
 		ventana.getFrame().addMouseMotionListener(mouseManager);
 		ventana.getCanvas().addMouseListener(mouseManager);
@@ -180,10 +184,12 @@ public class Juego implements Runnable {
 		
 		g = bs.getDrawGraphics();
 		
+		
 		// limpiar pantalla
 		g.clearRect(0, 0, width, height);
 		g.fillRect(0, 0, width, height);
-		
+		g.drawImage(background, 20, 20, null);
+
 		// mando a dibujar el state (y a partir del state, todo el resto)
 		if (State.getState() != null)
 			State.getState().dibujar(g);
@@ -191,6 +197,7 @@ public class Juego implements Runnable {
 		// terminó de dibujar
 		bs.show();
 		g.dispose();
+
 	}
 
 	/*
