@@ -29,6 +29,13 @@ public class Texturas {
 	// flechas
 	public static BufferedImage[] flecha_arriba, flecha_abajo, flecha_izquierda, flecha_derecha;
 	
+	// MinijuegoObstaculos
+	public static BufferedImage[] mario;
+	public static BufferedImage[] luigi;
+	public static BufferedImage[] escenario;
+	public static BufferedImage tubo;
+	public static BufferedImage suelo;	
+
 	/*
 	 * Método que carga en todas las BufferedImages sus correspondientes texturas
 	 */
@@ -93,5 +100,29 @@ public class Texturas {
 		flecha_derecha = new BufferedImage[2];
 		flecha_derecha[0] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
 		flecha_derecha[1] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
+
+		// Mario Minijuego
+		HojaSprites hojaMario = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/mario32.png"));
+		mario = new BufferedImage[4];
+		mario[0] = hojaMario.recortar(0, 0, 32, 32);
+		mario[1] = hojaMario.recortar(32, 0, 32, 32);
+		mario[2] = hojaMario.recortar(64, 0, 32, 32);
+		mario[3] = hojaMario.recortar(96, 0, 32, 32);
+
+		// Luigi Minijuego
+		HojaSprites hojaLuigi = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/luigi32.png"));
+		luigi = new BufferedImage[4];
+
+		for (int i = 0; i < luigi.length; i++) {
+			luigi[i] = hojaLuigi.recortar(32 * i, 0, 32, 32);
+		}
+
+		// Escenario minijuego
+
+		escenario = new BufferedImage[4];
+		escenario[0] = ImageLoader.cargarImagen("recursos/texturaMinijuego/fondo.png");
+
+		tubo = ImageLoader.cargarImagen("recursos/texturaMinijuego/tubo32.png");
+		suelo = ImageLoader.cargarImagen("recursos/texturaMinijuego/piso.png");
 	}
 }
