@@ -48,16 +48,19 @@ public class Texturas {
 	public static void init() {
 		// botones
 		HojaSprites hojaBotonTirarDado = new HojaSprites(
-				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado.png"));
+				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado2.png"));
 		btnTirarDado = new BufferedImage[2];
-		btnTirarDado[0] = hojaBotonTirarDado.recortar(0, 0, 82, 32);
-		btnTirarDado[1] = hojaBotonTirarDado.recortar(0, 32, 82, 32);
-
+		btnTirarDado[0] = hojaBotonTirarDado.recortar(0, 0, 193, 200);
+		btnTirarDado[1] = hojaBotonTirarDado.recortar(0, 0, 193, 200);
+		//btnTirarDado[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
+		//btnTirarDado[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
 		HojaSprites hojaBotonTerminarTurno = new HojaSprites(
-				ImageLoader.cargarImagen("recursos/texturas/botones/boton-terminarturno.png"));
+				ImageLoader.cargarImagen("recursos/texturas/botones/boton-terminarturno2.png"));
 		btnTerminarTurno = new BufferedImage[2];
-		btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
-		btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
+		btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 193, 200);
+		btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 0, 193, 200);
+	//	btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
+		//btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
 
 		// jugadores
 		HojaSprites hojaJugador1 = new HojaSprites(

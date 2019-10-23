@@ -32,7 +32,9 @@ public class TableroState extends State {
 		juego.getMouseManager().settearAdministradorUI(administradorUI);
 
 		administradorUI.agregarObjeto("btnTirarDado",
-				new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+				//new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+			new ImageButton(760, 400, 150, 160, Texturas.btnTirarDado, new ClickListener() {
+
 					@Override
 					public void onClick() {
 						tieneTurno.tirarDado();
@@ -50,7 +52,8 @@ public class TableroState extends State {
 				}));
 
 		administradorUI.agregarObjeto("btnTerminarTurno",
-				new ImageButton(20, 100, 115, 32, Texturas.btnTerminarTurno, new ClickListener() {
+				//new ImageButton(20, 100, 115, 32, Texturas.btnTerminarTurno, new ClickListener() {
+				new ImageButton(760, 400, 150, 160, Texturas.btnTerminarTurno, new ClickListener() {
 
 					@Override
 					public void onClick() {
