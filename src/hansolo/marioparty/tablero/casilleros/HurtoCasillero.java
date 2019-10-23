@@ -46,6 +46,7 @@ public class HurtoCasillero extends Casillero {
 		JFrame frame = new JFrame();
 		JOptionPane.showMessageDialog(frame, "Selecciona un oponente para robarle hasta 5 monedas");
 		for(int i=0; i<jugadores.size();i++) 
+			
 			if(jugadores.get(i)!=jugador) {
 				Jugador jugadorARobar = jugadores.get(i);
 				String btn = "btn" + i;
@@ -55,6 +56,7 @@ public class HurtoCasillero extends Casillero {
 				case 0:
 					multX = -1;
 					multY = -1;
+				
 					break;
 				case 1:
 					multX = 1;
@@ -69,7 +71,8 @@ public class HurtoCasillero extends Casillero {
 					multY = 1;
 					break;
 				}
-				administradorUI.agregarObjeto(btn, new ImageButton(jugadorARobar.getX()+32*multX, jugadorARobar.getY()+32*multY, Texturas.width, Texturas.height, Texturas.flecha_arriba, new ClickListener() {
+				administradorUI.agregarObjeto(btn, new ImageButton(800,100, Texturas.width, Texturas.height, Texturas.flecha_arriba, new ClickListener()
+				{
 			@Override
 			public void onClick() {
 				if(jugadorARobar.getMonedas()>=5) {
