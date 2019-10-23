@@ -15,7 +15,7 @@ public class Texturas {
 
 	// texturas de jugadores
 	public static BufferedImage jugador_1, jugador_2, jugador_3, jugador_4;
-
+	public static BufferedImage[] botonJugador1, botonJugador2, botonJugador3, botonJugador4;
 	// texturas de casilleros
 	public static BufferedImage casillero_bifurcacion, casillero_estrella, casillero_moneda_positivo,
 			casillero_moneda_negativo, casillero_hurto, casillero_random_malo, casillero_TP, casillero_tienda,
@@ -113,6 +113,28 @@ public class Texturas {
 		flecha_derecha = new BufferedImage[2];
 		flecha_derecha[0] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
 		flecha_derecha[1] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
+		
+		//botones jugadores
+		
+		HojaSprites hojaJugador01 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/jugador1.png"));
+		botonJugador1 = new BufferedImage[2];
+		botonJugador1[0] = hojaJugador01.recortar(0, 0, width, height);
+		botonJugador1[1] = hojaJugador01.recortar(0, 0, width, height);
+		
+		HojaSprites hojaJugador02 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador2/jugador2.png"));
+		botonJugador2 = new BufferedImage[2];
+		botonJugador2[0] = hojaJugador02.recortar(0, 0, width, height);
+		botonJugador2[1] = hojaJugador02.recortar(0, 0, width, height);
+
+		HojaSprites hojaJugador03 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador3/jugador3.png"));
+		botonJugador3 = new BufferedImage[2];
+		botonJugador3[0] = hojaJugador03.recortar(0, 0, width, height);
+		botonJugador3[1] = hojaJugador03.recortar(0, 0, width, height);
+
+		HojaSprites hojaJugador04 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador4/jugador4.png"));
+		botonJugador4 = new BufferedImage[2];
+		botonJugador4[0] = hojaJugador04.recortar(0, 0, width, height);
+		botonJugador4[1] = hojaJugador04.recortar(0, 0, width, height);
 
 		// Mario Minijuego
 		HojaSprites hojaMario = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/marios.png"));

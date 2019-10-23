@@ -36,6 +36,7 @@ public class HurtoCasillero extends Casillero {
 		List<Jugador> jugadores = jugador.getJuego().getJugadores();
 		
 		dibujarBotones(jugador, administradorUI, jugadores);
+		
 //		for(int i=0; i<jugadores.size();i++)
 //			if(jugadores.get(i)!=jugador)
 //				System.out.println(jugadores.get(i).getUser().getNombre());
@@ -52,41 +53,100 @@ public class HurtoCasillero extends Casillero {
 				String btn = "btn" + i;
 				int multX=0;
 				int multY=0;
-				switch (i) {
-				case 0:
-					multX = -1;
-					multY = -1;
+switch (i) {
 				
+				case 0:
+					administradorUI.agregarObjeto(btn, new ImageButton(730,100, Texturas.width, Texturas.height, Texturas.botonJugador1, new ClickListener()
+					{
+				@Override
+				public void onClick() {
+					if(jugadorARobar.getMonedas()>=5) {
+					jugadorARobar.setMonedas(jugadorARobar.getMonedas()-5);
+					jugador.setMonedas(jugador.getMonedas() + 5);}
+					else {
+						jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
+						jugadorARobar.setMonedas(0);
+					}
+					
+					JOptionPane.showMessageDialog(frame, "Le robaste a: " + jugadorARobar.getUser().getNombre());
+					eliminarBotones(administradorUI, jugadores, jugador);
+					jugador.setAvanzando(true);
+
+				}
+		}));
+				//fin case 0
 					break;
+					
 				case 1:
-					multX = 1;
-					multY = -1;
+				
+					administradorUI.agregarObjeto(btn, new ImageButton(730,140, Texturas.width, Texturas.height, Texturas.botonJugador2, new ClickListener()
+					{
+				@Override
+				public void onClick() {
+					if(jugadorARobar.getMonedas()>=5) {
+					jugadorARobar.setMonedas(jugadorARobar.getMonedas()-5);
+					jugador.setMonedas(jugador.getMonedas() + 5);}
+					else {
+						jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
+						jugadorARobar.setMonedas(0);
+					}
+					JOptionPane.showMessageDialog(frame, "Le robaste a: " + jugadorARobar.getUser().getNombre());
+					eliminarBotones(administradorUI, jugadores, jugador);
+					jugador.setAvanzando(true);
+
+				}
+		}));
+				//fin case 1
 					break;
+					
 				case 2:
-					multX = -1;
-					multY = 1;
+				
+					administradorUI.agregarObjeto(btn, new ImageButton(730,180, Texturas.width, Texturas.height, Texturas.botonJugador3, new ClickListener()
+					{
+				@Override
+				public void onClick() {
+					if(jugadorARobar.getMonedas()>=5) {
+					jugadorARobar.setMonedas(jugadorARobar.getMonedas()-5);
+					jugador.setMonedas(jugador.getMonedas() + 5);}
+					else {
+						jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
+						jugadorARobar.setMonedas(0);
+					}
+					JOptionPane.showMessageDialog(frame, "Le robaste a: " + jugadorARobar.getUser().getNombre());
+					eliminarBotones(administradorUI, jugadores, jugador);
+					jugador.setAvanzando(true);
+
+				}
+		}));
+					//fin case 2
 					break;
+				
+					
 				case 3:
-					multX = 1;
-					multY = 1;
+				
+					administradorUI.agregarObjeto(btn, new ImageButton(730,230, Texturas.width, Texturas.height, Texturas.botonJugador4, new ClickListener()
+					{
+				@Override
+				public void onClick() {
+					if(jugadorARobar.getMonedas()>=5) {
+					jugadorARobar.setMonedas(jugadorARobar.getMonedas()-5);
+					jugador.setMonedas(jugador.getMonedas() + 5);}
+					else {
+						jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
+						jugadorARobar.setMonedas(0);
+					}
+					JOptionPane.showMessageDialog(frame, "Le robaste a: " + jugadorARobar.getUser().getNombre());
+					eliminarBotones(administradorUI, jugadores, jugador);
+					jugador.setAvanzando(true);
+
+				}
+		}));
+					//fin case3
 					break;
-				}
-				administradorUI.agregarObjeto(btn, new ImageButton(800,100, Texturas.width, Texturas.height, Texturas.flecha_arriba, new ClickListener()
-				{
-			@Override
-			public void onClick() {
-				if(jugadorARobar.getMonedas()>=5) {
-				jugadorARobar.setMonedas(jugadorARobar.getMonedas()-5);
-				jugador.setMonedas(jugador.getMonedas() + 5);}
-				else {
-					jugador.setMonedas(jugador.getMonedas() + jugadorARobar.getMonedas());
-					jugadorARobar.setMonedas(0);
-				}
-				JOptionPane.showMessageDialog(frame, "Le robaste a: " + jugadorARobar.getUser().getNombre());
-				eliminarBotones(administradorUI, jugadores, jugador);
-				jugador.setAvanzando(true);
-			}
-	}));
+		}//llave switch
+				
+			
+
 }}
 
 	
