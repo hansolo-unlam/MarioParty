@@ -1,5 +1,6 @@
-package hansolo.marioparty.minijuegos;
+package hansolo.marioparty.minijuegos.minijuegoObstaculo;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -72,7 +73,6 @@ public class JugadorObstaculo {
 		}
 	}
 
-	// Creo que anda mal
 	public void colision(int obstaculoXTierra) {
 
 		if (obstaculoXTierra >= Xinicial && obstaculoXTierra <= Xinicial + size) {
@@ -106,9 +106,12 @@ public class JugadorObstaculo {
 		case 3:
 			g.drawImage(Texturas.luigi[idxTextura++], this.Xinicial, this.posYjug, size, size, null);
 			break;
+		case 4:
+			g.drawImage(Texturas.luigi[idxTextura++], this.Xinicial, this.posYjug, size, size, null);
+			break;
 		}
 
-		if (idxTextura == 4) {
+		if (idxTextura == Texturas.mario.length) {
 			idxTextura = 0;
 		}
 	}

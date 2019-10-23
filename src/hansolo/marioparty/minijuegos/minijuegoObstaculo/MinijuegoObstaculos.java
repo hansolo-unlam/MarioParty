@@ -1,4 +1,4 @@
-package hansolo.marioparty.minijuegos;
+package hansolo.marioparty.minijuegos.minijuegoObstaculo;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import hansolo.marioparty.Juego;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.input.KeyManager;
+import hansolo.marioparty.minijuegos.Minijuego;
 
 public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
@@ -35,8 +36,8 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	// Variables jugador
 	private int obstaculoXTierra = XinicialObs;
-	private int obstaculoXTierra1 = XinicialObs + 512;
-	private int obstaculoXTierra2 = XinicialObs + 256;
+	private int obstaculoXTierra1 = XinicialObs + 160;
+	private int obstaculoXTierra2 = XinicialObs + 288;
 
 	private int velocidadObst = 4;
 
@@ -51,7 +52,7 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		jugadoresMinijuego.add(new JugadorObstaculo(64, 2, keyManager));
 		jugadoresMinijuego.add(new JugadorObstaculo(128, 3, keyManager));
 		jugadoresMinijuego.add(new JugadorObstaculo(192, 4, keyManager));
-
+//
 		Texturas.init();
 	}
 
@@ -147,13 +148,11 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		dibujarSuelo(g);
 		dibujarFondo(g);
 
-		// Seguramente en estos calculos esta el error
 		calcularSalto();
+		dibujarObstaculos();
+		calcularPosObstaculoTierra();
 		calcularColisiones();
-		calcularPosObstaculoTierra(g);
-		dibujarObstaculos(g);
 		dibujarJugadores(g);
-		verificarFinalizacion();
 
 		// DEJAR DE DIBUJAR
 		bs.show();
@@ -161,27 +160,10 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	}
 
-	private void dibujarObstaculos(Graphics g2) {
+	private void dibujarObstaculos() {
 		g.drawImage(Texturas.tubo, obstaculoXTierra, YinicialSuelo, 32, 32, null);
-		g.drawImage(Texturas.tubo, obstaculoXTierra1, YinicialSuelo, 32, 32, null);
+		g.drawImage(Texturas.tubo, obstaculoXTierra1, YinicialSuelo, size, size, null);
 		g.drawImage(Texturas.tubo, obstaculoXTierra2, YinicialSuelo, 32, 32, null);
-	}
-
-	private void verificarFinalizacion() {
-		int cantMuertos = 0;
-		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
-			if (jugadorObstaculo.getMuerto()) {
-				cantMuertos++;
-			}
-		}
-
-		if (cantMuertos == jugadoresMinijuego.size()) {
-			System.out.println("Colisiona mal no se por que");
-
-			// Tendria que registar los puntos obtenidos a cada jugador
-			// y luego finalizar el juego
-			this.ejecutando = false;
-		}
 	}
 
 	private void dibujarJugadores(Graphics g) {
@@ -216,7 +198,7 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		}
 	}
 
-	private void calcularPosObstaculoTierra(Graphics g) {
+	private void calcularPosObstaculoTierra() {
 		if (obstaculoXTierra < 0) {
 			obstaculoXTierra = XinicialObs;
 		} else {
@@ -224,13 +206,13 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		}
 
 		if (obstaculoXTierra1 < 0) {
-			obstaculoXTierra1 = XinicialObs;
+			obstaculoXTierra1 = XinicialObs + 160;
 		} else {
 			obstaculoXTierra1 -= velocidadObst;
 		}
 
 		if (obstaculoXTierra2 < 0) {
-			obstaculoXTierra2 = XinicialObs;
+			obstaculoXTierra2 = XinicialObs + 288;
 		} else {
 			obstaculoXTierra2 -= velocidadObst;
 		}
