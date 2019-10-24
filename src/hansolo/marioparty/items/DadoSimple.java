@@ -8,7 +8,7 @@ public final class DadoSimple {
 
 	public static int tirar() {
 		//Random r = new Random();
-		double resultado = (Math.random() * 6) + 1;
+		double resultado = (Math.random() * 6) + 1+10;
 		return (int) resultado;
 	}
 

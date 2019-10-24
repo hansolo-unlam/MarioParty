@@ -27,7 +27,7 @@ public class Texturas {
 			casillero_conexion_oeste_in;
 
 	// botones
-	public static BufferedImage[] btnTirarDado, btnTerminarTurno;
+	public static BufferedImage[] btnTirarDado1,btnTirarDado2,btnTirarDado3,btnTirarDado4, btnTerminarTurno;
 
 	// flechas
 	public static BufferedImage[] flecha_arriba, flecha_abajo, flecha_izquierda, flecha_derecha;
@@ -47,11 +47,29 @@ public class Texturas {
 	 */
 	public static void init() {
 		// botones
-		HojaSprites hojaBotonTirarDado = new HojaSprites(
+		HojaSprites hojaBotonTirarDado1 = new HojaSprites(
+				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado1.png"));
+		btnTirarDado1 = new BufferedImage[2];
+		btnTirarDado1[0] = hojaBotonTirarDado1.recortar(0, 0, 193, 200);
+		btnTirarDado1[1] = hojaBotonTirarDado1.recortar(0, 0, 193, 200);
+		
+		HojaSprites hojaBotonTirarDado2 = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado2.png"));
-		btnTirarDado = new BufferedImage[2];
-		btnTirarDado[0] = hojaBotonTirarDado.recortar(0, 0, 193, 200);
-		btnTirarDado[1] = hojaBotonTirarDado.recortar(0, 0, 193, 200);
+		btnTirarDado2 = new BufferedImage[2];
+		btnTirarDado2[0] = hojaBotonTirarDado2.recortar(0, 0, 193, 200);
+		btnTirarDado2[1] = hojaBotonTirarDado2.recortar(0, 0, 193, 200);
+		
+		HojaSprites hojaBotonTirarDado3 = new HojaSprites(
+				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado3.png"));
+		btnTirarDado3 = new BufferedImage[2];
+		btnTirarDado3[0] = hojaBotonTirarDado3.recortar(0, 0, 193, 200);
+		btnTirarDado3[1] = hojaBotonTirarDado3.recortar(0, 0, 193, 200);
+		
+		HojaSprites hojaBotonTirarDado4 = new HojaSprites(
+				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado4.png"));
+		btnTirarDado4 = new BufferedImage[2];
+		btnTirarDado4[0] = hojaBotonTirarDado4.recortar(0, 0, 193, 200);
+		btnTirarDado4[1] = hojaBotonTirarDado4.recortar(0, 0, 193, 200);
 		//btnTirarDado[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
 		//btnTirarDado[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
 		HojaSprites hojaBotonTerminarTurno = new HojaSprites(
