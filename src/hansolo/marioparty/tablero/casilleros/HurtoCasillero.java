@@ -27,7 +27,7 @@ public class HurtoCasillero extends Casillero {
 	public HurtoCasillero(int id) {
 		super(id, true);
 	}
-
+ 
 	@Override
 	public void efecto(Jugador jugador, AdministradorUI administradorUI) {
 		
@@ -51,12 +51,11 @@ public class HurtoCasillero extends Casillero {
 			if(jugadores.get(i)!=jugador) {
 				Jugador jugadorARobar = jugadores.get(i);
 				String btn = "btn" + i;
-				int multX=0;
-				int multY=0;
+
 switch (i) {
 				
 				case 0:
-					administradorUI.agregarObjeto(btn, new ImageButton(730,100, Texturas.width, Texturas.height, Texturas.botonJugador1, new ClickListener()
+					administradorUI.agregarObjeto(btn, new ImageButton(720,78, 235, 36, Texturas.botonHurto, new ClickListener()
 					{
 				@Override
 				public void onClick() {
@@ -79,7 +78,7 @@ switch (i) {
 					
 				case 1:
 				
-					administradorUI.agregarObjeto(btn, new ImageButton(730,140, Texturas.width, Texturas.height, Texturas.botonJugador2, new ClickListener()
+					administradorUI.agregarObjeto(btn, new ImageButton(720,146, 235, 36, Texturas.botonHurto, new ClickListener()
 					{
 				@Override
 				public void onClick() {
@@ -101,7 +100,7 @@ switch (i) {
 					
 				case 2:
 				
-					administradorUI.agregarObjeto(btn, new ImageButton(730,180, Texturas.width, Texturas.height, Texturas.botonJugador3, new ClickListener()
+					administradorUI.agregarObjeto(btn, new ImageButton(720,214, 235, 36, Texturas.botonHurto, new ClickListener()
 					{
 				@Override
 				public void onClick() {
@@ -124,7 +123,7 @@ switch (i) {
 					
 				case 3:
 				
-					administradorUI.agregarObjeto(btn, new ImageButton(730,230, Texturas.width, Texturas.height, Texturas.botonJugador4, new ClickListener()
+					administradorUI.agregarObjeto(btn, new ImageButton(720,280, 235, 36, Texturas.botonHurto, new ClickListener()
 					{
 				@Override
 				public void onClick() {

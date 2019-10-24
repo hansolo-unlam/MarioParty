@@ -139,7 +139,6 @@ public class Juego implements Runnable {
 	private void init() {
 		// creo la ventana
 		ventana = new Ventana(title, width, height);
-		//no pude meterlo adentro de una carpeta, por alguna razon no me dejaba hacer /recursos/texturas
 		background = ImageLoader.cargarImagen("recursos/texturas/background/background5.png"); 
 		// agrego los keyListener a la ventana
 		ventana.getFrame().addKeyListener(keyManager);

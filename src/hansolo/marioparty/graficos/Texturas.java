@@ -16,7 +16,7 @@ public class Texturas {
 
 	// texturas de jugadores
 	public static BufferedImage jugador_1, jugador_2, jugador_3, jugador_4;
-	public static BufferedImage[] botonJugador1, botonJugador2, botonJugador3, botonJugador4;
+	public static BufferedImage[] botonHurto;
 	// texturas de casilleros
 	public static BufferedImage casillero_bifurcacion, casillero_estrella, casillero_moneda_positivo,
 			casillero_moneda_negativo, casillero_hurto, casillero_random_malo, casillero_TP, casillero_tienda,
@@ -85,7 +85,7 @@ public class Texturas {
 		btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 0, 193, 200);
 	//	btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
 		//btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
-
+ 
 		// jugadores
 		HojaSprites hojaJugador1 = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/sprite-tablero.png"));
@@ -143,25 +143,11 @@ public class Texturas {
 		
 		//botones jugadores
 		
-		HojaSprites hojaJugador01 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/jugador1.png"));
-		botonJugador1 = new BufferedImage[2];
-		botonJugador1[0] = hojaJugador01.recortar(0, 0, width, height);
-		botonJugador1[1] = hojaJugador01.recortar(0, 0, width, height);
-		
-		HojaSprites hojaJugador02 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador2/jugador2.png"));
-		botonJugador2 = new BufferedImage[2];
-		botonJugador2[0] = hojaJugador02.recortar(0, 0, width, height);
-		botonJugador2[1] = hojaJugador02.recortar(0, 0, width, height);
+		HojaSprites hojaJugador01 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/hurto1.png"));
+		botonHurto = new BufferedImage[3];
+		botonHurto[0] = hojaJugador01.recortar(0, 0, 235, 36);
+		botonHurto[1] = hojaJugador01.recortar(0, 0, 235, 36);
 
-		HojaSprites hojaJugador03 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador3/jugador3.png"));
-		botonJugador3 = new BufferedImage[2];
-		botonJugador3[0] = hojaJugador03.recortar(0, 0, width, height);
-		botonJugador3[1] = hojaJugador03.recortar(0, 0, width, height);
-
-		HojaSprites hojaJugador04 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador4/jugador4.png"));
-		botonJugador4 = new BufferedImage[2];
-		botonJugador4[0] = hojaJugador04.recortar(0, 0, width, height);
-		botonJugador4[1] = hojaJugador04.recortar(0, 0, width, height);
 
 		// Mario Minijuego
 		HojaSprites hojaMario = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/marios.png"));

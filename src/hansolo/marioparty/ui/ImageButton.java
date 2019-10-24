@@ -12,7 +12,7 @@ public class ImageButton extends ObjetoUI {
 		this.imagenes = imagenes;
 		this.clicker = clicker;
 	}
-
+ 
 	@Override
 	public void calcular() {}
 
