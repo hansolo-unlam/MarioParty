@@ -3,7 +3,10 @@ package hansolo.marioparty.states;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JOptionPane;
+
 import hansolo.marioparty.Juego;
+import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Tablero;
@@ -25,14 +28,116 @@ public class TableroState extends State {
 
 		tablero = new Tablero("./recursos/map0.txt", juego);
 		this.tieneTurno = juego.getJugadores().get(0);
-
 		this.subEstado = EnumEstadoJuego.TIEMPO_DE_ACCIONES;
 
 		administradorUI = new AdministradorUI(juego);
 		juego.getMouseManager().settearAdministradorUI(administradorUI);
+		
+		/*
+		 * 
+		 * NO BORRAR TODAVIA, QUIERO VER SI ME SALE
+		 * LO QUE QUIERO HACER ACA ES PREGUNTAR CON UN IF, QUE JUGADOR ES AL QUE LE TOCA
+		 * POR LO TANTO DEPENDINDO QUE JUGADOR SEA, YA TIENE ASIGNADO UN BOTON DISTINTO
+		switch (i) {
+				
+				case 0:
+					administradorUI.agregarObjeto("btnTirarDado",
+							//new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+						new ImageButton(800, 525, 150, 160, Texturas.btnTirarDado1, new ClickListener() {
 
+								@Override
+								public void onClick() {
+									tieneTurno.tirarDado();
+									subEstado = EnumEstadoJuego.VIENDO_DADO;
+
+									new java.util.Timer().schedule(new java.util.TimerTask() {
+										@Override
+										public void run() {
+											subEstado = EnumEstadoJuego.MOVIENDOSE;
+											tieneTurno.startAvanzar();
+										}
+
+									}, 3000);
+								}
+							}));
+				//fin case 0
+					break;
+					
+				case 1:
+				
+					administradorUI.agregarObjeto("btnTirarDado",
+							//new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+						new ImageButton(800, 525, 150, 160, Texturas.btnTirarDado2, new ClickListener() {
+
+								@Override
+								public void onClick() {
+									tieneTurno.tirarDado();
+									subEstado = EnumEstadoJuego.VIENDO_DADO;
+
+									new java.util.Timer().schedule(new java.util.TimerTask() {
+										@Override
+										public void run() {
+											subEstado = EnumEstadoJuego.MOVIENDOSE;
+											tieneTurno.startAvanzar();
+										}
+
+									}, 3000);
+								}
+							}));
+				//fin case 1
+					break;
+					
+				case 2:
+				
+					administradorUI.agregarObjeto("btnTirarDado",
+							//new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+						new ImageButton(800, 525, 150, 160, Texturas.btnTirarDado3, new ClickListener() {
+
+								@Override
+								public void onClick() {
+									tieneTurno.tirarDado();
+									subEstado = EnumEstadoJuego.VIENDO_DADO;
+
+									new java.util.Timer().schedule(new java.util.TimerTask() {
+										@Override
+										public void run() {
+											subEstado = EnumEstadoJuego.MOVIENDOSE;
+											tieneTurno.startAvanzar();
+										}
+
+									}, 3000);
+								}
+							}));
+					break;
+				
+					
+				case 3:
+					administradorUI.agregarObjeto("btnTirarDado",
+							//new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+						new ImageButton(800, 525, 150, 160, Texturas.btnTirarDado4, new ClickListener() {
+
+								@Override
+								public void onClick() {
+									tieneTurno.tirarDado();
+									subEstado = EnumEstadoJuego.VIENDO_DADO;
+
+									new java.util.Timer().schedule(new java.util.TimerTask() {
+										@Override
+										public void run() {
+											subEstado = EnumEstadoJuego.MOVIENDOSE;
+											tieneTurno.startAvanzar();
+										}
+
+									}, 3000);
+								}
+							}));
+					break;
+		}//llave switch
+	 */
 		administradorUI.agregarObjeto("btnTirarDado",
-				new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+				//new ImageButton(20, 50, 82, 32, Texturas.btnTirarDado, new ClickListener() {
+			new ImageButton(800, 525, 150, 160, Texturas.btnTirarDado1, new ClickListener() {
+
 					@Override
 					public void onClick() {
 						tieneTurno.tirarDado();
@@ -50,7 +155,8 @@ public class TableroState extends State {
 				}));
 
 		administradorUI.agregarObjeto("btnTerminarTurno",
-				new ImageButton(20, 100, 115, 32, Texturas.btnTerminarTurno, new ClickListener() {
+				//new ImageButton(20, 100, 115, 32, Texturas.btnTerminarTurno, new ClickListener() {
+				new ImageButton(800, 525, 150, 160, Texturas.btnTerminarTurno, new ClickListener() {
 
 					@Override
 					public void onClick() {
