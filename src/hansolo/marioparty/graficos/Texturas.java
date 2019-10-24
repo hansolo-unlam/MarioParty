@@ -3,6 +3,7 @@ package hansolo.marioparty.graficos;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 
 import javax.imageio.ImageIO;
 
@@ -38,6 +39,11 @@ public class Texturas {
 	public static BufferedImage[] escenario;
 	public static BufferedImage tubo;
 	public static BufferedImage suelo;
+	public static BufferedImage iconoMario;
+	public static BufferedImage iconoLuigi;
+	public static BufferedImage iconoPeach;
+	public static BufferedImage iconoYoshi;
+	public static BufferedImage[] numeros;
 
 	// moneda casillero
 	public static BufferedImage moneda;
@@ -130,13 +136,32 @@ public class Texturas {
 			luigi[i] = hojaLuigi.recortar(32 * i, 0, 32, 32);
 		}
 
+		// Iconos de minijuego
+		iconoMario = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoMario.png");
+		iconoLuigi = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoLuigi.png");
+		iconoPeach = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoPeach.png");
+		iconoYoshi = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoYoshi.png");
+//		 Array de numeros
+		HojaSprites hojaNumeros = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/numeros.png"));
+		numeros = new BufferedImage[10];
+		numeros[0] = hojaNumeros.recortar(0, 0, 10, 15);
+		numeros[1] = hojaNumeros.recortar(10, 0, 10, 15);
+		numeros[2] = hojaNumeros.recortar(20, 0, 10, 15);
+		numeros[3] = hojaNumeros.recortar(30, 0, 10, 15);
+		numeros[4] = hojaNumeros.recortar(40, 0, 10, 15);
+		numeros[5] = hojaNumeros.recortar(50, 0, 10, 15);
+		numeros[6] = hojaNumeros.recortar(60, 0, 10, 15);
+		numeros[7] = hojaNumeros.recortar(70, 0, 10, 15);
+		numeros[8] = hojaNumeros.recortar(80, 0, 10, 15);
+		numeros[9] = hojaNumeros.recortar(90, 0, 10, 15);
 		// Escenario minijuego
 
 		escenario = new BufferedImage[4];
 		escenario[0] = ImageLoader.cargarImagen("recursos/texturaMinijuego/fondo.png");
-
 		tubo = ImageLoader.cargarImagen("recursos/texturaMinijuego/tubo32.png");
 		suelo = ImageLoader.cargarImagen("recursos/texturaMinijuego/piso.png");
+
+		////////////////
 
 		moneda = ImageLoader.cargarImagen("recursos/texturas/Carteles/monedaCasillero.png");
 

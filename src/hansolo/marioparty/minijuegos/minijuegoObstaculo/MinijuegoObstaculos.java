@@ -19,8 +19,8 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 	private JFrame frame;
 	private Canvas canvas;
 
-	private int height = 256;
-	private int width = 1024;
+	private final int HEIGHT = 256;
+	private final int WIDTH = 1024;
 	private int size = 32;
 
 	private KeyManager keyManager;
@@ -29,15 +29,15 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 	private Thread thread;
 	private boolean ejecutando = false;
 
+	// ------------JUEGO-------------------
 	// Constantes
-	private final int YinicialSuelo = 192;
-	// 1024
-	private final int XinicialObs = 1024;
+	private final int Y_INICIAL_SUELO = 192;
+	private final int X_INICIAL_OBS = 1024;
 
 	// Variables jugador
-	private int obstaculoXTierra = XinicialObs;
-	private int obstaculoXTierra1 = XinicialObs + 160;
-	private int obstaculoXTierra2 = XinicialObs + 288;
+	private int obstaculoXTierra = X_INICIAL_OBS;
+	private int obstaculoXTierra1 = X_INICIAL_OBS + 160;
+	private int obstaculoXTierra2 = X_INICIAL_OBS + 288;
 
 	private int velocidadObst = 4;
 
@@ -58,16 +58,16 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	private void init() {
 		frame = new JFrame("Minijuego Obstaculos");
-		frame.setSize(width, height);
+		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
 		canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(width, height));
-		canvas.setMaximumSize(new Dimension(width, height));
-		canvas.setMinimumSize(new Dimension(width, height));
+		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 
 		frame.addKeyListener(keyManager);
 		frame.add(canvas);
@@ -142,16 +142,30 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		}
 
 		g = bs.getDrawGraphics();
+
 		borrarCanvas(g);
 
 		// DIBUJAR
-		dibujarSuelo(g);
-		dibujarFondo(g);
 
+		// SI NO HAY MAS JUGADORES SIGNIFICA QUE TERMINO EL JUEGO
+//		if (jugadoresMinijuego.isEmpty()) {
+//			System.out.println("Se termino");
+//			this.ejecutando = false;
+//			// ASIGNAR PUNTUACIONES
+//			return;
+//
+//		}
+
+		// Calcula la posY del jugador;
 		calcularSalto();
-		dibujarObstaculos();
+		// Calcula la nueva posicion del obstaculo
 		calcularPosObstaculoTierra();
+		// Verifica si un jugador colisiono con un obstaculo
 		calcularColisiones();
+
+		dibujarFondo(g);
+		dibujarSuelo(g);
+		dibujarObstaculos();
 		dibujarJugadores(g);
 
 		// DEJAR DE DIBUJAR
@@ -161,9 +175,9 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 	}
 
 	private void dibujarObstaculos() {
-		g.drawImage(Texturas.tubo, obstaculoXTierra, YinicialSuelo, 32, 32, null);
-		g.drawImage(Texturas.tubo, obstaculoXTierra1, YinicialSuelo, size, size, null);
-		g.drawImage(Texturas.tubo, obstaculoXTierra2, YinicialSuelo, 32, 32, null);
+		g.drawImage(Texturas.tubo, obstaculoXTierra, Y_INICIAL_SUELO, 32, 32, null);
+//		g.drawImage(Texturas.tubo, obstaculoXTierra1, Y_INICIAL_SUELO, size, size, null);
+//		g.drawImage(Texturas.tubo, obstaculoXTierra2, Y_INICIAL_SUELO, 32, 32, null);
 	}
 
 	private void dibujarJugadores(Graphics g) {
@@ -174,9 +188,19 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	private void calcularColisiones() {
 		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
-			jugadorObstaculo.colision(obstaculoXTierra);
-			jugadorObstaculo.colision(obstaculoXTierra1);
-			jugadorObstaculo.colision(obstaculoXTierra2);
+			if (jugadorObstaculo.colision(obstaculoXTierra)) {
+				jugadoresMinijuego.remove(jugadorObstaculo);
+				return;
+			}
+			if (jugadorObstaculo.colision(obstaculoXTierra1)) {
+				jugadoresMinijuego.remove(jugadorObstaculo);
+				return;
+			}
+
+			if (jugadorObstaculo.colision(obstaculoXTierra2)) {
+				jugadoresMinijuego.remove(jugadorObstaculo);
+				return;
+			}
 		}
 	}
 
@@ -188,38 +212,45 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	private void dibujarFondo(Graphics g) {
 
-		g.drawImage(Texturas.escenario[0], 0, 0, width, height - 32, null);
+		g.drawImage(Texturas.escenario[0], 0, 0, WIDTH, HEIGHT - 32, null);
 	}
 
 	private void dibujarSuelo(Graphics g) {
 
-		for (int i = 0; i < width / size; i++) {
-			g.drawImage(Texturas.suelo, i * 32, height - size, null);
+		for (int i = 0; i < WIDTH / size; i++) {
+			g.drawImage(Texturas.suelo, i * 32, HEIGHT - size, null);
 		}
 	}
 
 	private void calcularPosObstaculoTierra() {
 		if (obstaculoXTierra < 0) {
-			obstaculoXTierra = XinicialObs;
+			obstaculoXTierra = X_INICIAL_OBS;
+			asignarPuntos();
 		} else {
 			obstaculoXTierra -= velocidadObst;
 		}
 
-		if (obstaculoXTierra1 < 0) {
-			obstaculoXTierra1 = XinicialObs + 160;
-		} else {
-			obstaculoXTierra1 -= velocidadObst;
-		}
+//		if (obstaculoXTierra1 < 0) {
+//			obstaculoXTierra1 = X_INICIAL_OBS + 160;
+//		} else {
+//			obstaculoXTierra1 -= velocidadObst;
+//		}
+//
+//		if (obstaculoXTierra2 < 0) {
+//			obstaculoXTierra2 = X_INICIAL_OBS + 288;
+//		} else {
+//			obstaculoXTierra2 -= velocidadObst;
+//		}
+	}
 
-		if (obstaculoXTierra2 < 0) {
-			obstaculoXTierra2 = XinicialObs + 288;
-		} else {
-			obstaculoXTierra2 -= velocidadObst;
+	private void asignarPuntos() {
+		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
+			jugadorObstaculo.setPuntos(jugadorObstaculo.getPuntos() + 1);
 		}
 	}
 
 	private void borrarCanvas(Graphics g) {
-		g.clearRect(0, 0, width, height);
+		g.clearRect(0, 0, WIDTH, HEIGHT);
 	}
 
 	public synchronized void start() {
