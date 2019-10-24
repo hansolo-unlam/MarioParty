@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JOptionPane;
 
 import hansolo.marioparty.Juego;
+import hansolo.marioparty.admin.Usuario;
 import hansolo.marioparty.entidades.Jugador;
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.tablero.Tablero;
@@ -27,12 +28,16 @@ public class TableroState extends State {
 
 		tablero = new Tablero("./recursos/map0.txt", juego);
 		this.tieneTurno = juego.getJugadores().get(0);
-	
 		this.subEstado = EnumEstadoJuego.TIEMPO_DE_ACCIONES;
 
 		administradorUI = new AdministradorUI(juego);
 		juego.getMouseManager().settearAdministradorUI(administradorUI);
+		
 		/*
+		 * 
+		 * NO BORRAR TODAVIA, QUIERO VER SI ME SALE
+		 * LO QUE QUIERO HACER ACA ES PREGUNTAR CON UN IF, QUE JUGADOR ES AL QUE LE TOCA
+		 * POR LO TANTO DEPENDINDO QUE JUGADOR SEA, YA TIENE ASIGNADO UN BOTON DISTINTO
 		switch (i) {
 				
 				case 0:
