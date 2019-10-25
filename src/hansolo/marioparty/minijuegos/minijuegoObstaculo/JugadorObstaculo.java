@@ -1,10 +1,6 @@
 package hansolo.marioparty.minijuegos.minijuegoObstaculo;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
-import javax.xml.soap.Text;
 
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.input.KeyManager;
@@ -15,8 +11,8 @@ public class JugadorObstaculo {
 	private final int HEIGHT = 256;
 	private final int SIZE = 32;
 
-	private int xInicial;
-	private int posYjug = Y_INICIAL_SUELO;
+	private int x;
+	private int y = Y_INICIAL_SUELO;
 	private int puntos = 0;
 
 	private boolean saltando = false;
@@ -31,23 +27,24 @@ public class JugadorObstaculo {
 	private KeyManager keyManager;
 
 	public JugadorObstaculo(int posxInicial, int numero, KeyManager keyManager) {
-		this.xInicial = posxInicial;
+		this.x = posxInicial;
 		this.keyManager = keyManager;
 		this.numero = numero;
 	}
 
-	public void gravedad() {
+	public void salto() {
 		if (saltando) {
-			if (posYjug - velocidadY - gravedad > Y_INICIAL_SUELO) {
+			if (y - velocidadY - gravedad > Y_INICIAL_SUELO) {
 				saltando = false;
 				velocidadY = 0;
-				posYjug = Y_INICIAL_SUELO;
+				y = Y_INICIAL_SUELO;
 			} else {
 				velocidadY -= gravedad;
-				posYjug -= velocidadY;
+				// Cuando la velocidad se vuelve negativa empiza a sumar
+				y -= velocidadY;
 
-				if (posYjug <= SIZE + 16) {
-					posYjug = SIZE + 16;
+				if (y <= SIZE + 16) {
+					y = SIZE + 16;
 				}
 
 			}
@@ -78,16 +75,6 @@ public class JugadorObstaculo {
 		}
 	}
 
-	public boolean colision(int obstaculoXTierra) {
-
-		if (obstaculoXTierra >= xInicial && obstaculoXTierra <= xInicial + SIZE) {
-			if (posYjug >= HEIGHT - SIZE * 2) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public void verificarTeclado() {
 		this.keyManager.calcular();
 		saltar();
@@ -99,25 +86,25 @@ public class JugadorObstaculo {
 
 		switch (this.numero) {
 		case 1:
-			g.drawImage(Texturas.mario[idxTextura++], this.xInicial, this.posYjug, SIZE, SIZE, null);
+			g.drawImage(Texturas.mario[idxTextura++], this.x, this.y, SIZE, SIZE, null);
 			g.drawImage(Texturas.iconoMario, 10, 10, 72, 35, null);
 			g.drawImage(Texturas.numeros[decenas], 45, 20, 16, 16, null);
 			g.drawImage(Texturas.numeros[unidades], 56, 20, 16, 16, null);
 			break;
 		case 2:
-			g.drawImage(Texturas.luigi[idxTextura++], this.xInicial, this.posYjug, SIZE, SIZE, null);
+			g.drawImage(Texturas.luigi[idxTextura++], this.x, this.y, SIZE, SIZE, null);
 			g.drawImage(Texturas.iconoLuigi, 92, 10, 72, 35, null);
 			g.drawImage(Texturas.numeros[decenas], 127, 20, 16, 16, null);
 			g.drawImage(Texturas.numeros[unidades], 137, 20, 16, 16, null);
 			break;
 		case 3:
-			g.drawImage(Texturas.luigi[idxTextura++], this.xInicial, this.posYjug, SIZE, SIZE, null);
+			g.drawImage(Texturas.luigi[idxTextura++], this.x, this.y, SIZE, SIZE, null);
 			g.drawImage(Texturas.iconoPeach, 174, 10, 72, 35, null);
 			g.drawImage(Texturas.numeros[decenas], 209, 20, 16, 16, null);
 			g.drawImage(Texturas.numeros[unidades], 219, 20, 16, 16, null);
 			break;
 		case 4:
-			g.drawImage(Texturas.luigi[idxTextura++], this.xInicial, this.posYjug, SIZE, SIZE, null);
+			g.drawImage(Texturas.luigi[idxTextura++], this.x, this.y, SIZE, SIZE, null);
 			g.drawImage(Texturas.iconoYoshi, 256, 10, 72, 35, null);
 			g.drawImage(Texturas.numeros[decenas], 291, 20, 16, 16, null);
 			g.drawImage(Texturas.numeros[unidades], 301, 20, 16, 16, null);
@@ -136,4 +123,13 @@ public class JugadorObstaculo {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+
+	public int getX() {
+		return this.x;
+	}
+
+	public int getY() {
+		return this.y;
+	}
+
 }

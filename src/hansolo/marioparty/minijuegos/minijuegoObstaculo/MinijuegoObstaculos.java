@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -21,7 +22,7 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	private final int HEIGHT = 256;
 	private final int WIDTH = 1024;
-	private int size = 32;
+	private final int SIZE = 32;
 
 	private KeyManager keyManager;
 	private BufferStrategy bs;
@@ -30,15 +31,7 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 	private boolean ejecutando = false;
 
 	// ------------JUEGO-------------------
-	// Constantes
-	private final int Y_INICIAL_SUELO = 192;
-	private final int X_INICIAL_OBS = 1024;
-
-	// Variables jugador
-	private int obstaculoXTierra = X_INICIAL_OBS;
-	private int obstaculoXTierra1 = X_INICIAL_OBS + 160;
-	private int obstaculoXTierra2 = X_INICIAL_OBS + 288;
-
+	private List<Obstaculo> obstaculos;
 	private int velocidadObst = 4;
 
 	private List<JugadorObstaculo> jugadoresMinijuego;
@@ -52,7 +45,12 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		jugadoresMinijuego.add(new JugadorObstaculo(64, 2, keyManager));
 		jugadoresMinijuego.add(new JugadorObstaculo(128, 3, keyManager));
 		jugadoresMinijuego.add(new JugadorObstaculo(192, 4, keyManager));
-//
+
+		obstaculos = new ArrayList<Obstaculo>();
+		obstaculos.add(new Obstaculo(0));
+		obstaculos.add(new Obstaculo(128));
+		obstaculos.add(new Obstaculo(512));
+
 		Texturas.init();
 	}
 
@@ -145,28 +143,27 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 		borrarCanvas(g);
 
-		// DIBUJAR
-
-		// SI NO HAY MAS JUGADORES SIGNIFICA QUE TERMINO EL JUEGO
-//		if (jugadoresMinijuego.isEmpty()) {
-//			System.out.println("Se termino");
-//			this.ejecutando = false;
-//			// ASIGNAR PUNTUACIONES
-//			return;
-//
-//		}
-
 		// Calcula la posY del jugador;
 		calcularSalto();
 		// Calcula la nueva posicion del obstaculo
 		calcularPosObstaculoTierra();
-		// Verifica si un jugador colisiono con un obstaculo
+		// Verifica si un jugador colisiono con un obstaculo , si colisiono lo elimina
 		calcularColisiones();
 
-		dibujarFondo(g);
-		dibujarSuelo(g);
+		// Verifica si el obstaculo llego al final de su recorrido le debo asignar un
+		// punto al jugador
+		asignarPuntos();
+
+		if (jugadoresMinijuego.isEmpty()) {
+			borrarCanvas(g);
+			ejecutando = false;
+			return;
+		}
+		dibujarFondo();
+		dibujarSuelo();
 		dibujarObstaculos();
-		dibujarJugadores(g);
+//		dibujarPuntajes();
+		dibujarJugadores();
 
 		// DEJAR DE DIBUJAR
 		bs.show();
@@ -175,77 +172,63 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 	}
 
 	private void dibujarObstaculos() {
-		g.drawImage(Texturas.tubo, obstaculoXTierra, Y_INICIAL_SUELO, 32, 32, null);
-//		g.drawImage(Texturas.tubo, obstaculoXTierra1, Y_INICIAL_SUELO, size, size, null);
-//		g.drawImage(Texturas.tubo, obstaculoXTierra2, Y_INICIAL_SUELO, 32, 32, null);
+		for (Obstaculo obs : obstaculos) {
+			obs.dibujar(g);
+		}
 	}
 
-	private void dibujarJugadores(Graphics g) {
+	private void dibujarJugadores() {
 		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
 			jugadorObstaculo.dibujar(g);
 		}
 	}
 
+	// ESE RETURN NO VA AHI
 	private void calcularColisiones() {
-		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
-			if (jugadorObstaculo.colision(obstaculoXTierra)) {
-				jugadoresMinijuego.remove(jugadorObstaculo);
-				return;
-			}
-			if (jugadorObstaculo.colision(obstaculoXTierra1)) {
-				jugadoresMinijuego.remove(jugadorObstaculo);
-				return;
-			}
+		Iterator<JugadorObstaculo> iteradorJug = jugadoresMinijuego.iterator();
 
-			if (jugadorObstaculo.colision(obstaculoXTierra2)) {
-				jugadoresMinijuego.remove(jugadorObstaculo);
-				return;
+		while (iteradorJug.hasNext()) {
+			JugadorObstaculo jug = iteradorJug.next();
+			for (Obstaculo obs : obstaculos) {
+				if (obs.colisiona(jug.getX(), jug.getY())) {
+					iteradorJug.remove();
+				}
 			}
 		}
+
 	}
 
 	private void calcularSalto() {
 		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
-			jugadorObstaculo.gravedad();
+			jugadorObstaculo.salto();
 		}
 	}
 
-	private void dibujarFondo(Graphics g) {
+	private void dibujarFondo() {
 
 		g.drawImage(Texturas.escenario[0], 0, 0, WIDTH, HEIGHT - 32, null);
 	}
 
-	private void dibujarSuelo(Graphics g) {
+	private void dibujarSuelo() {
 
-		for (int i = 0; i < WIDTH / size; i++) {
-			g.drawImage(Texturas.suelo, i * 32, HEIGHT - size, null);
+		for (int i = 0; i < WIDTH / SIZE; i++) {
+			g.drawImage(Texturas.suelo, i * 32, HEIGHT - SIZE, null);
 		}
 	}
 
 	private void calcularPosObstaculoTierra() {
-		if (obstaculoXTierra < 0) {
-			obstaculoXTierra = X_INICIAL_OBS;
-			asignarPuntos();
-		} else {
-			obstaculoXTierra -= velocidadObst;
+		for (Obstaculo obs : obstaculos) {
+			obs.calcularPosicion(velocidadObst);
 		}
-
-//		if (obstaculoXTierra1 < 0) {
-//			obstaculoXTierra1 = X_INICIAL_OBS + 160;
-//		} else {
-//			obstaculoXTierra1 -= velocidadObst;
-//		}
-//
-//		if (obstaculoXTierra2 < 0) {
-//			obstaculoXTierra2 = X_INICIAL_OBS + 288;
-//		} else {
-//			obstaculoXTierra2 -= velocidadObst;
-//		}
 	}
 
 	private void asignarPuntos() {
-		for (JugadorObstaculo jugadorObstaculo : jugadoresMinijuego) {
-			jugadorObstaculo.setPuntos(jugadorObstaculo.getPuntos() + 1);
+		for (Obstaculo obs : obstaculos) {
+			for (JugadorObstaculo jugador : jugadoresMinijuego) {
+				if (obs.isPosicionFinal()) {
+					jugador.setPuntos(jugador.getPuntos() + 1);
+				}
+			}
 		}
 	}
 
