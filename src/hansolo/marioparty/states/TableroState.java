@@ -156,15 +156,7 @@ public class TableroState extends State {
 		}
 		
 		if(tieneTurno.isPierdeTurno()) {
-			index++;
-			if (index < juego.getJugadores().size())
-				tieneTurno = juego.getJugadores().get(index);
-			else {
-				index = 0;
-				tieneTurno = juego.getJugadores().get(0);
-				ronda++;
-				juego.iniciarMinijuego();
-			}
+			this.pasarTurno();
 		}
 
 		subEstado = EnumEstadoJuego.TIEMPO_DE_ACCIONES;
