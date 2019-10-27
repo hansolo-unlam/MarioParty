@@ -28,7 +28,7 @@ public class Texturas {
 			casillero_conexion_oeste_in;
 
 	// botones
-	public static BufferedImage[] btnTirarDado1,btnTirarDado2,btnTirarDado3,btnTirarDado4, btnTerminarTurno;
+	public static BufferedImage[] btnTirarDado1, btnTirarDado2, btnTirarDado3, btnTirarDado4, btnTerminarTurno;
 
 	// flechas
 	public static BufferedImage[] flecha_arriba, flecha_abajo, flecha_izquierda, flecha_derecha;
@@ -36,7 +36,7 @@ public class Texturas {
 	// MinijuegoObstaculos
 	public static BufferedImage[] mario;
 	public static BufferedImage[] luigi;
-	public static BufferedImage[] escenario;
+	public static BufferedImage escenario;
 	public static BufferedImage tubo;
 	public static BufferedImage suelo;
 	public static BufferedImage iconoMario;
@@ -44,6 +44,12 @@ public class Texturas {
 	public static BufferedImage iconoPeach;
 	public static BufferedImage iconoYoshi;
 	public static BufferedImage[] numeros;
+	public static BufferedImage iconoResultadoM;
+	public static BufferedImage iconoResultadoL;
+	public static BufferedImage iconoResultadoY;
+	public static BufferedImage iconoResultadoP;
+	public static BufferedImage gameOver;
+	public static BufferedImage[] start;
 
 	// moneda casillero
 	public static BufferedImage moneda;
@@ -58,34 +64,34 @@ public class Texturas {
 		btnTirarDado1 = new BufferedImage[2];
 		btnTirarDado1[0] = hojaBotonTirarDado1.recortar(0, 0, 193, 200);
 		btnTirarDado1[1] = hojaBotonTirarDado1.recortar(0, 0, 193, 200);
-		
+
 		HojaSprites hojaBotonTirarDado2 = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado2.png"));
 		btnTirarDado2 = new BufferedImage[2];
 		btnTirarDado2[0] = hojaBotonTirarDado2.recortar(0, 0, 193, 200);
 		btnTirarDado2[1] = hojaBotonTirarDado2.recortar(0, 0, 193, 200);
-		
+
 		HojaSprites hojaBotonTirarDado3 = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado3.png"));
 		btnTirarDado3 = new BufferedImage[2];
 		btnTirarDado3[0] = hojaBotonTirarDado3.recortar(0, 0, 193, 200);
 		btnTirarDado3[1] = hojaBotonTirarDado3.recortar(0, 0, 193, 200);
-		
+
 		HojaSprites hojaBotonTirarDado4 = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/botones/boton-tirardado4.png"));
 		btnTirarDado4 = new BufferedImage[2];
 		btnTirarDado4[0] = hojaBotonTirarDado4.recortar(0, 0, 193, 200);
 		btnTirarDado4[1] = hojaBotonTirarDado4.recortar(0, 0, 193, 200);
-		//btnTirarDado[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
-		//btnTirarDado[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
+		// btnTirarDado[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
+		// btnTirarDado[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
 		HojaSprites hojaBotonTerminarTurno = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/botones/boton-terminarturno2.png"));
 		btnTerminarTurno = new BufferedImage[2];
 		btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 193, 200);
 		btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 0, 193, 200);
-	//	btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
-		//btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
- 
+		// btnTerminarTurno[0] = hojaBotonTerminarTurno.recortar(0, 0, 115, 32);
+		// btnTerminarTurno[1] = hojaBotonTerminarTurno.recortar(0, 32, 115, 32);
+
 		// jugadores
 		HojaSprites hojaJugador1 = new HojaSprites(
 				ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/sprite-tablero.png"));
@@ -140,16 +146,16 @@ public class Texturas {
 		flecha_derecha = new BufferedImage[2];
 		flecha_derecha[0] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
 		flecha_derecha[1] = hojaFlechas.recortar(0 * width, 0 * height, width, height);
-		
-		//botones jugadores
-		
-		HojaSprites hojaJugador01 = new HojaSprites(ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/hurto1.png"));
+
+		// botones jugadores
+
+		HojaSprites hojaJugador01 = new HojaSprites(
+				ImageLoader.cargarImagen("recursos/texturas/jugadores/jugador1/hurto1.png"));
 		botonHurto = new BufferedImage[3];
 		botonHurto[0] = hojaJugador01.recortar(0, 0, 235, 36);
 		botonHurto[1] = hojaJugador01.recortar(0, 0, 235, 36);
 
-
-		// Mario Minijuego
+		// --------------MINIJUEGO------------------------
 		HojaSprites hojaMario = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/marios.png"));
 		mario = new BufferedImage[4];
 		mario[0] = hojaMario.recortar(0, 0, 15, 33);
@@ -157,20 +163,17 @@ public class Texturas {
 		mario[2] = hojaMario.recortar(30, 0, 15, 33);
 		mario[3] = hojaMario.recortar(45, 0, 15, 33);
 
-		// Luigi Minijuego
-		HojaSprites hojaLuigi = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/luigi32.png"));
+		HojaSprites hojaLuigi = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/luigis.png"));
 		luigi = new BufferedImage[4];
+		luigi[0] = hojaLuigi.recortar(0, 0, 15, 35);
+		luigi[1] = hojaLuigi.recortar(15, 0, 16, 35);
+		luigi[2] = hojaLuigi.recortar(31, 0, 15, 35);
+		luigi[3] = hojaLuigi.recortar(46, 0, 15, 35);
 
-		for (int i = 0; i < luigi.length; i++) {
-			luigi[i] = hojaLuigi.recortar(32 * i, 0, 32, 32);
-		}
-
-		// Iconos de minijuego
 		iconoMario = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoMario.png");
 		iconoLuigi = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoLuigi.png");
 		iconoPeach = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoPeach.png");
 		iconoYoshi = ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoYoshi.png");
-//		 Array de numeros
 		HojaSprites hojaNumeros = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/numeros.png"));
 		numeros = new BufferedImage[10];
 		numeros[0] = hojaNumeros.recortar(0, 0, 10, 15);
@@ -183,14 +186,25 @@ public class Texturas {
 		numeros[7] = hojaNumeros.recortar(70, 0, 10, 15);
 		numeros[8] = hojaNumeros.recortar(80, 0, 10, 15);
 		numeros[9] = hojaNumeros.recortar(90, 0, 10, 15);
-		// Escenario minijuego
 
-		escenario = new BufferedImage[4];
-		escenario[0] = ImageLoader.cargarImagen("recursos/texturaMinijuego/fondo.png");
+		escenario = ImageLoader.cargarImagen("recursos/texturaMinijuego/paisaje.png");
 		tubo = ImageLoader.cargarImagen("recursos/texturaMinijuego/tubo32.png");
 		suelo = ImageLoader.cargarImagen("recursos/texturaMinijuego/piso.png");
+		HojaSprites hojaIconoResul = new HojaSprites(
+				ImageLoader.cargarImagen("recursos/texturaMinijuego/iconoResultado.png"));
+		iconoResultadoM = hojaIconoResul.recortar(0, 0, 32, 32);
+		iconoResultadoL = hojaIconoResul.recortar(32, 0, 32, 32);
+		iconoResultadoP = hojaIconoResul.recortar(64, 0, 32, 32);
+		iconoResultadoY = hojaIconoResul.recortar(96, 0, 32, 32);
+		gameOver = ImageLoader.cargarImagen("recursos/texturaMinijuego/resultado.png");
 
-		////////////////
+		HojaSprites hojaStart = new HojaSprites(ImageLoader.cargarImagen("recursos/texturaMinijuego/start.png"));
+		start = new BufferedImage[23];
+		int dy = 3;
+		for (int i = 0; i < start.length - 1; i++) {
+			start[i] = hojaStart.recortar(0, i * 15 + dy, 118, 15);
+		}
+		// -------------------MINIJUEGO----------------------------------------
 
 		moneda = ImageLoader.cargarImagen("recursos/texturas/Carteles/monedaCasillero.png");
 

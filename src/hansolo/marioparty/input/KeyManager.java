@@ -9,12 +9,18 @@ public class KeyManager implements KeyListener {
 	public boolean teclaG, teclaH, teclaJ, teclaY;
 	public boolean izquierda, abajo, derecha, arriba;
 	public boolean tecla4, tecla5, tecla6, tecla8;
+	public boolean enter;
+	public boolean espacio;
 
 	public KeyManager() {
 		teclas = new boolean[256];
 	}
 
 	public void calcular() {
+
+		espacio = teclas[KeyEvent.VK_SPACE];
+		enter = teclas[KeyEvent.VK_ENTER];
+
 		// controles jugador 1
 		teclaW = teclas[KeyEvent.VK_W];
 		teclaS = teclas[KeyEvent.VK_S];

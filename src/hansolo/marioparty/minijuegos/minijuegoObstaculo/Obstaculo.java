@@ -7,7 +7,7 @@ import hansolo.marioparty.graficos.Texturas;
 public class Obstaculo implements Colisionable {
 
 	private final int X_INCIAL = 1024;
-	private final int Y_INICIAL = 192;
+	private final int Y_INICIAL = 272;
 	private final int SIZE = 32;
 
 	private int posX = X_INCIAL;

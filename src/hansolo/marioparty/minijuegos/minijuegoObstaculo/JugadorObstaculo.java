@@ -1,14 +1,15 @@
 package hansolo.marioparty.minijuegos.minijuegoObstaculo;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import hansolo.marioparty.graficos.Texturas;
 import hansolo.marioparty.input.KeyManager;
 
 public class JugadorObstaculo {
 
-	private final int Y_INICIAL_SUELO = 192;
-	private final int HEIGHT = 256;
+	private final int Y_INICIAL_SUELO = 272;
+	private final int HEIGHT = 320;
 	private final int SIZE = 32;
 
 	private int x;
@@ -23,13 +24,19 @@ public class JugadorObstaculo {
 
 	private int numero;
 	private int idxTextura;
+	private boolean muerto;
+	private int posicion;
 
 	private KeyManager keyManager;
 
-	public JugadorObstaculo(int posxInicial, int numero, KeyManager keyManager) {
+	private Animation animation;
+
+	public JugadorObstaculo(int posxInicial, int numero, KeyManager keyManager, BufferedImage[] textura) {
 		this.x = posxInicial;
 		this.keyManager = keyManager;
 		this.numero = numero;
+		this.animation = new Animation(50, textura);
+
 	}
 
 	public void salto() {
@@ -81,33 +88,23 @@ public class JugadorObstaculo {
 	}
 
 	public void dibujar(Graphics g) {
-		int decenas = this.puntos / 10;
-		int unidades = this.puntos % 10;
 
+		if (muerto)
+			return;
+
+		animation.tick();
 		switch (this.numero) {
 		case 1:
-			g.drawImage(Texturas.mario[idxTextura++], this.x, this.y, SIZE, SIZE, null);
-			g.drawImage(Texturas.iconoMario, 10, 10, 72, 35, null);
-			g.drawImage(Texturas.numeros[decenas], 45, 20, 16, 16, null);
-			g.drawImage(Texturas.numeros[unidades], 56, 20, 16, 16, null);
+			g.drawImage(animation.getCurrentFrame(), this.x, this.y, SIZE, SIZE, null);
 			break;
 		case 2:
-			g.drawImage(Texturas.luigi[idxTextura++], this.x, this.y, SIZE, SIZE, null);
-			g.drawImage(Texturas.iconoLuigi, 92, 10, 72, 35, null);
-			g.drawImage(Texturas.numeros[decenas], 127, 20, 16, 16, null);
-			g.drawImage(Texturas.numeros[unidades], 137, 20, 16, 16, null);
+			g.drawImage(animation.getCurrentFrame(), this.x, this.y, SIZE, SIZE, null);
 			break;
 		case 3:
-			g.drawImage(Texturas.luigi[idxTextura++], this.x, this.y, SIZE, SIZE, null);
-			g.drawImage(Texturas.iconoPeach, 174, 10, 72, 35, null);
-			g.drawImage(Texturas.numeros[decenas], 209, 20, 16, 16, null);
-			g.drawImage(Texturas.numeros[unidades], 219, 20, 16, 16, null);
+			g.drawImage(animation.getCurrentFrame(), this.x, this.y, SIZE, SIZE, null);
 			break;
 		case 4:
-			g.drawImage(Texturas.luigi[idxTextura++], this.x, this.y, SIZE, SIZE, null);
-			g.drawImage(Texturas.iconoYoshi, 256, 10, 72, 35, null);
-			g.drawImage(Texturas.numeros[decenas], 291, 20, 16, 16, null);
-			g.drawImage(Texturas.numeros[unidades], 301, 20, 16, 16, null);
+			g.drawImage(animation.getCurrentFrame(), this.x, this.y, SIZE, SIZE, null);
 			break;
 		}
 
@@ -130,6 +127,79 @@ public class JugadorObstaculo {
 
 	public int getY() {
 		return this.y;
+	}
+
+	public void setMuerto(boolean b) {
+		this.muerto = true;
+	}
+
+	public void dibujarPuntaje(Graphics g) {
+		int decenas = this.puntos / 10;
+		int unidades = this.puntos % 10;
+
+		switch (this.numero) {
+		case 1:
+			g.drawImage(Texturas.iconoMario, 10, 10, 72, 35, null);
+			g.drawImage(Texturas.numeros[decenas], 45, 20, 16, 16, null);
+			g.drawImage(Texturas.numeros[unidades], 56, 20, 16, 16, null);
+			break;
+		case 2:
+			g.drawImage(Texturas.iconoLuigi, 92, 10, 72, 35, null);
+			g.drawImage(Texturas.numeros[decenas], 127, 20, 16, 16, null);
+			g.drawImage(Texturas.numeros[unidades], 137, 20, 16, 16, null);
+			break;
+		case 3:
+			g.drawImage(Texturas.iconoPeach, 174, 10, 72, 35, null);
+			g.drawImage(Texturas.numeros[decenas], 209, 20, 16, 16, null);
+			g.drawImage(Texturas.numeros[unidades], 219, 20, 16, 16, null);
+			break;
+		case 4:
+			g.drawImage(Texturas.iconoYoshi, 256, 10, 72, 35, null);
+			g.drawImage(Texturas.numeros[decenas], 291, 20, 16, 16, null);
+			g.drawImage(Texturas.numeros[unidades], 301, 20, 16, 16, null);
+			break;
+
+		}
+	}
+
+	public boolean isMuerto() {
+		return this.muerto;
+	}
+
+	public void setPosicion(int nro) {
+		this.posicion = nro;
+
+	}
+
+	public void mostrarPosicion(Graphics g) {
+
+		int decenas = this.puntos / 10;
+		int unidades = this.puntos % 10;
+
+		switch (this.numero) {
+		case 1:
+			g.drawImage(Texturas.iconoResultadoM, 50, 100, SIZE * 2, SIZE * 2, null);
+			g.drawImage(Texturas.numeros[decenas], 50, 100 + 64, SIZE, SIZE, null);
+			g.drawImage(Texturas.numeros[unidades], 82, 100 + 64, SIZE, SIZE, null);
+			break;
+		case 2:
+			g.drawImage(Texturas.iconoResultadoL, 150, 100, SIZE * 2, SIZE * 2, null);
+			g.drawImage(Texturas.numeros[decenas], 150, 100 + 64, SIZE, SIZE, null);
+			g.drawImage(Texturas.numeros[unidades], 182, 100 + 64, SIZE, SIZE, null);
+			break;
+		case 3:
+			g.drawImage(Texturas.iconoResultadoP, 250, 100, SIZE * 2, SIZE * 2, null);
+			g.drawImage(Texturas.numeros[decenas], 250, 100 + 64, SIZE, SIZE, null);
+			g.drawImage(Texturas.numeros[unidades], 282, 100 + 64, SIZE, SIZE, null);
+			break;
+		case 4:
+			g.drawImage(Texturas.iconoResultadoY, 350, 100, SIZE * 2, SIZE * 2, null);
+			g.drawImage(Texturas.numeros[decenas], 350, 100 + 64, SIZE, SIZE, null);
+			g.drawImage(Texturas.numeros[unidades], 382, 100 + 64, SIZE, SIZE, null);
+			break;
+		default:
+			break;
+		}
 	}
 
 }
