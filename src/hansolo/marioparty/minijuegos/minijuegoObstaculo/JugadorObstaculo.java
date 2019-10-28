@@ -18,9 +18,9 @@ public class JugadorObstaculo {
 
 	private boolean saltando = false;
 
-	private int velocidadY = 0;
-	private int gravedad = 3;
-	private int salto = 15;
+	private double velocidadY = 0;
+	private double gravedad = 1;
+	private int salto = 8;
 
 	private int numero;
 	private int idxTextura;
@@ -30,6 +30,9 @@ public class JugadorObstaculo {
 	private KeyManager keyManager;
 
 	private Animation animation;
+	private boolean saltoMaximo;
+	private boolean tocoSuelo;
+	private boolean descendiendo;
 
 	public JugadorObstaculo(int posxInicial, int numero, KeyManager keyManager, BufferedImage[] textura) {
 		this.x = posxInicial;
@@ -45,13 +48,21 @@ public class JugadorObstaculo {
 				saltando = false;
 				velocidadY = 0;
 				y = Y_INICIAL_SUELO;
+				saltoMaximo = false;
+				descendiendo=false;
 			} else {
+				
 				velocidadY -= gravedad;
+				if(velocidadY<0)
+					descendiendo=true;
 				// Cuando la velocidad se vuelve negativa empiza a sumar
 				y -= velocidadY;
-
-				if (y <= SIZE + 16) {
-					y = SIZE + 16;
+				
+				
+				if (y <= SIZE + 120) {
+					saltoMaximo=true;
+					//y = SIZE + 64;
+					
 				}
 
 			}
@@ -63,7 +74,10 @@ public class JugadorObstaculo {
 
 		if (keyManager.arriba && numero == 1) {
 			saltando = true;
-			velocidadY = salto;
+			if(!saltoMaximo && !descendiendo)
+				velocidadY = salto;
+			else 
+				velocidadY-=gravedad;
 		}
 
 		if (keyManager.teclaW && numero == 2) {

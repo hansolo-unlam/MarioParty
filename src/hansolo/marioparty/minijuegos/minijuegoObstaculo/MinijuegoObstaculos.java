@@ -39,6 +39,8 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 	private int velocidadObst = 4;
 
 	private List<JugadorObstaculo> jugadoresMinijuego;
+	private int aumentoVelocidad = 0;
+	private int contador = 0;
 
 	public MinijuegoObstaculos(Juego juego) {
 		super(juego);
@@ -55,7 +57,9 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 		obstaculos = new ArrayList<Obstaculo>();
 		obstaculos.add(new Obstaculo(0));
 		obstaculos.add(new Obstaculo(128));
+		obstaculos.add(new Obstaculo(400));
 		obstaculos.add(new Obstaculo(512));
+		obstaculos.add(new Obstaculo(810));
 
 		cantJugadores = jugadoresMinijuego.size();
 		animationStart = new Animation(50, Texturas.start);
@@ -128,6 +132,12 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 			if (timer >= 1000000000) {
 				ticks = 0;
 				timer = 0;
+				//cada 8 segundos aumento la velocidad con la que se mueven los obstaculos
+				contador++;
+				if (contador == 8) {
+					aumentoVelocidad += 1;
+					contador=0;	
+				}
 			}
 		}
 
@@ -251,7 +261,7 @@ public class MinijuegoObstaculos extends Minijuego implements Runnable {
 
 	private void calcularPosObstaculoTierra() {
 		for (Obstaculo obs : obstaculos) {
-			obs.calcularPosicion(velocidadObst);
+			obs.calcularPosicion(velocidadObst + aumentoVelocidad);
 		}
 	}
 
