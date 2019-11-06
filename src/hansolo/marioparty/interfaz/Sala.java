@@ -15,7 +15,6 @@ import java.awt.event.ActionEvent;
 public class Sala {
 
 	private JFrame frame;
-	private JPanel contentPane;
 	private int WIDTH = 410;
 	private int HEIGHT = 310;
 
@@ -30,17 +29,12 @@ public class Sala {
 	private void init(String nombreSala) {
 		frame = new JFrame(nombreSala);
 		frame.setResizable(false);
-		frame.setVisible(true);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		frame.setContentPane(contentPane);
-		contentPane.setLayout(null);
+		frame.setLayout(null);
 
 		lblJugadores = new JLabel("JUGADORES");
 		lblJugadores.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -48,13 +42,13 @@ public class Sala {
 		lblJugadores.setBounds(31, 22, 138, 32);
 		lblJugadores.setVisible(true);
 
-		contentPane.add(lblJugadores);
+		frame.add(lblJugadores);
 
 		textPane = new JTextPane();
 		textPane.setBounds(41, 52, 138, 198);
 		textPane.setEditable(false);
 
-		contentPane.add(textPane);
+		frame.add(textPane);
 
 		btnSalirButton = new JButton("Salir de la sala");
 		btnSalirButton.addActionListener(new ActionListener() {
@@ -63,7 +57,7 @@ public class Sala {
 			}
 		});
 		btnSalirButton.setBounds(241, 182, 120, 23);
-		contentPane.add(btnSalirButton);
+		frame.add(btnSalirButton);
 
 		JButton btnComenzarButton = new JButton("Comenzar");
 		btnComenzarButton.addActionListener(new ActionListener() {
@@ -72,7 +66,8 @@ public class Sala {
 			}
 		});
 		btnComenzarButton.setBounds(239, 216, 122, 23);
-		contentPane.add(btnComenzarButton);
+		frame.add(btnComenzarButton);
+		frame.setVisible(true);
 	}
 
 	public static void main(String[] args) {

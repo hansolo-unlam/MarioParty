@@ -13,8 +13,10 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-
 public class LobbyVentana {
+
+	private final int WIDHT = 120;
+	private final int HEIGHT = 30;
 
 	private JButton btnCrearSala;
 	private JFrame frame;
@@ -24,7 +26,6 @@ public class LobbyVentana {
 	private JLabel lblSalas;
 	private JTextPane textPane;
 
-
 	public LobbyVentana(String nombre) {
 		init(nombre);
 	}
@@ -32,7 +33,6 @@ public class LobbyVentana {
 	private void init(String nombre) {
 		frame = new JFrame(nombre);
 		frame.setResizable(false);
-		frame.setVisible(true);
 		frame.setSize(600, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +56,7 @@ public class LobbyVentana {
 		lblSalas.setBounds(300, 22, 138, 32);
 
 		contentPane.add(lblSalas);
-		
+
 		textPane = new JTextPane();
 		textPane.setBounds(25, 52, 180, 400);
 		textPane.setEditable(false);
@@ -68,20 +68,23 @@ public class LobbyVentana {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = JOptionPane.showInputDialog("Ingresar nombre de la sala");
 				Sala sala = new Sala(nombre);
-				
 				JButton btnSala = new JButton(nombre);
+
 				btnSala.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("Ingresar a la sala");
 						Sala sala2 = new Sala(nombre);
 					}
 				});
-				btnSala.setBounds(220, 60, 120, 30);
+				btnSala.setBounds(220, 60, WIDHT, HEIGHT);
 				contentPane.add(btnSala);
+				frame.repaint();
 			}
+
 		});
 		btnCrearSala.setBounds(241, 380, 160, 50);
 		contentPane.add(btnCrearSala);
+		frame.setVisible(true);
 	}
 
 	public static void main(String[] args) {
