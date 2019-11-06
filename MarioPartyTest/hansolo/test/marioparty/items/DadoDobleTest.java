@@ -53,6 +53,7 @@ public class DadoDobleTest {
 	public void DadoDobleTestCantidad() {
 		
 		
+		
 		DadoDoble dd = new DadoDoble(3);
 		dd.usar(j1);
 		Assert.assertEquals(2, dd.getCantidad());
