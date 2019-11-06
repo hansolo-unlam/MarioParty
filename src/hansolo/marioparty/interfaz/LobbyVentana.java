@@ -17,6 +17,7 @@ public class LobbyVentana {
 
 	private final int WIDHT = 120;
 	private final int HEIGHT = 30;
+	private int desplazamiento = HEIGHT;
 
 	private JButton btnCrearSala;
 	private JFrame frame;
@@ -76,7 +77,9 @@ public class LobbyVentana {
 						Sala sala2 = new Sala(nombre);
 					}
 				});
-				btnSala.setBounds(220, 60, WIDHT, HEIGHT);
+
+				btnSala.setBounds(220, 60 + desplazamiento, WIDHT, HEIGHT);
+				desplazamiento += HEIGHT + 10;
 				contentPane.add(btnSala);
 				frame.repaint();
 			}
