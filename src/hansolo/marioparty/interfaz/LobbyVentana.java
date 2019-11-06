@@ -27,6 +27,8 @@ public class LobbyVentana {
 	private JLabel lblSalas;
 	private JTextPane textPane;
 
+	private int cantSalas = 0;
+
 	public LobbyVentana(String nombre) {
 		init(nombre);
 	}
@@ -70,11 +72,18 @@ public class LobbyVentana {
 				String nombre = JOptionPane.showInputDialog("Ingresar nombre de la sala");
 				Sala sala = new Sala(nombre);
 				JButton btnSala = new JButton(nombre);
+				cantSalas++;
+				if (cantSalas >= 7) {
+					btnCrearSala.setEnabled(false);
+				}
+				textPane.setText(cantSalas + "\n");
 
 				btnSala.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						System.out.println("Ingresar a la sala");
 						Sala sala2 = new Sala(nombre);
+
+						// 7
 					}
 				});
 
@@ -85,6 +94,7 @@ public class LobbyVentana {
 			}
 
 		});
+
 		btnCrearSala.setBounds(241, 380, 160, 50);
 		contentPane.add(btnCrearSala);
 		frame.setVisible(true);
