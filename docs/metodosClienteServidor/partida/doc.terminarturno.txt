@@ -1,0 +1,29 @@
+METODO TERMINAR_TURNO
+Descripcion:
+  un cliente solicita finalizar su turno
+  el servidor actualiza el atributo tieneTurno
+  el servidor actualiza el atributo ronda si fuera necesario
+  el servidor revisa si algún jugador ganó la partida
+
+REQUEST
+  Parámetros {
+    nombre: "TERMINAR_TURNO",
+    data: {
+
+    }
+  }
+
+RESPONSE
+  ÉXITO (a clientes en la sala) {
+    nombre: "TERMINO_TURNO",
+    data: {
+      tableroState: TableroState
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar terminar el turno"
+    }
+  }

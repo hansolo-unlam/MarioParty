@@ -1,0 +1,27 @@
+MÉTODO IR_A_SIGUIENTE_CASILLERO
+Descripcion:
+  un cliente solicita avanzar al siguiente casillero
+  el servidor actualiza la posicion del jugador
+
+REQUEST
+  Parámetros {
+    nombre: "IR_A_SIGUIENTE_CASILLERO",
+    data: {
+      
+    }
+  }
+
+RESPONSE
+  ÉXITO (a los clientes de la sala) {
+    nombre: "FUE_A_SIGUIENTE_CASILLERO",
+    data: {
+      tableroState: [TableroState]
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar avanzar al siguiente casillero"
+    }
+  }

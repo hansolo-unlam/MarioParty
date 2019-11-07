@@ -1,0 +1,13 @@
+METODO ACTUALIZAR_ESTRELLAS
+Descripcion:
+  un cliente solicita la actualización de su cantidad de estrellas
+  el servidor actualiza la cantidad de estrellas
+  el servidor reubica la estrellas
+
+REQUEST
+  Parámetros {
+    nombre: "ACTUALIZAR_ESTRELLAS",
+    data: {
+      newCantEstrellas: int
+    }
+  }

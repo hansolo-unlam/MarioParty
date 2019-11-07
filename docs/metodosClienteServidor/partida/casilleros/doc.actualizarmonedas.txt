@@ -1,0 +1,27 @@
+MÉTODOD ACTUALIZAR_MONEDAS
+Descripcion
+  un cliente solicita que se actualice su cantidad de monedas
+  el servidor actualiza las monedas
+
+REQUEST
+  Parámetros {
+    nombre: "ACTUALIZAR_MONEDAS",
+    data: {
+      newCantMonedas: int
+    }
+  }
+
+RESPONSE
+  EXITO (a los clientes de la sala) {
+    nombre: "ACTUALIZO_MONEDAS",
+    data: {
+      tableroState: TableroState
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar actualizar las monedas"
+    }
+  }

@@ -1,0 +1,20 @@
+MÉTODO ELEGIR_CAMINO_BIFURCACION
+Descripcion
+  un cliente que está en una bifurcación solicita avanzar en cierta direccion
+  el servidor actualiza el SiguienteCasillero seleccionado de la bifurcacion
+
+REQUEST
+  Parámetros {
+    nombre: "ELEGIR_CAMINO_BIFURCACION",
+    data: {
+      direccion: char
+    }
+  }
+
+RESPONSE
+  ÉXITO {
+    nombre: "ELIGIO_CAMINO_BIFURCACION",
+    data: {
+      tableroState: tableroState
+    }
+  }

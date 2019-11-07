@@ -1,0 +1,27 @@
+MÉTODO TIRAR_DADO
+Descripcion:
+  un cliente jugador solicita tirar el tirar el dado
+  el servidor tira el dado y actualiza la cantMovimientos del jugador
+
+REQUEST
+  Parámetros {
+    nombre: "TIRAR_DADO",
+    data: {
+
+    }
+  }
+
+RESPONSE
+  ÉXITO (a los clientes en la misma sala) {
+    nombre: "TIRO_DADO",
+    data: {
+      tableroState: TableroState
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar tirar el dado"
+    }
+  }
