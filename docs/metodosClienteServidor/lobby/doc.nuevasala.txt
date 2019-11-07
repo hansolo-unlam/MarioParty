@@ -7,7 +7,7 @@ REQUEST:
   Parámetros {
     nombre: "NUEVA_SALA",
     data: {
-
+        nombreSala: String
     }
   }
 
