@@ -15,9 +15,10 @@ import javax.swing.border.EmptyBorder;
 
 public class LobbyVentana {
 
-	private final int WIDHT = 120;
+	private final int WIDHT = 140;
 	private final int HEIGHT = 30;
 	private int desplazamiento = HEIGHT;
+	private int desplazamientoX = 0;
 
 	private JButton btnCrearSala;
 	private JFrame frame;
@@ -73,9 +74,13 @@ public class LobbyVentana {
 				Sala sala = new Sala(nombre);
 				JButton btnSala = new JButton(nombre);
 				cantSalas++;
-				if (cantSalas >= 7) {
-					btnCrearSala.setEnabled(false);
+				if((cantSalas-1)%7==0)
+					desplazamiento = 0;
+				if (cantSalas > 7) {
+					desplazamientoX = WIDHT*((cantSalas-1)/7) + 30;
 				}
+				if(cantSalas ==14)
+					btnCrearSala.setEnabled(false);
 				textPane.setText(cantSalas + "\n");
 
 				btnSala.addActionListener(new ActionListener() {
@@ -87,7 +92,7 @@ public class LobbyVentana {
 					}
 				});
 
-				btnSala.setBounds(220, 60 + desplazamiento, WIDHT, HEIGHT);
+				btnSala.setBounds(240 + desplazamientoX, 60 + desplazamiento, WIDHT, HEIGHT);
 				desplazamiento += HEIGHT + 10;
 				contentPane.add(btnSala);
 				frame.repaint();

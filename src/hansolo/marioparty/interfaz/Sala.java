@@ -54,6 +54,7 @@ public class Sala {
 		btnSalirButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Tocaste salir");
+				frame.hide();
 			}
 		});
 		btnSalirButton.setBounds(241, 182, 120, 23);
