@@ -1,0 +1,28 @@
+MÉTODO INGRESAR_SALA
+Descripcion:
+  el cliente solicita ingresar a una sala
+  el servidor debería agregarlo a la sala y avisarle a todos que el tal usuario está ahora en tal sala
+
+REQUEST
+  Parámetros {
+    nombre: "INGRESAR_SALA",
+    data {
+      salaSolicitada: Sala
+    }
+  }
+
+RESPONSE
+  ÉXITO (a todos los clientes) {
+    nombre: "INGRESO_A_SALA",
+    data {
+      usuario: Usuario,
+      sala: Sala
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar entrar en la sala"
+    }
+  }

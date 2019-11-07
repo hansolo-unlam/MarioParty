@@ -1,0 +1,28 @@
+MÉTODO NUEVA_SALA
+Descripción: 
+  el cliente solicita la creación de una nueva sala
+  el servidor crea la sala y agrega al cliente a la sala
+
+REQUEST:
+  Parámetros {
+    nombre: "NUEVA_SALA",
+    data: {
+
+    }
+  }
+
+RESPONSE:
+  EXITO (a todos los clientes) {
+    nombre: "SALA_CREADA",
+    data: {
+      salaCreada: Sala
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar crear la sala"
+    }
+  }
+

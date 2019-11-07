@@ -1,0 +1,36 @@
+MÉTODO LOGIN
+Descripción: 
+  el cliente envía dos string para validar sus credenciales dentro del servidor
+  el servidor valida las credenciales y devuelve información de usuarios logueados y salas creadas
+
+REQUEST:
+  Parámetros {
+    nombre: "LOGIN"
+    data: {
+      usuario: String,
+      contraseña: String
+    }
+  }
+
+RESPONSE:
+  ÉXITO (al cliente solicitante) {
+    nombre: "LOGUEADO",
+    data: {
+      salas: Sala[],
+      usuariosConectados: Usuario[]
+    }
+  }
+
+  ÉXITO (al resto de clientes) {
+    nombre: "USUARIO_LOGUEADO",
+    data: {
+      usuarioLogueado: Usuario
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar validar las credenciales"
+    }
+  }

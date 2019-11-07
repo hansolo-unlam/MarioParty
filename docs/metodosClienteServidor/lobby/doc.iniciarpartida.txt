@@ -1,0 +1,26 @@
+MÉTODO INICIAR_PARTIDA
+  un cliente solicita comenzar una partida con los usuarios que están en su sala
+  el servidor crea un tableroState y lo guarda asociado a la Sala
+
+REQUEST
+  Parámetros {
+    nombre: "INICIAR_PARTIDA",
+    data: {
+
+    }
+  }
+
+RESPONSE
+  ÉXITO (clientes que comparten sala con el cliente solicitante) {
+    nombre: "PARTIDA_INICIADA",
+    data: {
+      tableroState: [TableroState]
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar iniciar la partida"
+    }
+  }

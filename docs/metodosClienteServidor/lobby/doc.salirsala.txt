@@ -1,0 +1,29 @@
+MÉTODO SALIR_SALA
+Descripcion:
+  el cliente solicita salir de la sala en la que se encuentra
+  el servidor lo saca y le avisa a todos que salió de la sala
+  si la sala se queda sin usuarios, se debería borrar
+
+REQUEST
+  Parámetros {
+    nombre: "SALIR_SALA",
+    data: {
+
+    }
+  }
+
+RESPONSE
+  ÉXITO (a todos los clientes) {
+    nombre: "SALIO_DE_SALA",
+    data: {
+      usuario: Usuario,
+      sala: Sala
+    }
+  }
+
+  ERROR (al cliente solicitante) {
+    nombre: "ERROR",
+    data: {
+      mensaje: "hubo un error al intentar salir de la sala"
+    }
+  }
