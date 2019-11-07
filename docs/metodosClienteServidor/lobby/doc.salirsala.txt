@@ -8,7 +8,7 @@ REQUEST
   Parámetros {
     nombre: "SALIR_SALA",
     data: {
-
+        nombreSala: String
     }
   }
 
